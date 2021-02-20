@@ -3,9 +3,15 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import logoWhite from "../../assets/logo-white.png";
 import logoBlack from "../../assets/logo-black.png";
+import { useMediaQuery } from "../../Hooks/useMediaQuery";
+import { device } from "../../Styles/breakpoints";
+import { IconMenu } from "../../assets/icons/iconMenu";
+import { IconClose } from "../../assets/icons/iconClose";
 
 export const NavigationList = () => {
+  const isDesktop = useMediaQuery(device.tablet);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isClosed, setClosed] = useState(true);
   const handleScroll = () => {
     const position = window.pageYOffset;
     setScrollPosition(position);
@@ -19,22 +25,38 @@ export const NavigationList = () => {
     };
   }, []);
 
-  console.log(scrollPosition);
   return (
-    <StyledNavbar isHero={scrollPosition === 0}>
+    <StyledNavbar isHero={scrollPosition === 0 && isClosed}>
       <Container>
-        <Logo src={scrollPosition === 0 ? logoWhite : logoBlack} />
-        <LinkWrapper>
-          <Link to="/catalog">Katalog produktów</Link>
-          <Link to="/partners">Partnerzy</Link>
-          <Link to="/contact">Kontakt</Link>
-        </LinkWrapper>
+        <Logo to="/">
+          <img src={scrollPosition === 0 && isClosed ? logoWhite : logoBlack} />
+        </Logo>
+
+        {isDesktop ? (
+          <LinkWrapper>
+            <Link to="/catalog">Katalog produktów</Link>
+            <Link to="/partners">Partnerzy</Link>
+            <Link to="/contact">Kontakt</Link>
+          </LinkWrapper>
+        ) : (
+          <>
+            <LinkWrapper onClick={() => setClosed(!isClosed)}>
+              {isClosed ? <IconMenu /> : <IconClose />}
+            </LinkWrapper>
+            <MobileNavigation isClosed={isClosed}>
+              <Link to="/catalog">Katalog produktów</Link>
+              <Link to="/partners">Partnerzy</Link>
+              <Link to="/contact">Kontakt</Link>
+            </MobileNavigation>
+          </>
+        )}
       </Container>
     </StyledNavbar>
   );
 };
 
 const StyledNavbar = styled.nav<{ isHero: boolean }>`
+  display: inline-flex;
   height: 95px;
   background: ${({ theme, isHero }) =>
     isHero ? "transparent" : theme.colors.white};
@@ -45,14 +67,19 @@ const StyledNavbar = styled.nav<{ isHero: boolean }>`
   ${({ isHero }) => !isHero && "box-shadow: 0px 2px 10px 0 rgb(0 0 0 / 50%)"};
   color: ${({ theme, isHero }) =>
     isHero ? theme.colors.white : theme.colors.fontColor};
+  fill: ${({ theme, isHero }) =>
+    isHero ? theme.colors.white : theme.colors.fontColor};
 `;
 
 const Container = styled.div`
+  width: 100%;
   max-width: 1024px;
   margin: auto;
+  padding: 0 1rem;
   height: 100%;
   display: flex;
   justify-content: space-between;
+  position: relative;
 `;
 
 const LinkWrapper = styled.div`
@@ -62,10 +89,40 @@ const LinkWrapper = styled.div`
   * {
     margin-left: 2rem;
   }
+
+  > svg {
+    width: 35px;
+    height: 35px;
+    fill: inherit;
+  }
 `;
 
-const Logo = styled.img`
-  height: fit-content;
-  width: auto;
+const Logo = styled(Link)`
   margin: auto 0;
+  width: 200px;
+
+  @media ${device.laptop} {
+    height: fit-content;
+    width: auto;
+  }
+`;
+
+const MobileNavigation = styled.div<{ isClosed: boolean }>`
+  display: ${({ isClosed }) => (isClosed ? "none" : "flex")};
+  flex-flow: column;
+  position: absolute;
+  left: 0px;
+  bottom: -220px;
+  text-align: center;
+  background: ${({ theme }) => theme.colors.white};
+  width: 100vw;
+  font-size: 1.3rem;
+  padding: 1rem;
+  box-shadow: 0px 10px 10px 0 rgb(0 0 0 / 50%);
+  z-index: 1;
+
+  > * {
+    padding: 1rem;
+    border-top: 1px solid gray;
+  }
 `;

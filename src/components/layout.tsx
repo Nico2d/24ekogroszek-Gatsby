@@ -11,10 +11,10 @@ export const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      {/* <Container> */}
-        <Navigation> <NavigationList/></Navigation>
-        {children}
-      {/* </Container> */}
+      {/* <Navigation> */}
+      <NavigationList />
+      {/* </Navigation> */}
+      {children}
     </ThemeProvider>
   );
 };
