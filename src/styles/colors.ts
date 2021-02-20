@@ -2,7 +2,7 @@ import { DefaultTheme } from "styled-components";
 
 export const theme: DefaultTheme = {
   colors: {
-    primary: "#0065FF",
+    primary: "linear-gradient(to right, #F2994A, #EB5757, #EB5757)",
     secondary: "#E5E5E5",
     cardColor: "#FFFFFF",
     background: "#E5E5E5",

@@ -1,15 +1,13 @@
 import React from "react";
 import Img from "gatsby-image";
 import styled from "styled-components";
+import background from "../../assets/background.jpg";
+import { Button } from "../atoms/button";
 
 export default ({ data }) => (
   <HeroContainer>
-    <Img alt={data.name} fluid={data.heroImage.fluid} />
-    <div>
-      <h3>{data.name}</h3>
-      <p>{data.title}</p>
-      <p>{data.shortBio.shortBio}</p>
-    </div>
+    <Heading>Z troską o ciepło w Twoim domu</Heading>
+    <Button text="Poznaj nasze produkty"/>
   </HeroContainer>
 );
 
@@ -18,4 +16,17 @@ const HeroContainer = styled.div`
   background: #000;
   color: #fff;
   text-align: center;
+  height: 100vh;
+  background-image: url(${background});
+  background-position: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Heading = styled.h1`
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 `;
