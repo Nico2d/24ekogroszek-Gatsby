@@ -1,5 +1,4 @@
 import React from "react";
-import Img from "gatsby-image";
 import styled from "styled-components";
 import background from "../../assets/background.jpg";
 import { Button } from "../atoms/button";
@@ -29,4 +28,5 @@ const Heading = styled.h1`
   font-weight: bold;
   font-size: 2rem;
   margin-bottom: 1rem;
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.65));
 `;
