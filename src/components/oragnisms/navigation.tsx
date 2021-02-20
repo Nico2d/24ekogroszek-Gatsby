@@ -1,21 +1,24 @@
 import React from "react";
-import { Link } from "gatsby";
-import styled from "styled-components";
+import { MobileLabel } from "../molecules/mobileLabel";
+import { OutsideEvent } from "../atoms/OutsideEvent";
+import { useState } from "react";
+import { device } from "../../Styles/breakpoints";
+import { useMediaQuery } from "../../Hooks/useMediaQuery";
 
-export default () => (
-  <Container role="navigation">
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/blog/">Blog</Link>
-      </li>
-    </ul>
-  </Container>
-);
+export const Navigation = ({ children }) => {
+  const [isHidden, setIsHidden] = useState(true);
+  const isDesktop = useMediaQuery(device.tablet);
 
-const Container = styled.nav`
-  width: 100vw;
-  background: red;
-`;
+  const toggleNavigation = () => {
+    setIsHidden(!isHidden);
+  };
+
+  if (isDesktop) return <> {children} </>;
+
+  return (
+    <OutsideEvent method={toggleNavigation} isActive={isHidden}>
+      <MobileLabel toggleMenu={toggleNavigation} isClosed={isHidden} />
+      {!isHidden && children}
+    </OutsideEvent>
+  );
+};
