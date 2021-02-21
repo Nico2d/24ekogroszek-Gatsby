@@ -3,10 +3,12 @@ import styled from "styled-components";
 import { Button } from "../atoms/button";
 import image from "../../assets/tom-fisk.jpg";
 import polygon from "../../assets/PolygonBig.svg";
+import { Container } from "../atoms/container";
+import { device } from "../../Styles/breakpoints";
 
 export const TextWithImage = () => {
   return (
-    <Container>
+    <StyledContainer>
       <ContentSection>
         <h3>Najwyższa jakość</h3>
         <p>
@@ -22,31 +24,75 @@ export const TextWithImage = () => {
       <ImageSection>
         <img src={image} />
       </ImageSection>
-    </Container>
+    </StyledContainer>
   );
 };
 
-const Container = styled.div`
+const StyledContainer = styled(Container)`
   display: flex;
-  flex-flow: row;
-  margin: 1rem;
-  height: 300px;
+  flex-flow: column;
+  width: 100%;
 
   > div {
     flex: 50%;
   }
+
+  @media ${device.tablet} {
+    flex-flow: row;
+    height: 600px;
+  }
 `;
 
 const ContentSection = styled.div`
-  margin: auto 0;
+  margin: 2rem 0;
+
+  @media ${device.tablet} {
+    margin: auto 0;
+    padding-right: 2rem;
+  }
 `;
 
 const ImageSection = styled.div`
-  background-image: url(${polygon});
-  background-position: left;
-  background-size: cover;
+  position: relative;
+  display: none;
+
+  @media ${device.tablet} {
+    overflow: hidden;
+    display: block;
+  }
+
+  &::before {
+    position: absolute;
+    left: 0;
+
+    content: "";
+    background-image: url(${polygon});
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 1;
+    top: 0;
+    width: 150%;
+    height: 200%;
+    left: -50%;
+
+    @media ${device.tablet} {
+      top: -30%;
+      left: 0;
+      width: 100%;
+      height: 150%;
+    }
+  }
 
   > img {
-    width: 300px;
+    position: absolute;
+    z-index: 2;
+    height: auto;
+
+    @media ${device.tablet} {
+      transform: translate(10%, -50%);
+      width: 80%;
+      top: 50%;
+    }
   }
 `;

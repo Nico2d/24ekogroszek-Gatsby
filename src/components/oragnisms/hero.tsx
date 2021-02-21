@@ -33,10 +33,10 @@ const Heading = styled.h1`
   margin-bottom: 1rem;
   filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.65));
   padding: 0 2rem;
-  width: 400px;
+  max-width: 400px;
 
   @media ${device.laptop} {
     font-size: 3.5rem;
-    width: 600px;
+    max-width: 600px;
   }
 `;

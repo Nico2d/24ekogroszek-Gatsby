@@ -4,10 +4,11 @@ import styled from "styled-components";
 import logoWhite from "../../assets/logo-white.png";
 import logoBlack from "../../assets/logo-black.png";
 import { useMediaQuery } from "../../Hooks/useMediaQuery";
-import { device, size } from "../../Styles/breakpoints";
+import { device } from "../../Styles/breakpoints";
 import { IconMenu } from "../../assets/icons/iconMenu";
 import { IconClose } from "../../assets/icons/iconClose";
 import { NavigationList } from "../molecules/navigationList";
+import { Container } from "../atoms/container";
 
 export const Navigation = () => {
   const isDesktop = useMediaQuery(device.tablet);
@@ -66,21 +67,6 @@ const StyledNavbar = styled.nav<{ isHero: boolean }>`
     isHero ? theme.colors.white : theme.colors.fontColor};
   fill: ${({ theme, isHero }) =>
     isHero ? theme.colors.white : theme.colors.fontColor};
-`;
-
-const Container = styled.div`
-  width: 100%;
-  max-width: ${size.laptopM};
-  margin: auto;
-  padding: 0 1rem;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-
-  @media ${device.laptopL} {
-    max-width: ${size.laptopL};
-  }
 `;
 
 const LinkWrapper = styled.div`
