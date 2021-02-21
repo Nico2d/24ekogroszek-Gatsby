@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import Hero from "../components/oragnisms/hero";
 import { Layout } from "../components/layout";
 import ArticlePreview from "../components/article-preview";
+import { TextWithImage } from "../components/oragnisms/textWithImage";
 
 class RootIndex extends React.Component {
   render() {
@@ -17,6 +18,9 @@ class RootIndex extends React.Component {
         <div>
           <Helmet title={siteTitle} />
           <Hero data={author.node} />
+
+          <TextWithImage />
+
           <div className="wrapper">
             <h2 className="section-headline">Recent articles</h2>
             <ul className="article-list">
@@ -25,7 +29,7 @@ class RootIndex extends React.Component {
                   <li key={node.slug}>
                     <ArticlePreview article={node} />
                   </li>
-                )
+                );
               })}
             </ul>
           </div>
