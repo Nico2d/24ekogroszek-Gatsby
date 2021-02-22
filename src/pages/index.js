@@ -26,7 +26,7 @@ class RootIndex extends React.Component {
           <ContactSection />
           <TransportSection />
 
-          <div className="wrapper">
+          {/* <div className="wrapper">
             <h2 className="section-headline">Recent articles</h2>
             <ul className="article-list">
               {posts.map(({ node }) => {
@@ -37,7 +37,7 @@ class RootIndex extends React.Component {
                 );
               })}
             </ul>
-          </div>
+          </div> */}
         </div>
       </Layout>
     );

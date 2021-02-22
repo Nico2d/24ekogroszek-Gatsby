@@ -76,5 +76,6 @@ const RowSection = styled.p`
 
   > svg {
     margin-right: 0.5rem;
+    fill: black;
   }
 `;
