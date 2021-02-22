@@ -6,6 +6,7 @@ import Hero from "../components/oragnisms/hero";
 import { Layout } from "../components/layout";
 import ArticlePreview from "../components/article-preview";
 import { TextWithImage } from "../components/oragnisms/textWithImage";
+import { ContactPanel } from "../components/oragnisms/contactPanel";
 
 class RootIndex extends React.Component {
   render() {
@@ -20,6 +21,8 @@ class RootIndex extends React.Component {
           <Hero data={author.node} />
 
           <TextWithImage />
+
+          <ContactPanel />
 
           <div className="wrapper">
             <h2 className="section-headline">Recent articles</h2>
