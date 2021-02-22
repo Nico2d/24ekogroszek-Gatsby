@@ -6,7 +6,7 @@ import { device, size } from "../../Styles/breakpoints";
 import { IconPhone } from "../../assets/icons/iconPhone";
 import { IconLocation } from "../../assets/icons/iconLocation";
 
-export const ContactPanel = () => {
+export const ContactSection = () => {
   return (
     <StyledContainer>
       <ContentWrapper>
