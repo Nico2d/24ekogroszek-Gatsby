@@ -45,6 +45,7 @@ const StyledContainer = styled(Container)`
 `;
 
 const Wrapper = styled.div`
+  margin-top: 10rem;
   background: #2d2d2d;
   background-image: url(${background});
   background-repeat: no-repeat;
