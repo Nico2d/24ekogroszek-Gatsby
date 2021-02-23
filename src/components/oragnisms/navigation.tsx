@@ -19,19 +19,28 @@ export const Navigation = () => {
     setScrollPosition(position);
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
+  const [isHome, setIsHome] = useState(true);
 
+  useEffect(() => {
+    let url = window.location.href;
+    let page = url.substring(url.lastIndexOf("/") + 1);
+    setIsHome(page == "");
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <StyledNavbar isHero={scrollPosition === 0 && isClosed}>
+    <StyledNavbar isHero={isHome && scrollPosition === 0 && isClosed}>
       <Container>
         <Logo to="/">
-          <img src={scrollPosition === 0 && isClosed ? logoWhite : logoBlack} />
+          <img
+            src={
+              isHome && scrollPosition === 0 && isClosed ? logoWhite : logoBlack
+            }
+          />
         </Logo>
 
         {isDesktop ? (
