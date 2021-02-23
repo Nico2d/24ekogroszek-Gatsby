@@ -44,8 +44,8 @@ const StyledContainer = styled(Container)`
 const CardWrapper = styled.div`
   grid-row: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 `;
 
 const Card = styled.div`

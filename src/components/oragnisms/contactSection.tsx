@@ -34,7 +34,9 @@ export const ContactSection = () => {
 };
 
 const ContentWrapper = styled(Container)`
-  display: block;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
 `;
 
 const StyledContainer = styled.div`
