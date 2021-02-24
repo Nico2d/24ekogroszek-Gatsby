@@ -25,6 +25,10 @@ a {
   color: currentColor;
 }
 
+li {
+  list-style: none;
+}
+
 .wrapper {
   width: calc(100% - 10vmin);
   margin: 0 auto;

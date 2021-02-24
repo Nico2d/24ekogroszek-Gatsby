@@ -3,22 +3,58 @@ import styled from "styled-components";
 import { Container } from "../components/atoms/container";
 import { Button } from "../components/atoms/button";
 import { Layout } from "../components/layout";
-import logo1 from "../assets/bartex-wegiel.png";
-import logo2 from "../assets/wyroby-weglowe.png";
 import { device } from "../Styles/breakpoints";
 import pellet from "../assets/pellet.png";
 import polygon from "../assets/Polygon.svg";
+import { graphql, useStaticQuery } from "gatsby";
 
-export const Catalog = () => {
+export const Catalog = ({ props }) => {
+  const query = useStaticQuery(graphql`
+    query MyQuery {
+      allContentfulProduct {
+        edges {
+          node {
+            name
+            image {
+              fluid {
+                src
+              }
+            }
+            id
+            price
+            oldPrice
+            producer {
+              name
+            }
+          }
+        }
+      }
+      allContentfulProducent {
+        edges {
+          node {
+            name
+          }
+        }
+      }
+    }
+  `);
+  console.log(query);
+  const products = query.allContentfulProduct.edges;
+  const producents = query.allContentfulProducent.edges;
+
   return (
     <Layout>
       <StyledContianer>
         <StyledAside>
-          <h6>Prodcuent</h6>
-          Bartex <br />
-          Wytwórnia Węgla
+          <h6>Prodcent</h6>
+
+          <StyledProducentsWrapper>
+            {producents.map(({ node }) => (
+              <li key={node.name}>{node.name}</li>
+            ))}
+          </StyledProducentsWrapper>
         </StyledAside>
-        <main style={{ flex: 1 }}>
+        <main style={{ margin: "auto" }}>
           <select>
             <option>Sortuj wg popularności</option>
             <option>Sortuj wg średniej oceny</option>
@@ -27,18 +63,20 @@ export const Catalog = () => {
             <option>Sortuj wg ceny: najniższej</option>
           </select>
 
-          <Card>
-            <StyledWrapperImage>
-              <img src={pellet} />
-            </StyledWrapperImage>
+          {products.map(({ node: product }) => (
+            <Card key={product.id}>
+              <StyledWrapperImage>
+                <img src={product.image.fluid.src} />
+              </StyledWrapperImage>
 
-            <ContentContainer>
-              <Title>Ekogroszek Bartex Rubin</Title>
-              <CurrentPrice>860,00zł</CurrentPrice>
-              <OldPrice>890,00zł</OldPrice>
-              <StyledButton text="Wybierz" />
-            </ContentContainer>
-          </Card>
+              <ContentContainer>
+                <Title>{product.name}</Title>
+                <CurrentPrice>{product.price.toFixed(2)}zł</CurrentPrice>
+                <OldPrice>{product.oldPrice.toFixed(2)}zł</OldPrice>
+                <StyledButton text="Wybierz" />
+              </ContentContainer>
+            </Card>
+          ))}
         </main>
       </StyledContianer>
     </Layout>
@@ -46,6 +84,12 @@ export const Catalog = () => {
 };
 
 export default Catalog;
+
+const StyledProducentsWrapper = styled.div`
+  > li {
+    cursor: pointer;
+  }
+`;
 
 const StyledButton = styled(Button)`
   margin-top: auto;
@@ -67,6 +111,12 @@ const StyledWrapperImage = styled.div`
 
 const StyledAside = styled.aside`
   width: 300px;
+
+  > h6 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const ContentContainer = styled.div`
