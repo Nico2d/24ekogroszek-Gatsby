@@ -90,10 +90,22 @@ const Options = styled.ul<{ isHidden: boolean }>`
     font-weight: 400;
     font-size: 1rem;
 
-    &:hover {
+    :last-child {
+      border-bottom: none;
+    }
+
+    :hover {
       background: ${({ theme }) => theme.colors.primary};
       color: white;
       font-weight: 700;
+
+      :first-child {
+        border-radius: 1rem 1rem 0 0;
+      }
+
+      :last-child {
+        border-radius: 0 0 1rem 1rem;
+      }
     }
   }
 `;
