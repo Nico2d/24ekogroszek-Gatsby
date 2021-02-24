@@ -56,7 +56,7 @@ const Container = styled.div`
   cursor: pointer;
   position: relative;
   width: 300px;
-  border: 1px gray solid;
+  border: 1px solid #bbb;
   border-radius: 1.5rem;
   padding: 0.5rem;
   background: ${({ theme }) => theme.colors.white};
@@ -67,16 +67,6 @@ const SelectedValue = styled.p`
   margin: 0;
   padding-left: 10px;
   user-select: none;
-
-  &::after {
-    position: absolute;
-    content: "";
-    bottom: -5px;
-    right: 0;
-    height: 1px;
-    width: 100%;
-    background-color: white;
-  }
 `;
 
 const Options = styled.ul<{ isHidden: boolean }>`
@@ -90,7 +80,7 @@ const Options = styled.ul<{ isHidden: boolean }>`
   width: 100%;
   padding: 0;
   z-index: 99;
-  border: 1px solid gray;
+  border: 1px solid #bbb;
   border-radius: 1rem;
   user-select: none;
 

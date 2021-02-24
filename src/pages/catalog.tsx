@@ -60,13 +60,6 @@ export const Catalog = () => {
           </StyledProducentsWrapper>
         </StyledAside>
         <main style={{ margin: "auto" }}>
-          {/* <select>
-            <option>Sortuj wg popularności</option>
-            <option>Sortuj wg średniej oceny</option>
-            <option>Sortuj wg najnowszych</option>
-            <option>Sortuj wg ceny: najwyższej</option>
-            <option>Sortuj wg ceny: najniższej</option>
-          </select> */}
           <Select optionList={sortList} method={(e) => console.log(e)} />
           {products.map(({ node }) => (
             <ProductCard product={node} />
