@@ -1,6 +1,5 @@
 import React from "react";
-import "./base.css";
-import Container from "./container";
+import "./../styles/base.css";
 import { Navigation } from "./oragnisms/navigation";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/colors";
