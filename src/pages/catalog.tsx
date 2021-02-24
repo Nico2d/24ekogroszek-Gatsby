@@ -4,8 +4,9 @@ import { Container } from "../components/atoms/container";
 import { Layout } from "../components/layout";
 import { graphql, useStaticQuery } from "gatsby";
 import { ProductCard } from "../components/molecules/productCard";
+import { Select } from "../components/atoms/select";
 
-export const Catalog = ({ props }) => {
+export const Catalog = () => {
   const query = useStaticQuery(graphql`
     query MyQuery {
       allContentfulProduct {
@@ -38,6 +39,14 @@ export const Catalog = ({ props }) => {
   const products = query.allContentfulProduct.edges;
   const producents = query.allContentfulProducent.edges;
 
+  const sortList = [
+    "Sortuj wg popularności",
+    "Sortuj wg średniej oceny",
+    "Sortuj wg najnowszych",
+    "Sortuj wg ceny: najwyższej",
+    "Sortuj wg ceny: najniższej",
+  ];
+
   return (
     <Layout>
       <StyledContianer>
@@ -51,14 +60,14 @@ export const Catalog = ({ props }) => {
           </StyledProducentsWrapper>
         </StyledAside>
         <main style={{ margin: "auto" }}>
-          <select>
+          {/* <select>
             <option>Sortuj wg popularności</option>
             <option>Sortuj wg średniej oceny</option>
             <option>Sortuj wg najnowszych</option>
             <option>Sortuj wg ceny: najwyższej</option>
             <option>Sortuj wg ceny: najniższej</option>
-          </select>
-
+          </select> */}
+          <Select optionList={sortList} method={(e) => console.log(e)} />
           {products.map(({ node }) => (
             <ProductCard product={node} />
           ))}
