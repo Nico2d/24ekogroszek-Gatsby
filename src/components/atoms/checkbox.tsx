@@ -3,19 +3,31 @@ import styled from "styled-components";
 
 type CheckboxProps = {
   label: string;
+  checked?: boolean;
+  defaultChecked?: boolean;
+  onChangeHandler?: (e) => void;
+  name: string;
 };
 
-export const Checkbox: React.FC<CheckboxProps> = ({ label }) => {
-  const [isCheck, setChecked] = useState<boolean>(false);
-
+export const Checkbox: React.FC<CheckboxProps> = ({
+  label,
+  onChangeHandler,
+  checked,
+  name,
+}) => {
   return (
     <StyledField>
       <CustomCheckbox>
-        <Icon viewBox="0 0 24 24" checked={isCheck}>
+        <Icon viewBox="0 0 24 24" checked={checked}>
           <polyline points="20 6 9 17 4 12" />
         </Icon>
       </CustomCheckbox>
-      <input type="checkbox" onChange={(e) => setChecked(e.target.checked)} />
+      <input
+        type="checkbox"
+        checked={checked}
+        name={name}
+        onChange={onChangeHandler}
+      />
       {label}
     </StyledField>
   );
