@@ -5,11 +5,13 @@ import { Layout } from "../components/layout";
 import { graphql, useStaticQuery } from "gatsby";
 import { ProductCard } from "../components/molecules/productCard";
 import { Select } from "../components/atoms/select";
-import { Checkbox } from "../components/atoms/checkbox";
+import { CatalogFilter } from "../components/oragnisms/catalogFilter";
 
 export const Catalog = () => {
-  const query = useStaticQuery(graphql`
-    query MyQuery {
+  const {
+    allContentfulProduct: { edges: products },
+  } = useStaticQuery(graphql`
+    query getProducts {
       allContentfulProduct {
         edges {
           node {
@@ -28,17 +30,8 @@ export const Catalog = () => {
           }
         }
       }
-      allContentfulProducent {
-        edges {
-          node {
-            name
-          }
-        }
-      }
     }
   `);
-  const products = query.allContentfulProduct.edges;
-  const producents = query.allContentfulProducent.edges;
 
   const sortList = [
     "Sortuj wg popularności",
@@ -51,21 +44,11 @@ export const Catalog = () => {
   return (
     <Layout>
       <StyledContianer>
-        <StyledAside>
-          <h6>Prodcent</h6>
-
-          <StyledProducentsWrapper>
-            {producents.map(({ node }) => (
-              <li>
-                <Checkbox label={node.name} />
-              </li>
-            ))}
-          </StyledProducentsWrapper>
-        </StyledAside>
+        <CatalogFilter />
         <main style={{ margin: "auto" }}>
           <Select optionList={sortList} method={(e) => console.log(e)} />
           {products.map(({ node }) => (
-            <ProductCard product={node} />
+            <ProductCard key={node.id} product={node} />
           ))}
         </main>
       </StyledContianer>
@@ -74,27 +57,6 @@ export const Catalog = () => {
 };
 
 export default Catalog;
-
-const StyledInput = styled.input`
-  width: 25px;
-  height: 25px;
-`;
-
-const StyledProducentsWrapper = styled.div`
-  > li {
-    cursor: pointer;
-  }
-`;
-
-const StyledAside = styled.aside`
-  width: 300px;
-
-  > h6 {
-    font-size: 1.6rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-  }
-`;
 
 const StyledContianer = styled(Container)`
   margin-top: 150px;
