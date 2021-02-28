@@ -26,7 +26,6 @@ const StyledField = styled.label`
   cursor: pointer;
   line-height: 20px;
   display: flex;
-  margin-bottom: 0.5rem;
 
   > input {
     display: none;

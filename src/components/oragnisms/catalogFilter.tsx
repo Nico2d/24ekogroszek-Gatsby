@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { Checkbox } from "../atoms/checkbox";
 
 export const CatalogFilter = () => {
-  const query = useStaticQuery(graphql`
+  const {
+    allContentfulProducent: { edges: producents },
+  } = useStaticQuery(graphql`
     query MyQuery {
       allContentfulProducent {
         edges {
@@ -16,31 +18,25 @@ export const CatalogFilter = () => {
     }
   `);
 
-  const producents = query.allContentfulProducent.edges;
-
   return (
     <StyledAside>
       <h6>Prodcent</h6>
 
-      {/* <StyledProducentsWrapper>
+      <StyledProducentsWrapper>
         {producents.map(({ node }) => (
-          <li>
+          <li key={node.name}>
             <Checkbox label={node.name} />
           </li>
         ))}
-      </StyledProducentsWrapper> */}
+      </StyledProducentsWrapper>
     </StyledAside>
   );
 };
 
-const StyledInput = styled.input`
-  width: 25px;
-  height: 25px;
-`;
-
 const StyledProducentsWrapper = styled.div`
   > li {
     cursor: pointer;
+    margin-bottom: 0.5rem;
   }
 `;
 
