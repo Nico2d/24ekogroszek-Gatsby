@@ -1,11 +1,18 @@
 import { useStaticQuery, graphql } from "gatsby";
 import React from "react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { Checkbox } from "../atoms/checkbox";
 
-export const CatalogFilter = () => {
+type CatalogFilterProps = {
+  InactiveFilterIDList: Array<string>;
+  setInactiveFilterIDList: (e) => void;
+};
+
+export const CatalogFilter: React.FC<CatalogFilterProps> = ({
+  InactiveFilterIDList,
+  setInactiveFilterIDList,
+}) => {
   const {
     allContentfulProducent: { edges: producents },
   } = useStaticQuery(graphql`
@@ -22,23 +29,34 @@ export const CatalogFilter = () => {
   `);
 
   const idList = producents.map((producent) => producent.node.id);
-  const [ActiveFilterList, setActiveFilterList] = useState(idList);
-  const [CheckAll, setCheckAll] = useState(true);
-
-  console.log(ActiveFilterList);
+  //   const [InactiveFilterIDList, setInactiveFilterIDList] = useState(idList);
+  // const [CheckAll, setCheckAll] = useState(true);
 
   const checkAllHandler = (e) => {
-    setCheckAll(!CheckAll);
-    CheckAll ? setActiveFilterList([]) : setActiveFilterList(idList);
+    // setCheckAll(!CheckAll);
+    // CheckAll ? setInactiveFilterIDList([]) : setInactiveFilterIDList(idList);
+
+    InactiveFilterIDList.length === 0
+      ? setInactiveFilterIDList(idList)
+      : setInactiveFilterIDList([]);
   };
 
   const ProdcutFilterHandler = (isChecked, key) => {
-    if (isChecked) {
-      setActiveFilterList((props) => [...props, key]);
-    } else {
-      setActiveFilterList(ActiveFilterList.filter((item) => item !== key));
+    // if (isChecked) {
+    //   setInactiveFilterIDList((props) => [...props, key]);
+    // } else {
+    //   setInactiveFilterIDList(
+    //     InactiveFilterIDList.filter((item) => item !== key)
+    //   );
+    //   // InactiveFilterIDList.length === 1 && setCheckAll(false);
+    // }
 
-      ActiveFilterList.length === 1 && setCheckAll(false);
+    if (isChecked) {
+      setInactiveFilterIDList(
+        InactiveFilterIDList.filter((item) => item !== key)
+      );
+    } else {
+      setInactiveFilterIDList((props) => [...props, key]);
     }
   };
 
@@ -50,7 +68,7 @@ export const CatalogFilter = () => {
         <li>
           <Checkbox
             label="Wszystkie"
-            checked={CheckAll}
+            checked={InactiveFilterIDList.length === 0}
             onChangeHandler={checkAllHandler}
             name="all"
           />
@@ -60,7 +78,7 @@ export const CatalogFilter = () => {
             <Checkbox
               label={node.name}
               name={node.name}
-              checked={ActiveFilterList.includes(node.id)}
+              checked={!InactiveFilterIDList.includes(node.id)}
               onChangeHandler={(e) =>
                 ProdcutFilterHandler(e.target.checked, node.id)
               }

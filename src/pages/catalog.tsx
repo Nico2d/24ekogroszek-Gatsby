@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Container } from "../components/atoms/container";
 import { Layout } from "../components/layout";
@@ -8,6 +8,12 @@ import { Select } from "../components/atoms/select";
 import { CatalogFilter } from "../components/oragnisms/catalogFilter";
 
 export const Catalog = () => {
+  const [InactiveFilterIDList, setInactiveFilterIDList] = useState<
+    Array<string>
+  >([]); //(idList);
+  //A jak by to obrócić i zrobić InactiveList
+  // która będzie najpierw pusta - dzięki temu nie musze jej zapłniać :)
+
   const {
     allContentfulProduct: { edges: products },
   } = useStaticQuery(graphql`
@@ -25,6 +31,7 @@ export const Catalog = () => {
             price
             oldPrice
             producer {
+              id
               name
             }
           }
@@ -44,12 +51,19 @@ export const Catalog = () => {
   return (
     <Layout>
       <StyledContianer>
-        <CatalogFilter />
+        <CatalogFilter
+          InactiveFilterIDList={InactiveFilterIDList}
+          setInactiveFilterIDList={setInactiveFilterIDList}
+        />
         <main style={{ margin: "auto" }}>
           <Select optionList={sortList} method={(e) => console.log(e)} />
-          {products.map(({ node }) => (
-            <ProductCard key={node.id} product={node} />
-          ))}
+          {products
+            .filter(
+              ({ node }) => !InactiveFilterIDList.includes(node.producer.id)
+            )
+            .map(({ node }) => (
+              <ProductCard key={node.id} product={node} />
+            ))}
         </main>
       </StyledContianer>
     </Layout>
