@@ -10,9 +10,7 @@ import { CatalogFilter } from "../components/oragnisms/catalogFilter";
 export const Catalog = () => {
   const [InactiveFilterIDList, setInactiveFilterIDList] = useState<
     Array<string>
-  >([]); //(idList);
-  //A jak by to obrócić i zrobić InactiveList
-  // która będzie najpierw pusta - dzięki temu nie musze jej zapłniać :)
+  >([]);
 
   const {
     allContentfulProduct: { edges: products },

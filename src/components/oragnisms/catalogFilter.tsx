@@ -29,28 +29,14 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
   `);
 
   const idList = producents.map((producent) => producent.node.id);
-  //   const [InactiveFilterIDList, setInactiveFilterIDList] = useState(idList);
-  // const [CheckAll, setCheckAll] = useState(true);
 
   const checkAllHandler = (e) => {
-    // setCheckAll(!CheckAll);
-    // CheckAll ? setInactiveFilterIDList([]) : setInactiveFilterIDList(idList);
-
     InactiveFilterIDList.length === 0
       ? setInactiveFilterIDList(idList)
       : setInactiveFilterIDList([]);
   };
 
   const ProdcutFilterHandler = (isChecked, key) => {
-    // if (isChecked) {
-    //   setInactiveFilterIDList((props) => [...props, key]);
-    // } else {
-    //   setInactiveFilterIDList(
-    //     InactiveFilterIDList.filter((item) => item !== key)
-    //   );
-    //   // InactiveFilterIDList.length === 1 && setCheckAll(false);
-    // }
-
     if (isChecked) {
       setInactiveFilterIDList(
         InactiveFilterIDList.filter((item) => item !== key)
