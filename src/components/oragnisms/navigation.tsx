@@ -76,6 +76,12 @@ const StyledNavbar = styled.nav<{ isHero: boolean }>`
     isHero ? theme.colors.white : theme.colors.fontColor};
   fill: ${({ theme, isHero }) =>
     isHero ? theme.colors.white : theme.colors.fontColor};
+
+  @media ${device.laptopM} {
+    > div {
+      padding: 0;
+    }
+  }
 `;
 
 const LinkWrapper = styled.div`
