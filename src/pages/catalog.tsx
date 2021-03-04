@@ -4,8 +4,8 @@ import { Container } from "../components/atoms/container";
 import { Layout } from "../components/layout";
 import { graphql, useStaticQuery } from "gatsby";
 import { ProductCard } from "../components/molecules/productCard";
-import { Select } from "../components/atoms/select";
 import { CatalogFilter } from "../components/oragnisms/catalogFilter";
+import { Sort } from "../components/molecules/sort";
 
 export const Catalog = () => {
   const [InactiveFilterIDList, setInactiveFilterIDList] = useState<
@@ -38,14 +38,6 @@ export const Catalog = () => {
     }
   `);
 
-  const sortList = [
-    "Sortuj wg popularności",
-    "Sortuj wg średniej oceny",
-    "Sortuj wg najnowszych",
-    "Sortuj wg ceny: najwyższej",
-    "Sortuj wg ceny: najniższej",
-  ];
-
   return (
     <Layout>
       <StyledContianer>
@@ -54,17 +46,17 @@ export const Catalog = () => {
           setInactiveFilterIDList={setInactiveFilterIDList}
         />
         <main style={{ margin: "auto" }}>
-          <StyledSort optionList={sortList} method={(e) => console.log(e)} />
+          <Sort />
 
-          <CardContainer >
-          {products
-            .filter(
-              ({ node }) => !InactiveFilterIDList.includes(node.producer.id)
-            )
-            .map(({ node }) => (
-              <ProductCard key={node.id} product={node} />
-            ))}
-            </CardContainer>
+          <CardContainer>
+            {products
+              .filter(
+                ({ node }) => !InactiveFilterIDList.includes(node.producer.id)
+              )
+              .map(({ node }) => (
+                <ProductCard key={node.id} product={node} />
+              ))}
+          </CardContainer>
         </main>
       </StyledContianer>
     </Layout>
@@ -77,11 +69,6 @@ const CardContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
-`
-
-const StyledSort = styled(Select)`
-  display: flex;
-  justify-content: right;
 `;
 
 const StyledContianer = styled(Container)`
