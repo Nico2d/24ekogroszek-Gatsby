@@ -2,41 +2,19 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Container } from "../components/atoms/container";
 import { Layout } from "../components/layout";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql } from "gatsby";
 import { ProductCard } from "../components/molecules/productCard";
 import { CatalogFilter } from "../components/oragnisms/catalogFilter";
 import { Sort } from "../components/molecules/sort";
 
-export const Catalog = () => {
+export const Catalog = ({ data }) => {
   const [InactiveFilterIDList, setInactiveFilterIDList] = useState<
     Array<string>
   >([]);
 
   const {
-    allContentfulProduct: { edges: products },
-  } = useStaticQuery(graphql`
-    query getProducts {
-      allContentfulProduct {
-        edges {
-          node {
-            name
-            image {
-              fluid {
-                src
-              }
-            }
-            id
-            price
-            oldPrice
-            producer {
-              id
-              name
-            }
-          }
-        }
-      }
-    }
-  `);
+    allStrapiEkogroszeks: { edges: products },
+  } = data;
 
   return (
     <Layout>
@@ -50,9 +28,9 @@ export const Catalog = () => {
 
           <CardContainer>
             {products
-              .filter(
-                ({ node }) => !InactiveFilterIDList.includes(node.producer.id)
-              )
+              .filter(({ node }) => {
+                return !InactiveFilterIDList.includes(node.producent.Nazwa);
+              })
               .map(({ node }) => (
                 <ProductCard key={node.id} product={node} />
               ))}
@@ -74,4 +52,26 @@ const CardContainer = styled.div`
 const StyledContianer = styled(Container)`
   margin-top: 150px;
   display: flex;
+`;
+
+export const pageQuery = graphql`
+  query GetEkogroszki {
+    allStrapiEkogroszeks {
+      edges {
+        node {
+          AkutalnaCena
+          Nazwa
+          PoprzedniaCenta
+          id
+          Grafika {
+            url
+          }
+          producent {
+            id
+            Nazwa
+          }
+        }
+      }
+    }
+  }
 `;

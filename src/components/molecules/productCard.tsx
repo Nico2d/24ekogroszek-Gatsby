@@ -3,20 +3,19 @@ import styled from "styled-components";
 import { device } from "../../Styles/breakpoints";
 import { Button } from "../atoms/button";
 import polygon from "../../assets/Polygon.svg";
+import { Link } from "gatsby";
 
 type ProductType = {
   product: {
     id: string;
-    name: string;
-    oldPrice: number;
-    price: number;
-    image: {
-      fluid: {
-        src: string;
-      };
+    Nazwa: string;
+    AkutalnaCena: number;
+    PoprzedniaCenta: number;
+    Grafika: {
+      url: string;
     };
-    producer: {
-      name: string;
+    producent: {
+      Nazwa: string;
     };
   };
 };
@@ -25,14 +24,17 @@ export const ProductCard: React.FC<ProductType> = ({ product }) => {
   return (
     <Card key={product.id}>
       <StyledWrapperImage>
-        <img src={product.image.fluid.src} />
+        <img src={product.Grafika.url} />
       </StyledWrapperImage>
 
       <ContentContainer>
-        <Title>{product.name}</Title>
-        <CurrentPrice>{product.price.toFixed(2)}zł</CurrentPrice>
-        <OldPrice>{product.oldPrice.toFixed(2)}zł</OldPrice>
-        <StyledButton text="Wybierz" />
+        <Title>{product.Nazwa}</Title>
+        <CurrentPrice>{product.AkutalnaCena.toFixed(2)}zł</CurrentPrice>
+        <OldPrice>{product.PoprzedniaCenta.toFixed(2)}zł</OldPrice>
+
+        <StyledButton to={`/products/${product.Nazwa}`}>
+          <Button text="Wybierz" />
+        </StyledButton>
       </ContentContainer>
     </Card>
   );
@@ -88,11 +90,13 @@ const OldPrice = styled.p`
   text-decoration: line-through;
 `;
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(Link)`
   margin-top: auto;
   margin-left: auto;
 
-  padding: 1.2rem 5rem;
+  > button {
+    padding: 1.2rem 5rem;
+  }
 `;
 
 const StyledWrapperImage = styled.div`

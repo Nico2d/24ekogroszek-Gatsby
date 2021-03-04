@@ -45,9 +45,17 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sharp",
     `gatsby-plugin-styled-components`,
+    // {
+    //   resolve: "gatsby-source-contentful",
+    //   options: contentfulConfig,
+    // },
     {
-      resolve: "gatsby-source-contentful",
-      options: contentfulConfig,
+      resolve: "gatsby-source-strapi",
+      options: {
+        apiURL: "http://localhost:1337",
+        contentTypes: ["ekogroszeks", "producents"],
+        queryLimit: 1000,
+      },
     },
   ],
 };

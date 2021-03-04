@@ -1,9 +1,9 @@
-import { useStaticQuery, graphql } from "gatsby";
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { device } from "../../Styles/breakpoints";
 import { Checkbox } from "../atoms/checkbox";
+import { useStaticQuery, graphql } from "gatsby";
 
 type CatalogFilterProps = {
   InactiveFilterIDList: Array<string>;
@@ -15,13 +15,13 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
   setInactiveFilterIDList,
 }) => {
   const {
-    allContentfulProducent: { edges: producents },
+    allStrapiProducents: { edges: producents },
   } = useStaticQuery(graphql`
-    query MyQuery {
-      allContentfulProducent {
+    query GetProducents {
+      allStrapiProducents {
         edges {
           node {
-            name
+            Nazwa
             id
           }
         }
@@ -29,11 +29,11 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
     }
   `);
 
-  const idList = producents.map((producent) => producent.node.id);
+  const nameList = producents.map((producent) => producent.node.Nazwa);
 
   const checkAllHandler = (e) => {
     InactiveFilterIDList.length === 0
-      ? setInactiveFilterIDList(idList)
+      ? setInactiveFilterIDList(nameList)
       : setInactiveFilterIDList([]);
   };
 
@@ -61,13 +61,13 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
           />
         </li>
         {producents.map(({ node }) => (
-          <li key={node.name}>
+          <li key={node.id}>
             <Checkbox
-              label={node.name}
-              name={node.name}
-              checked={!InactiveFilterIDList.includes(node.id)}
+              label={node.Nazwa}
+              name={node.Nazwa}
+              checked={!InactiveFilterIDList.includes(node.Nazwa)}
               onChangeHandler={(e) =>
-                ProdcutFilterHandler(e.target.checked, node.id)
+                ProdcutFilterHandler(e.target.checked, node.Nazwa)
               }
             />
           </li>
