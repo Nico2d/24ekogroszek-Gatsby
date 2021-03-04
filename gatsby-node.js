@@ -5,16 +5,15 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
-    const ProductTemplate = path.resolve("./src/templates/prodcut.tsx");
+    const ProductTemplate = path.resolve("./src/templates/product.tsx");
     resolve(
       graphql(
         `
           {
-            allContentfulBlogPost {
+            allStrapiEkogroszeks {
               edges {
                 node {
-                  title
-                  slug
+                  Nazwa
                 }
               }
             }
@@ -26,13 +25,13 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors);
         }
 
-        const posts = result.data.allContentfulBlogPost.edges;
+        const posts = result.data.allStrapiEkogroszeks.edges;
         posts.forEach((post) => {
           createPage({
-            path: `/prodcuts/${post.node.slug}/`,
+            path: `/prodcuts/${post.node.Nazwa}/`,
             component: ProductTemplate,
             context: {
-              slug: post.node.slug,
+              slug: post.node.Nazwa,
             },
           });
         });

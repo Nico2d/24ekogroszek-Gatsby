@@ -21,10 +21,11 @@ type ProductType = {
 };
 
 export const ProductCard: React.FC<ProductType> = ({ product }) => {
+  console.log(process.env.API_URL, product.Grafika[0].url);
   return (
     <Card key={product.id}>
       <StyledWrapperImage>
-        <img src={product.Grafika.url} />
+        <img src={`${process.env.API_URL}${product.Grafika[0].url}`} />
       </StyledWrapperImage>
 
       <ContentContainer>
