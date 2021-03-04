@@ -16,8 +16,6 @@ export const Catalog = ({ data }) => {
     allStrapiEkogroszeks: { edges: products },
   } = data;
 
-  console.log("products:", products);
-
   return (
     <Layout>
       <StyledContianer>
