@@ -102,6 +102,7 @@ const StyledWrapperImage = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   flex: 33.33%;
+  margin: auto;
 
   > img {
     max-width: 300px;
