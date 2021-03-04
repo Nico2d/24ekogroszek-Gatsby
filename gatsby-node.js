@@ -4,6 +4,12 @@ const path = require("path");
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
+  const convertToSlug = (Text) => {
+    return Text.toLowerCase()
+      .replace(/[^\w ]+/g, "")
+      .replace(/ +/g, "-");
+  };
+
   return new Promise((resolve, reject) => {
     const ProductTemplate = path.resolve("./src/templates/product.tsx");
     resolve(
@@ -28,7 +34,7 @@ exports.createPages = ({ graphql, actions }) => {
         const posts = result.data.allStrapiEkogroszeks.edges;
         posts.forEach((post) => {
           createPage({
-            path: `/prodcuts/${post.node.Nazwa}/`,
+            path: `/produkty/${convertToSlug(post.node.Nazwa)}/`,
             component: ProductTemplate,
             context: {
               slug: post.node.Nazwa,

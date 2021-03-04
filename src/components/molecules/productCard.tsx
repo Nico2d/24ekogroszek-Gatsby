@@ -4,6 +4,7 @@ import { device } from "../../Styles/breakpoints";
 import { Button } from "../atoms/button";
 import polygon from "../../assets/Polygon.svg";
 import { Link } from "gatsby";
+import { convertToSlug } from "../../utils/convertToSlug";
 
 type ProductType = {
   product: {
@@ -32,7 +33,7 @@ export const ProductCard: React.FC<ProductType> = ({ product }) => {
         <CurrentPrice>{product.AkutalnaCena.toFixed(2)}zł</CurrentPrice>
         <OldPrice>{product.PoprzedniaCenta.toFixed(2)}zł</OldPrice>
 
-        <StyledButton to={`/products/${product.Nazwa}`}>
+        <StyledButton to={`/produkty/${convertToSlug(product.Nazwa)}`}>
           <Button text="Wybierz" />
         </StyledButton>
       </ContentContainer>

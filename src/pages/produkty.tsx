@@ -7,7 +7,7 @@ import { ProductCard } from "../components/molecules/productCard";
 import { CatalogFilter } from "../components/oragnisms/catalogFilter";
 import { Sort } from "../components/molecules/sort";
 
-export const Catalog = ({ data }) => {
+export const Produkty = ({ data }) => {
   const [InactiveFilterIDList, setInactiveFilterIDList] = useState<
     Array<string>
   >([]);
@@ -41,7 +41,7 @@ export const Catalog = ({ data }) => {
   );
 };
 
-export default Catalog;
+export default Produkty;
 
 const CardContainer = styled.div`
   display: grid;
