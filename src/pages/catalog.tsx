@@ -54,7 +54,9 @@ export const Catalog = () => {
           setInactiveFilterIDList={setInactiveFilterIDList}
         />
         <main style={{ margin: "auto" }}>
-          <Select optionList={sortList} method={(e) => console.log(e)} />
+          <StyledSort optionList={sortList} method={(e) => console.log(e)} />
+
+          <CardContainer >
           {products
             .filter(
               ({ node }) => !InactiveFilterIDList.includes(node.producer.id)
@@ -62,6 +64,7 @@ export const Catalog = () => {
             .map(({ node }) => (
               <ProductCard key={node.id} product={node} />
             ))}
+            </CardContainer>
         </main>
       </StyledContianer>
     </Layout>
@@ -69,6 +72,17 @@ export const Catalog = () => {
 };
 
 export default Catalog;
+
+const CardContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+`
+
+const StyledSort = styled(Select)`
+  display: flex;
+  justify-content: right;
+`;
 
 const StyledContianer = styled(Container)`
   margin-top: 150px;

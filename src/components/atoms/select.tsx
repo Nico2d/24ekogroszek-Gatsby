@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { OutsideEvent } from "./OutsideEvent";
+import { ArrowDropDown } from "@styled-icons/material-rounded/ArrowDropDown";
 
 type SelectTypes = {
   optionList: Array<string>;
@@ -29,7 +30,10 @@ export const Select: React.FC<SelectTypes> = ({
   return (
     <OutsideEvent method={hideOptions} isActive={isHidden}>
       <Container>
-        <SelectedValue onClick={hideOptions}>{value} ▼</SelectedValue>
+        <SelectedValue onClick={hideOptions}>
+          <span>{value}</span>
+          <ArrowDropDown />
+        </SelectedValue>
 
         <Options isHidden={isHidden}>
           {optionList.map((item, index) => {
@@ -67,6 +71,11 @@ const SelectedValue = styled.p`
   margin: 0;
   padding-left: 10px;
   user-select: none;
+  display: flex;
+  justify-content: space-between;
+
+  height: 2rem;
+  line-height: 2rem;
 `;
 
 const Options = styled.ul<{ isHidden: boolean }>`

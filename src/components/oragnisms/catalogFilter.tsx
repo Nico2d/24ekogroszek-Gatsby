@@ -2,6 +2,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import { device } from "../../Styles/breakpoints";
 import { Checkbox } from "../atoms/checkbox";
 
 type CatalogFilterProps = {
@@ -85,10 +86,15 @@ const StyledProducentsWrapper = styled.div`
 
 const StyledAside = styled.aside`
   width: 300px;
+  display: none;
 
   > h6 {
     font-size: 1.6rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
+  }
+
+  @media ${device.tablet} {
+    display: block;
   }
 `;

@@ -43,10 +43,10 @@ const Card = styled.div`
   border-radius: 2rem;
   background: linear-gradient(0deg, #ffffff, #ffffff);
   box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 25%);
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
   padding: 2rem;
   flex-flow: column;
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
   max-width: 900px;
   justify-content: space-around;
 
