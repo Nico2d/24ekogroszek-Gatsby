@@ -1,5 +1,5 @@
 import React from "react";
-import "./../styles/base.css";
+import "../styles/base.css";
 import { Navigation } from "./oragnisms/navigation";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/colors";

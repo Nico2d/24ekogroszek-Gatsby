@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import background from "../../assets/background.jpg";
-import { device } from "../../Styles/breakpoints";
+import { device } from "../../styles/breakpoints";
 import { Button } from "../atoms/button";
 
 export default ({ data }) => (

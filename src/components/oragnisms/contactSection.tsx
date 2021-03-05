@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Container } from "../atoms/container";
 import phone from "../../assets/phone.png";
-import { device, size } from "../../Styles/breakpoints";
 import { IconPhone } from "../../assets/icons/iconPhone";
 import { IconLocation } from "../../assets/icons/iconLocation";
+import { device } from "../../styles/breakpoints";
 
 export const ContactSection = () => {
   return (

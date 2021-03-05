@@ -5,7 +5,7 @@ import { IconMail } from "../../assets/icons/iconMail";
 import LogoWhite from "../../assets/logo-white.png";
 import { Container } from "../atoms/container";
 import background from "../../assets/footer.svg";
-import { device } from "../../Styles/breakpoints";
+import { device } from "../../styles/breakpoints";
 
 export const Footer = () => {
   return (

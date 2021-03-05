@@ -3,12 +3,12 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import logoWhite from "../../assets/logo-white.png";
 import logoBlack from "../../assets/logo-black.png";
-import { useMediaQuery } from "../../Hooks/useMediaQuery";
-import { device } from "../../Styles/breakpoints";
 import { IconMenu } from "../../assets/icons/iconMenu";
 import { IconClose } from "../../assets/icons/iconClose";
 import { NavigationList } from "../molecules/navigationList";
 import { Container } from "../atoms/container";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { device } from "../../styles/breakpoints";
 
 export const Navigation = () => {
   const isDesktop = useMediaQuery(device.tablet);

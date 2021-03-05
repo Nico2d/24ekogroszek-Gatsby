@@ -4,7 +4,7 @@ import { Button } from "../atoms/button";
 import image from "../../assets/tom-fisk.jpg";
 import polygon from "../../assets/PolygonBig.svg";
 import { Container } from "../atoms/container";
-import { device } from "../../Styles/breakpoints";
+import { device } from "../../styles/breakpoints";
 
 export const TextWithImage = () => {
   return (

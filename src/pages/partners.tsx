@@ -4,7 +4,7 @@ import { Container } from "../components/atoms/container";
 import { Layout } from "../components/layout";
 import logo1 from "../assets/bartex-wegiel.png";
 import logo2 from "../assets/wyroby-weglowe.png";
-import { device } from "../Styles/breakpoints";
+import { device } from "../styles/breakpoints";
 
 export const Partners = () => {
   return (

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { size, device } from "../../Styles/breakpoints";
+import { size, device } from "../../styles/breakpoints";
 
 export const Container = styled.div`
   width: 100%;

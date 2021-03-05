@@ -6,7 +6,6 @@ import transport1 from "../../assets/transport-1.png";
 import transport2 from "../../assets/transport-2.png";
 import transport3 from "../../assets/transport-3.png";
 import transport4 from "../../assets/transport-4.png";
-import { device } from "../../Styles/breakpoints";
 
 export const TransportSection = () => {
   return (

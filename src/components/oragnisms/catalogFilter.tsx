@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { device } from "../../Styles/breakpoints";
+import { device } from "../../styles/breakpoints";
 import { Checkbox } from "../atoms/checkbox";
 import { useStaticQuery, graphql } from "gatsby";
 
