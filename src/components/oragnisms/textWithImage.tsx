@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "../atoms/button";
-import image from "../../assets/tom-fisk.jpg";
-import polygon from "../../assets/PolygonBig.svg";
+const image = require("../../assets/tom-fisk.jpg");
+const polygon = require("../../assets/PolygonBig.svg");
 import { Container } from "../atoms/container";
 import { device } from "../../styles/breakpoints";
 
