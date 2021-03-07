@@ -60,6 +60,10 @@ export const Navigation = () => {
   );
 };
 
+const NavigationWrapper = styled.div`
+  margin-bottom: 132px;
+`;
+
 const StyledNavbar = styled.nav<{ isHero: boolean }>`
   display: inline-flex;
   height: 95px;

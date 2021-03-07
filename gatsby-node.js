@@ -37,7 +37,7 @@ exports.createPages = ({ graphql, actions }) => {
             path: `/produkty/${convertToSlug(post.node.Nazwa)}/`,
             component: ProductTemplate,
             context: {
-              slug: post.node.Nazwa,
+              name: post.node.Nazwa,
             },
           });
         });

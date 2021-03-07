@@ -5,6 +5,7 @@ import { Button } from "../atoms/button";
 const polygon = require("../../assets/Polygon.svg");
 import { Link } from "gatsby";
 import { convertToSlug } from "../../utils/convertToSlug";
+import { OldPrice } from "../atoms/oldPrice";
 
 type ProductType = {
   product: {
@@ -83,12 +84,6 @@ const CurrentPrice = styled.p`
   background: -webkit-linear-gradient(#f2994a, #eb5757);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-`;
-
-const OldPrice = styled.p`
-  margin: 0;
-  opacity: 0.5;
-  text-decoration: line-through;
 `;
 
 const StyledButton = styled(Link)`
