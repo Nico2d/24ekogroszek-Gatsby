@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import logoWhite from "../../assets/logo-white.png";
-import logoBlack from "../../assets/logo-black.png";
+const logoWhite = require("../../assets/logo-white.png");
+const logoBlack = require("../../assets/logo-black.png");
 import { IconMenu } from "../../assets/icons/iconMenu";
 import { IconClose } from "../../assets/icons/iconClose";
 import { NavigationList } from "../molecules/navigationList";
@@ -22,9 +22,7 @@ export const Navigation = () => {
   const [isHome, setIsHome] = useState(true);
 
   useEffect(() => {
-    let url = window.location.href;
-    let page = url.substring(url.lastIndexOf("/") + 1);
-    setIsHome(page == "");
+    setIsHome(location.pathname == "/");
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
