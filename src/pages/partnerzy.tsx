@@ -22,8 +22,6 @@ export const Partners = () => {
 
   const producents = data.allStrapiProducents.nodes;
 
-  console.log(producents);
-
   return (
     <Layout>
       <StyledContianer>

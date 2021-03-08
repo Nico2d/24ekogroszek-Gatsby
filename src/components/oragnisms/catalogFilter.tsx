@@ -18,7 +18,7 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
     allStrapiProducents: { edges: producents },
   } = useStaticQuery(graphql`
     query GetProducents {
-      allStrapiProducents {
+      allStrapiProducents(filter: { kategoria: { eq: "Ekogroszek" } }) {
         edges {
           node {
             Nazwa
