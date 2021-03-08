@@ -6,6 +6,7 @@ import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { device } from "../../styles/breakpoints";
 import { Container } from "../atoms/container";
 import { HeadingSection } from "../atoms/headingSection";
+import { StyledWhitespace } from "../atoms/whitespace";
 const polygon = require("../../assets/polygon.svg");
 
 export const RecommendedProducts = () => {
@@ -40,6 +41,7 @@ export const RecommendedProducts = () => {
 
   return (
     <Container>
+      <StyledWhitespace height={3} />
       <HeadingSection title="Polecane produkty" />
 
       {!isDesktop ? (
