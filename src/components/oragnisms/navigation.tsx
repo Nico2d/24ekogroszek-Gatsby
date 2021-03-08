@@ -32,7 +32,7 @@ export const Navigation = () => {
 
   return (
     <StyledNavbar isHero={isHome && scrollPosition === 0 && isClosed}>
-      <Container>
+      <StyledContainer>
         <Logo to="/">
           <img
             src={
@@ -55,13 +55,14 @@ export const Navigation = () => {
             </MobileNavigation>
           </>
         )}
-      </Container>
+      </StyledContainer>
     </StyledNavbar>
   );
 };
 
-const NavigationWrapper = styled.div`
-  margin-bottom: 132px;
+const StyledContainer = styled(Container)`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const StyledNavbar = styled.nav<{ isHero: boolean }>`

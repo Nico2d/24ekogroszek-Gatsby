@@ -7,8 +7,6 @@ export const Container = styled.div`
   margin: auto;
   padding: 0 1rem;
   height: 100%;
-  display: flex;
-  justify-content: space-between;
   position: relative;
 
   @media ${device.laptopL} {

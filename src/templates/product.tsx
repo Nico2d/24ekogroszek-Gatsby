@@ -12,6 +12,7 @@ const wet = require("../assets/icons/pa_wilgotnosc.png");
 const ash = require("../assets/icons/pa_popiol.png");
 const sulfur = require("../assets/icons/pa_siarka.png");
 import ReactMarkdown from "react-markdown";
+import { RecommendedProducts } from "../components/oragnisms/recommendedProducts";
 
 export const ProductTemplate = ({ data }) => {
   const product = data.allStrapiEkogroszeks.edges[0].node;
@@ -60,6 +61,8 @@ export const ProductTemplate = ({ data }) => {
         </ContentContainer>
       </StyledContainer>
       <TransportSection />
+
+      <RecommendedProducts />
     </Layout>
   );
 };
@@ -119,6 +122,7 @@ const ContentContainer = styled.div`
 
   @media ${device.tablet} {
     width: 50%;
+    padding-left: 2rem;
   }
 `;
 
@@ -174,20 +178,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-// query BlogPostBySlug($slug: String!) {
-//   contentfulBlogPost(slug: { eq: $slug }) {
-//     title
-//     publishDate(formatString: "MMMM Do, YYYY")
-//     heroImage {
-//       fluid(maxWidth: 1180, background: "rgb:000000") {
-//         ...GatsbyContentfulFluid_tracedSVG
-//       }
-//     }
-//     body {
-//       childMarkdownRemark {
-//         html
-//       }
-//     }
-//   }
-// }
