@@ -5,7 +5,7 @@ export const NavigationList = () => {
   return (
     <>
       <Link to="/produkty">Katalog produktów</Link>
-      <Link to="/partners">Partnerzy</Link>
+      <Link to="/partnerzy">Partnerzy</Link>
       <Link to="/contact">Kontakt</Link>
     </>
   );
