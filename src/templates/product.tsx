@@ -11,10 +11,10 @@ const calc = require("../assets/icons/pa_kalorycznosc.png");
 const wet = require("../assets/icons/pa_wilgotnosc.png");
 const ash = require("../assets/icons/pa_popiol.png");
 const sulfur = require("../assets/icons/pa_siarka.png");
+import ReactMarkdown from "react-markdown";
 
 export const ProductTemplate = ({ data }) => {
   const product = data.allStrapiEkogroszeks.edges[0].node;
-  console.log(product);
 
   return (
     <Layout>
@@ -54,7 +54,9 @@ export const ProductTemplate = ({ data }) => {
           <StyledOldPrice>
             {product.PoprzedniaCenta.toFixed(2)}zł
           </StyledOldPrice>
-          <Description>{product.Opis}</Description>
+          <Description>
+            <ReactMarkdown>{product.Opis}</ReactMarkdown>
+          </Description>
         </ContentContainer>
       </StyledContainer>
       <TransportSection />
@@ -88,7 +90,7 @@ const AttributesContainer = styled.div`
   background: ${({ theme }) => theme.colors.background};
 
   @media ${device.tablet} {
-    width: 83%;
+    width: 85%;
     left: 5%;
     height: 200px;
   }
