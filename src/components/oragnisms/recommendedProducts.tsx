@@ -37,7 +37,6 @@ export const RecommendedProducts = () => {
   `);
 
   const products = data.allStrapiEkogroszeks.edges;
-  console.log(products);
 
   return (
     <Container>

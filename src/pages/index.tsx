@@ -4,6 +4,9 @@ import { Layout } from "../components/layout";
 import { TextWithImage } from "../components/oragnisms/textWithImage";
 import { ContactSection } from "../components/oragnisms/contactSection";
 import { TransportSection } from "../components/oragnisms/transportSection";
+import { HeadingSection } from "../components/atoms/headingSection";
+import { StyledWhitespace } from "../components/atoms/whitespace";
+import { Container } from "../components/atoms/container";
 
 const RootIndex = () => {
   return (
@@ -12,7 +15,12 @@ const RootIndex = () => {
 
       <TextWithImage />
       <ContactSection />
-      <TransportSection />
+
+      <Container>
+        <StyledWhitespace height={3} />
+        <HeadingSection title="Transport" />
+        <TransportSection />
+      </Container>
     </Layout>
   );
 };

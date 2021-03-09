@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
-import { Container } from "../atoms/container";
-import { HeadingSection } from "../atoms/headingSection";
 const transport1 = require("../../assets/transport-1.png");
 const transport2 = require("../../assets/transport-2.png");
 const transport3 = require("../../assets/transport-3.png");

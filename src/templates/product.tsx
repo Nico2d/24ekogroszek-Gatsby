@@ -14,6 +14,7 @@ const sulfur = require("../assets/icons/pa_siarka.png");
 import ReactMarkdown from "react-markdown";
 import { RecommendedProducts } from "../components/oragnisms/recommendedProducts";
 import { HeadingSection } from "../components/atoms/headingSection";
+import { StyledWhitespace } from "../components/atoms/whitespace";
 
 export const ProductTemplate = ({ data }) => {
   const product = data.allStrapiEkogroszeks.edges[0].node;
@@ -63,9 +64,11 @@ export const ProductTemplate = ({ data }) => {
       </StyledContainer>
 
       <Container>
+        <StyledWhitespace height={3} />
         <HeadingSection title="Transport" />
         <TransportSection />
 
+        <StyledWhitespace height={5} />
         <HeadingSection title="Polecane produkty" />
         <RecommendedProducts />
       </Container>
