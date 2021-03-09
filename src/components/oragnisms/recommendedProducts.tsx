@@ -5,8 +5,6 @@ import styled from "styled-components";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { device } from "../../styles/breakpoints";
 import { Container } from "../atoms/container";
-import { HeadingSection } from "../atoms/headingSection";
-import { StyledWhitespace } from "../atoms/whitespace";
 const polygon = require("../../assets/polygon.svg");
 
 export const RecommendedProducts = () => {
@@ -58,7 +56,7 @@ export const RecommendedProducts = () => {
         </ProdcutContainer>
       )}
 
-      <StyledLink to="/produkty">Pokaż więcej</StyledLink>
+      <StyledLink to="/produkty">Więcej produktów</StyledLink>
     </Container>
   );
 };

@@ -29,9 +29,8 @@ export const ProductTemplate = ({ data }) => {
           <Title>{product.Nazwa}</Title>
           <Price>{product.AkutalnaCena.toFixed(2)}zł</Price>
           <StyledPreviousPrice price={product.PoprzedniaCenta} />
-          <Description>
-            <ReactMarkdown>{product.Opis}</ReactMarkdown>
-          </Description>
+
+          <ReactMarkdown>{product.Opis}</ReactMarkdown>
         </ContentContainer>
       </StyledContainer>
 
@@ -105,8 +104,6 @@ const StyledContainer = styled(Container)`
     flex-flow: row;
   }
 `;
-
-const Description = styled.p``;
 
 export const pageQuery = graphql`
   query ProdcutTemplete($name: String!) {
