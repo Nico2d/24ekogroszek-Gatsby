@@ -5,7 +5,7 @@ import { Button } from "../atoms/button";
 const polygon = require("../../assets/Polygon.svg");
 import { Link } from "gatsby";
 import { convertToSlug } from "../../utils/convertToSlug";
-import { OldPrice } from "../atoms/oldPrice";
+import { PreviousPrice } from "../atoms/product/previous-price";
 
 type ProductType = {
   product: {
@@ -32,9 +32,8 @@ export const ProductCard: React.FC<ProductType> = ({ product }) => {
       <ContentContainer>
         <Title>{product.Nazwa}</Title>
         <CurrentPrice>{product.AkutalnaCena.toFixed(2)}zł</CurrentPrice>
-        {product.PoprzedniaCenta && (
-          <OldPrice>{product.PoprzedniaCenta.toFixed(2)}zł</OldPrice>
-        )}
+
+        <PreviousPrice price={product.PoprzedniaCenta} />
 
         <StyledButton to={`/produkty/${convertToSlug(product.Nazwa)}`}>
           <Button text="Wybierz" />

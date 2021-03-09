@@ -4,7 +4,7 @@ import { Container } from "../components/atoms/container";
 import { Layout } from "../components/layout";
 import styled from "styled-components";
 import { TransportSection } from "../components/oragnisms/transportSection";
-import { OldPrice } from "../components/atoms/oldPrice";
+import { PreviousPrice } from "../components/atoms/product/previous-price";
 import { device } from "../styles/breakpoints";
 const polygon = require("../assets/Polygon.svg");
 
@@ -24,13 +24,11 @@ export const ProductTemplate = ({ data }) => {
           <img src={`${process.env.IMAGE_URL}${product.Grafika[0].url}`} />
           <Attributes product={product} />
         </ImageWrapper>
-        
+
         <ContentContainer>
           <Title>{product.Nazwa}</Title>
           <Price>{product.AkutalnaCena.toFixed(2)}zł</Price>
-          <StyledOldPrice>
-            {product.PoprzedniaCenta.toFixed(2)}zł
-          </StyledOldPrice>
+          <StyledPreviousPrice price={product.PoprzedniaCenta} />
           <Description>
             <ReactMarkdown>{product.Opis}</ReactMarkdown>
           </Description>
@@ -94,7 +92,7 @@ const Price = styled.h3`
   -webkit-text-fill-color: transparent;
 `;
 
-const StyledOldPrice = styled(OldPrice)`
+const StyledPreviousPrice = styled(PreviousPrice)`
   font-size: 24px;
 `;
 
