@@ -34,6 +34,7 @@ export const TransportSection = () => {
 const CardWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(150px, 1fr));
+  grid-gap: 2rem 0;
 
   @media ${device.tablet} {
     grid-template-columns: repeat(4, minmax(200px, 1fr));
@@ -43,11 +44,11 @@ const CardWrapper = styled.div`
 
 const Card = styled.div`
   text-align: center;
-  font-size: 1rem;
-  width: 200px;
+  font-size: 0.9rem;
 
   @media ${device.tablet} {
     font-size: 1.4rem;
+    font-size: 1rem;
   }
 
   > b {
@@ -58,8 +59,8 @@ const Card = styled.div`
   }
 
   > img {
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
     margin: auto;
     margin-bottom: 1.5rem;
 

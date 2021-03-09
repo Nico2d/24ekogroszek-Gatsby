@@ -62,12 +62,13 @@ export const ProductTemplate = ({ data }) => {
         </ContentContainer>
       </StyledContainer>
 
-      <HeadingSection title="Transport" />
-      <TransportSection />
+      <Container>
+        <HeadingSection title="Transport" />
+        <TransportSection />
 
-
-      <HeadingSection title="Polecane produkty" />
-      <RecommendedProducts />
+        <HeadingSection title="Polecane produkty" />
+        <RecommendedProducts />
+      </Container>
     </Layout>
   );
 };
