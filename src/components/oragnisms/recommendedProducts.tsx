@@ -41,9 +41,6 @@ export const RecommendedProducts = () => {
 
   return (
     <Container>
-      <StyledWhitespace height={3} />
-      <HeadingSection title="Polecane produkty" />
-
       {!isDesktop ? (
         <Slider {...settings}>
           {products.map(({ node }, index) => (

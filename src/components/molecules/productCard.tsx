@@ -32,7 +32,9 @@ export const ProductCard: React.FC<ProductType> = ({ product }) => {
       <ContentContainer>
         <Title>{product.Nazwa}</Title>
         <CurrentPrice>{product.AkutalnaCena.toFixed(2)}zł</CurrentPrice>
-        <OldPrice>{product.PoprzedniaCenta.toFixed(2)}zł</OldPrice>
+        {product.PoprzedniaCenta && (
+          <OldPrice>{product.PoprzedniaCenta.toFixed(2)}zł</OldPrice>
+        )}
 
         <StyledButton to={`/produkty/${convertToSlug(product.Nazwa)}`}>
           <Button text="Wybierz" />

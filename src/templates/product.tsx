@@ -13,6 +13,7 @@ const ash = require("../assets/icons/pa_popiol.png");
 const sulfur = require("../assets/icons/pa_siarka.png");
 import ReactMarkdown from "react-markdown";
 import { RecommendedProducts } from "../components/oragnisms/recommendedProducts";
+import { HeadingSection } from "../components/atoms/headingSection";
 
 export const ProductTemplate = ({ data }) => {
   const product = data.allStrapiEkogroszeks.edges[0].node;
@@ -60,8 +61,12 @@ export const ProductTemplate = ({ data }) => {
           </Description>
         </ContentContainer>
       </StyledContainer>
+
+      <HeadingSection title="Transport" />
       <TransportSection />
 
+
+      <HeadingSection title="Polecane produkty" />
       <RecommendedProducts />
     </Layout>
   );
