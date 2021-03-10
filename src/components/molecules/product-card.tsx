@@ -67,7 +67,7 @@ const Title = styled.h4`
   line-height: 2.5rem;
   letter-spacing: -0.015em;
   opacity: 0.9;
-  word-break: break-all;
+  word-break: break-word;
 `;
 
 const ContentContainer = styled.div`
