@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { Button } from "../../atoms/button";
 import { BiError } from "@react-icons/all-files/bi/BiError";
+import { StyledWhitespace } from "../../atoms/whitespace";
 
 export const AddComment = () => {
   const { register, errors, handleSubmit } = useForm();
@@ -39,7 +40,7 @@ export const AddComment = () => {
           Pomóż innym w podjęciu decyzji. Dodając komentarz
         </ErrorMessege>
       )}
-
+      <StyledWhitespace height={1} />
       <Button
         type="submit"
         text="Dodaj opinie"
