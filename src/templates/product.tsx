@@ -9,7 +9,7 @@ import { device } from "../styles/breakpoints";
 const polygon = require("../assets/Polygon.svg");
 
 import ReactMarkdown from "react-markdown";
-import { RecommendedProducts } from "../components/oragnisms/recommendedProducts";
+import { RecommendedProducts } from "../components/oragnisms/recommended-products";
 import { HeadingSection } from "../components/atoms/headingSection";
 import { StyledWhitespace } from "../components/atoms/whitespace";
 import { Attributes } from "../components/molecules/attributes";
@@ -35,11 +35,9 @@ export const ProductTemplate = ({ data }) => {
       </StyledContainer>
 
       <Container>
-        <StyledWhitespace height={3} />
         <HeadingSection title="Transport" />
         <TransportSection />
-
-        <StyledWhitespace height={5} />
+        <StyledWhitespace height={6} />
         <HeadingSection title="Polecane produkty" />
         <RecommendedProducts />
       </Container>

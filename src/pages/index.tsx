@@ -7,6 +7,7 @@ import { TransportSection } from "../components/oragnisms/transportSection";
 import { HeadingSection } from "../components/atoms/headingSection";
 import { StyledWhitespace } from "../components/atoms/whitespace";
 import { Container } from "../components/atoms/container";
+import { RecommendedProducts } from "../components/oragnisms/recommended-products";
 
 const RootIndex = () => {
   return (
@@ -17,6 +18,9 @@ const RootIndex = () => {
       <ContactSection />
 
       <Container>
+        <StyledWhitespace height={3} />
+        <HeadingSection title="Polecane produkty" />
+        <RecommendedProducts />
         <StyledWhitespace height={3} />
         <HeadingSection title="Transport" />
         <TransportSection />
