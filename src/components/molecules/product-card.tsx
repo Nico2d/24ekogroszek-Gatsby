@@ -62,11 +62,12 @@ const Title = styled.h4`
   color: #000000;
   text-transform: capitalize;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 2rem;
-  line-height: 3rem;
+  line-height: 2.5rem;
   letter-spacing: -0.015em;
   opacity: 0.9;
+  word-break: break-all;
 `;
 
 const ContentContainer = styled.div`
@@ -88,11 +89,20 @@ const CurrentPrice = styled.p`
 `;
 
 const StyledButton = styled(Link)`
-  margin-top: auto;
-  margin-left: auto;
+  margin-top: 1rem;
 
   > button {
     padding: 1.2rem 5rem;
+    width: 100%;
+
+    @media ${device.tablet} {
+      width: fit-content;
+    }
+  }
+
+  @media ${device.tablet} {
+    margin-top: auto;
+    margin-left: auto;
   }
 `;
 
@@ -102,8 +112,13 @@ const StyledWrapperImage = styled.div`
   background-size: contain;
   flex: 33.33%;
   margin: auto;
+  margin-bottom: 1rem;
 
   > img {
     max-width: 300px;
+  }
+
+  @media ${device.tablet} {
+    margin: auto;
   }
 `;
