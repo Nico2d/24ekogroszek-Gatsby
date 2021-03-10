@@ -3,14 +3,14 @@ import React from "react";
 import { Container } from "../components/atoms/container";
 import { Layout } from "../components/layout";
 import styled from "styled-components";
-import { TransportSection } from "../components/oragnisms/transportSection";
+import { TransportSection } from "../components/oragnisms/transport-section";
 import { PreviousPrice } from "../components/atoms/product/previous-price";
 import { device } from "../styles/breakpoints";
 const polygon = require("../assets/Polygon.svg");
 
 import ReactMarkdown from "react-markdown";
 import { RecommendedProducts } from "../components/oragnisms/recommended-products";
-import { HeadingSection } from "../components/atoms/headingSection";
+import { HeadingSection } from "../components/atoms/heading-section";
 import { StyledWhitespace } from "../components/atoms/whitespace";
 import { Attributes } from "../components/molecules/attributes";
 

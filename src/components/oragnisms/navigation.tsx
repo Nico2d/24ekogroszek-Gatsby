@@ -5,7 +5,7 @@ const logoWhite = require("../../assets/logo-white.png");
 const logoBlack = require("../../assets/logo-black.png");
 import { IconMenu } from "../../assets/icons/iconMenu";
 import { IconClose } from "../../assets/icons/iconClose";
-import { NavigationList } from "../molecules/navigationList";
+import { NavigationList } from "../molecules/navigation-list";
 import { Container } from "../atoms/container";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { device } from "../../styles/breakpoints";

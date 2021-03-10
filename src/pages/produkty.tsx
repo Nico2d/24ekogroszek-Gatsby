@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { Container } from "../components/atoms/container";
 import { Layout } from "../components/layout";
 import { graphql } from "gatsby";
-import { ProductCard } from "../components/molecules/productCard";
-import { CatalogFilter } from "../components/oragnisms/catalogFilter";
+import { ProductCard } from "../components/molecules/product-card";
+import { CatalogFilter } from "../components/oragnisms/catalog-filter";
 import { Sort } from "../components/molecules/sort";
 
 export const Produkty = ({ data }) => {

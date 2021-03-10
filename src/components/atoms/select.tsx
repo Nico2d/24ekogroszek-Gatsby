@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { OutsideEvent } from "./OutsideEvent";
+import { OutsideEvent } from "./outside-event";
 import { ArrowDropDown } from "@styled-icons/material-rounded/ArrowDropDown";
 
 type SelectTypes = {
