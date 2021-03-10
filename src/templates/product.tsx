@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { TransportSection } from "../components/oragnisms/transport-section";
 import { PreviousPrice } from "../components/atoms/product/previous-price";
 import { device } from "../styles/breakpoints";
-const polygon = require("../assets/Polygon.svg");
+const polygon = require("../assets/polygon.svg");
 
 import ReactMarkdown from "react-markdown";
 import { RecommendedProducts } from "../components/oragnisms/recommended-products";

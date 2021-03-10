@@ -2,33 +2,56 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { Button } from "../../atoms/button";
+import { BiError } from "@react-icons/all-files/bi/BiError";
 
 export const AddComment = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, errors, handleSubmit } = useForm();
 
   const onSubmit = (data) => console.log(data);
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <StyledInput
-        name="userName"
-        ref={register}
+        name="userNameComment"
+        ref={register({ required: true })}
         type="text"
         placeholder="Nazwa Użytkownika"
       />
+      {errors.userNameComment && (
+        <ErrorMessege>
+          <Icon as={BiError} />
+          Nazwa użytkownika jest wymagana
+        </ErrorMessege>
+      )}
 
       <StyledTextarea
-        rows={4}
+        rows={6}
         cols={50}
         name="comment"
-        ref={register}
+        ref={register({
+          required: true,
+        })}
         placeholder="Tutaj zamieść swoją opinie..."
       />
+      {errors.comment && (
+        <ErrorMessege>
+          <Icon as={BiError} />
+          Pomóż innym w podjęciu decyzji. Dodając komentarz
+        </ErrorMessege>
+      )}
 
-      <Button type="submit" text="Dodaj opinie" disabled />
+      <Button
+        type="submit"
+        text="Dodaj opinie"
+        disabled={errors.userNameComment}
+      />
     </StyledForm>
   );
 };
+
+const Icon = styled.svg`
+  margin: auto;
+`;
 
 const StyledForm = styled.form`
   display: flex;
@@ -40,8 +63,24 @@ const StyledInput = styled.input`
   border: 1px gray solid;
   border-radius: 1rem;
   padding: 0.75rem 1rem;
+  outline: none;
+  outline: none;
 
-  margin-bottom: 1rem;
+  :focus {
+    border: 2px solid #f2994a;
+  }
+`;
+
+const ErrorMessege = styled.p`
+  color: red;
+  display: inline-flex;
+
+  > svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+    margin-right: 3px;
+  }
 `;
 
 const StyledTextarea = styled.textarea`
@@ -49,7 +88,10 @@ const StyledTextarea = styled.textarea`
   border: 1px gray solid;
   border-radius: 1rem;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
+  outline: none;
 
-  color: gray;
+  :focus {
+    border: 2px solid #f2994a;
+  }
 `;

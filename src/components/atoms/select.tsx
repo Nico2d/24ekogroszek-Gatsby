@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { OutsideEvent } from "./outside-event";
-import { ArrowDropDown } from "@styled-icons/material-rounded/ArrowDropDown";
+import { RiArrowDropDownLine } from "@react-icons/all-files/ri/RiArrowDropDownLine";
 
 type SelectTypes = {
   optionList: Array<string>;
@@ -30,9 +30,9 @@ export const Select: React.FC<SelectTypes> = ({
   return (
     <OutsideEvent method={hideOptions} isActive={isHidden}>
       <Container>
-        <SelectedValue onClick={hideOptions}>
+        <SelectedValue onClick={hideOptions} isHidden={isHidden}>
           <span>{value}</span>
-          <ArrowDropDown />
+          <RiArrowDropDownLine />
         </SelectedValue>
 
         <Options isHidden={isHidden}>
@@ -67,15 +67,22 @@ const Container = styled.div`
   margin-bottom: 2rem;
 `;
 
-const SelectedValue = styled.p`
+const SelectedValue = styled.p<{ isHidden: boolean }>`
   margin: 0;
   padding-left: 10px;
   user-select: none;
   display: flex;
   justify-content: space-between;
-
   height: 2rem;
   line-height: 2rem;
+
+  > svg {
+    width: 2rem;
+    height: 2rem;
+    opacity: 0.7;
+    transform: rotateZ(${({ isHidden }) => (isHidden ? "0deg" : "-180deg")});
+    transition: transform 0.3s ease-out;
+  }
 `;
 
 const Options = styled.ul<{ isHidden: boolean }>`
@@ -92,6 +99,7 @@ const Options = styled.ul<{ isHidden: boolean }>`
   border: 1px solid #bbb;
   border-radius: 1rem;
   user-select: none;
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.65));
 
   > li {
     border-bottom: 1px solid gray;

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
 import { Button } from "../atoms/button";
-const polygon = require("../../assets/Polygon.svg");
+const polygon = require("../../assets/polygon.svg");
 import { Link } from "gatsby";
 import { convertToSlug } from "../../utils/convertToSlug";
 import { PreviousPrice } from "../atoms/product/previous-price";

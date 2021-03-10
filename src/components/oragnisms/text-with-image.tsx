@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "../atoms/button";
 const image = require("../../assets/tom-fisk.jpg");
-const polygon = require("../../assets/PolygonBig.svg");
+const polygon = require("../../assets/polygon-big.svg");
 import { Container } from "../atoms/container";
 import { device } from "../../styles/breakpoints";
 
