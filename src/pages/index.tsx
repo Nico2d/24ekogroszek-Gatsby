@@ -1,7 +1,7 @@
 import React from "react";
 import { Hero } from "../components/oragnisms/hero";
 import { Layout } from "../components/layout";
-import { TextWithImage } from "../components/oragnisms/textWithImage";
+import { TextWithImage } from "../components/oragnisms/text-with-image";
 import { ContactSection } from "../components/oragnisms/contact-section";
 import { TransportSection } from "../components/oragnisms/transport-section";
 import { HeadingSection } from "../components/atoms/heading-section";

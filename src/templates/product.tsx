@@ -13,6 +13,7 @@ import { RecommendedProducts } from "../components/oragnisms/recommended-product
 import { HeadingSection } from "../components/atoms/heading-section";
 import { StyledWhitespace } from "../components/atoms/whitespace";
 import { Attributes } from "../components/molecules/attributes";
+import { Comments } from "../components/oragnisms/comments";
 
 export const ProductTemplate = ({ data }) => {
   const product = data.allStrapiEkogroszeks.edges[0].node;
@@ -30,7 +31,7 @@ export const ProductTemplate = ({ data }) => {
           <Price>{product.AkutalnaCena.toFixed(2)}zł</Price>
           <StyledPreviousPrice price={product.PoprzedniaCenta} />
 
-          <ReactMarkdown>{product.Opis}</ReactMarkdown>
+          <StyledDescription>{product.Opis}</StyledDescription>
         </ContentContainer>
       </StyledContainer>
 
@@ -40,12 +41,20 @@ export const ProductTemplate = ({ data }) => {
         <StyledWhitespace height={6} />
         <HeadingSection title="Polecane produkty" />
         <RecommendedProducts />
+
+        <StyledWhitespace height={5} />
+        <HeadingSection title="Komentarze" />
+        <Comments />
       </Container>
     </Layout>
   );
 };
 
 export default ProductTemplate;
+
+const StyledDescription = styled(ReactMarkdown)`
+  word-break: break-word;
+`;
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -77,6 +86,7 @@ const ContentContainer = styled.div`
 const Title = styled.h1`
   font-size: 46px;
   font-weight: 600;
+  word-break: break-word;
 `;
 
 const Price = styled.h3`
