@@ -7,8 +7,34 @@ import { StyledWhitespace } from "../../atoms/whitespace";
 
 export const AddComment = () => {
   const { register, errors, handleSubmit } = useForm();
+  const productID = 1;
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+
+    fetch(`${process.env.API_URL}/comments/ekogroszek:${productID}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        authorName: data.userNameComment,
+        content: data.comment,
+        points: 5,
+        related: [
+          {
+            refId: productID,
+            ref: "ekogroszek",
+            field: "comments",
+          },
+        ],
+        ekogroszek: {
+          id: productID,
+        },
+      }),
+    });
+  };
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
