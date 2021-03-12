@@ -4,14 +4,13 @@ import styled from "styled-components";
 import { Button } from "../../atoms/button";
 import { BiError } from "@react-icons/all-files/bi/BiError";
 import { StyledWhitespace } from "../../atoms/whitespace";
+import { RatingStars } from "../../atoms/product/rating-stars";
 
 export const AddComment = () => {
-  const { register, errors, handleSubmit } = useForm();
+  const { register, errors, handleSubmit, watch } = useForm();
   const productID = 1;
 
   const onSubmit = (data) => {
-    console.log(data);
-
     fetch(`${process.env.API_URL}/comments/ekogroszek:${productID}`, {
       method: "POST",
       headers: {
@@ -36,6 +35,8 @@ export const AddComment = () => {
     });
   };
 
+  console.log(watch());
+
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <StyledInput
@@ -50,7 +51,11 @@ export const AddComment = () => {
           Nazwa użytkownika jest wymagana
         </ErrorMessege>
       )}
-
+      <RatingStars
+        register={register({
+          required: true,
+        })}
+      />
       <StyledTextarea
         rows={6}
         cols={50}
