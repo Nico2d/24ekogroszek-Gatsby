@@ -8,11 +8,13 @@ type RagingStarsProps = {
   maxRate?: number;
   rate?: number;
   setRate?: (value: number) => void;
+  name: string;
 };
 
 export const RatingStars: React.FC<RagingStarsProps> = ({
   register,
   maxRate = 5,
+  name,
 }) => {
   const [rate, setRate] = useState<number>(0);
 
@@ -29,7 +31,7 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
         <HiddenInput
           value={i}
           ref={register}
-          name="rate"
+          name={name}
           type="radio"
           onChange={(e) => setRate(+e.target.value)}
         />
@@ -41,9 +43,10 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
 };
 
 const RatingContainer = styled.div`
-  margin: 1rem 0;
+  margin: 0;
   display: flex;
   flex-flow: row;
+  justify-content: flex-end;
 `;
 
 const HiddenInput = styled.input`

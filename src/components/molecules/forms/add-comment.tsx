@@ -7,7 +7,7 @@ import { StyledWhitespace } from "../../atoms/whitespace";
 import { RatingStars } from "../../atoms/product/rating-stars";
 
 export const AddComment = () => {
-  const { register, errors, handleSubmit, watch } = useForm();
+  const { register, errors, handleSubmit } = useForm();
   const productID = 1;
 
   const onSubmit = (data) => {
@@ -20,7 +20,7 @@ export const AddComment = () => {
       body: JSON.stringify({
         authorName: data.userNameComment,
         content: data.comment,
-        points: 5,
+        points: data.rating,
         related: [
           {
             refId: productID,
@@ -35,8 +35,6 @@ export const AddComment = () => {
     });
   };
 
-  console.log(watch());
-
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <StyledInput
@@ -48,14 +46,18 @@ export const AddComment = () => {
       {errors.userNameComment && (
         <ErrorMessege>
           <Icon as={BiError} />
-          Nazwa użytkownika jest wymagana
+          Nazwa użytkownika jest wymagana.
         </ErrorMessege>
       )}
+      <StyledWhitespace height={1} />
+
       <RatingStars
+        name="rating"
         register={register({
           required: true,
         })}
       />
+
       <StyledTextarea
         rows={6}
         cols={50}
@@ -68,7 +70,13 @@ export const AddComment = () => {
       {errors.comment && (
         <ErrorMessege>
           <Icon as={BiError} />
-          Pomóż innym w podjęciu decyzji. Dodając komentarz
+          Pomóż innym w podjęciu decyzji. Dodając komentarz.
+        </ErrorMessege>
+      )}
+      {errors.rating && (
+        <ErrorMessege>
+          <Icon as={BiError} />
+          Pomóż innym w podjęciu decyzji. Dodając ocenę.
         </ErrorMessege>
       )}
       <StyledWhitespace height={1} />
@@ -120,7 +128,6 @@ const StyledTextarea = styled.textarea`
   border: 1px gray solid;
   border-radius: 1rem;
   padding: 1rem;
-  margin-top: 1rem;
   outline: none;
 
   :focus {
