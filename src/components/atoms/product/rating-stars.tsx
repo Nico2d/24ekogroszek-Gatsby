@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
+import { motion } from "framer-motion";
 
 type RagingStarsProps = {
   register?: any;
   maxRate?: number;
+  rate?: number;
+  setRate?: (value: number) => void;
 };
 
 export const RatingStars: React.FC<RagingStarsProps> = ({
@@ -16,7 +19,12 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
   let Stars = [];
   for (let i = 1; i <= maxRate; i++) {
     Stars.push(
-      <StyledStars key={i} isActive={i <= rate}>
+      <StyledStars
+        key={i}
+        isActive={i <= rate}
+        as={motion.label}
+        whileTap={{ scale: 1.5 }}
+      >
         <AiFillStar />
         <HiddenInput
           value={i}
@@ -29,8 +37,14 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
     );
   }
 
-  return <div>{Stars}</div>;
+  return <RatingContainer>{Stars}</RatingContainer>;
 };
+
+const RatingContainer = styled.div`
+  margin: 1rem 0;
+  display: flex;
+  flex-flow: row;
+`;
 
 const HiddenInput = styled.input`
   display: none;
@@ -39,7 +53,7 @@ const HiddenInput = styled.input`
 const StyledStars = styled.label<{ isActive: boolean }>`
   cursor: pointer;
 
-  > svg {
+  svg {
     fill: ${({ isActive }) => (isActive ? "#f2994a" : "#666666")};
     width: 1.5rem;
     height: 1.5rem;
