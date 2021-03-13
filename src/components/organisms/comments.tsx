@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Comment } from "../../types/comment";
-import { HeadingSection } from "../atoms/heading-section";
 import { StyledWhitespace } from "../atoms/whitespace";
 import { CommentsList } from "../molecules/comments-list";
 import { AddComment } from "../molecules/forms/add-comment";
@@ -20,10 +19,9 @@ export const Comments = ({ productId }) => {
 
   return (
     <>
-      <CommentsList commentsList={commentsList} />
-      <StyledWhitespace height={3} />
-      <HeadingSection title="Dodaj własny" isSmall />
       <AddComment productId={productId} setComment={addCommentHandler} />
+      <StyledWhitespace height={5} />
+      <CommentsList commentsList={commentsList} />
     </>
   );
 };

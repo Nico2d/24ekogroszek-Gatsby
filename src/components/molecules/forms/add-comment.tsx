@@ -140,6 +140,10 @@ const Icon = styled.svg`
 const StyledForm = styled.form`
   display: flex;
   flex-flow: column;
+
+  button {
+    margin-left: auto;
+  }
 `;
 
 const StyledInput = styled.input`
