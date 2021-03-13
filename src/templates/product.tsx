@@ -48,7 +48,7 @@ export const ProductTemplate = ({ data }) => {
         <Comments prodcutId={product.strapiId} />
         <StyledWhitespace height={3} />
         <HeadingSection title="Dodaj własny" isSmall={true} />
-        <AddComment />
+        <AddComment prodcutId={product.strapiId} />
       </Container>
     </Layout>
   );

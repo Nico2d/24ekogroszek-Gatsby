@@ -16,8 +16,6 @@ export const Comments: React.FC<CommentsProps> = ({ prodcutId }) => {
       .then((data) => setCommentsList(data));
   }, []);
 
-  console.log(commentsList);
-
   return (
     <div>
       {commentsList.length ? (

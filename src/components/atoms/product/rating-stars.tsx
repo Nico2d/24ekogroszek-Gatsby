@@ -19,7 +19,6 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
   defaultRate = 0,
 }) => {
   const [rate, setRate] = useState<number>(defaultRate);
-  console.log(disabled);
 
   let Stars = [];
   for (let i = 1; i <= maxRate; i++) {
@@ -29,6 +28,7 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
         isActive={i <= rate}
         as={motion.label}
         whileTap={{ scale: disabled ? 1 : 1.5 }}
+        isDisabled={disabled}
       >
         <AiFillStar />
         <HiddenInput
@@ -57,8 +57,8 @@ const HiddenInput = styled.input`
   display: none;
 `;
 
-const StyledStars = styled.label<{ isActive: boolean }>`
-  cursor: pointer;
+const StyledStars = styled.label<{ isActive: boolean; isDisabled: boolean }>`
+  cursor: ${({ isDisabled }) => (isDisabled ? "default" : "pointer")};
 
   svg {
     fill: ${({ isActive }) => (isActive ? "#f2994a" : "#666666")};

@@ -3,16 +3,20 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { Button } from "../../atoms/button";
 import { BiError } from "@react-icons/all-files/bi/BiError";
+import { BiCheckCircle } from "@react-icons/all-files/bi/BiCheckCircle";
 import { StyledWhitespace } from "../../atoms/whitespace";
 import { RatingStars } from "../../atoms/product/rating-stars";
 import { device } from "../../../styles/breakpoints";
 
-export const AddComment = () => {
-  const { register, errors, handleSubmit } = useForm();
-  const productID = 1;
+type AddCommentProps = {
+  prodcutId: number;
+};
+
+export const AddComment: React.FC<AddCommentProps> = ({ prodcutId }) => {
+  const { register, errors, setError, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    fetch(`${process.env.API_URL}/comments/ekogroszek:${productID}`, {
+    fetch(`${process.env.API_URL}/comments/ekogroszek:${prodcutId}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -24,16 +28,28 @@ export const AddComment = () => {
         points: data.rating,
         related: [
           {
-            refId: productID,
+            refId: prodcutId,
             ref: "ekogroszek",
             field: "comments",
           },
         ],
         ekogroszek: {
-          id: productID,
+          id: prodcutId,
         },
       }),
-    });
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+
+        setError("success", {
+          type: "manual",
+          message: "Dziękujemy za dodanie komentarza",
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -50,7 +66,6 @@ export const AddComment = () => {
           Nazwa użytkownika jest wymagana.
         </ErrorMessege>
       )}
-      {/* <StyledWhitespace height={0.5} /> */}
       <TextareaWrapper>
         <StyledTest>
           <RatingStars
@@ -81,6 +96,12 @@ export const AddComment = () => {
         <ErrorMessege>
           <Icon as={BiError} />
           Pomóż innym w podjęciu decyzji. Dodając ocenę.
+        </ErrorMessege>
+      )}
+      {errors.success && (
+        <ErrorMessege success>
+          <Icon as={BiCheckCircle} />
+          {errors.success.message}
         </ErrorMessege>
       )}
       <StyledWhitespace height={1} />
@@ -129,8 +150,8 @@ const StyledInput = styled.input`
   }
 `;
 
-const ErrorMessege = styled.p`
-  color: red;
+const ErrorMessege = styled.p<{ success?: boolean }>`
+  color: ${({ success }) => (success ? "green" : "red")}; //red;
   display: inline-flex;
 
   > svg {
