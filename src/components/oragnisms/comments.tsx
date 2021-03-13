@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import product from "../../templates/product";
 import { HeadingSection } from "../atoms/heading-section";
 import { StyledWhitespace } from "../atoms/whitespace";
 import { CommentsList } from "../molecules/comments-list";

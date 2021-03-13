@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaUserCircle } from "@react-icons/all-files/fa/FaUserCircle";
 import styled from "styled-components";
 import { RatingStars } from "../atoms/product/rating-stars";
+import { Comment } from "../../types/comment";
 
 type CommentsListProps = {
-  commentsList: Array<{
-    id: number;
-    authorName: string;
-    created_at: string;
-    points: number;
-    content: string;
-  }>;
+  commentsList: Array<Comment>;
 };
 
 export const CommentsList: React.FC<CommentsListProps> = ({ commentsList }) => {
