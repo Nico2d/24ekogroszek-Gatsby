@@ -7,16 +7,21 @@ import { BiCheckCircle } from "@react-icons/all-files/bi/BiCheckCircle";
 import { StyledWhitespace } from "../../atoms/whitespace";
 import { RatingStars } from "../../atoms/product/rating-stars";
 import { device } from "../../../styles/breakpoints";
+import { Comment } from "../../../types/comment";
 
 type AddCommentProps = {
-  prodcutId: number;
+  productId: number;
+  setComment: (comment: Comment) => void;
 };
 
-export const AddComment: React.FC<AddCommentProps> = ({ prodcutId }) => {
+export const AddComment: React.FC<AddCommentProps> = ({
+  productId,
+  setComment,
+}) => {
   const { register, errors, setError, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    fetch(`${process.env.API_URL}/comments/ekogroszek:${prodcutId}`, {
+    fetch(`${process.env.API_URL}/comments/ekogroszek:${productId}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -28,19 +33,19 @@ export const AddComment: React.FC<AddCommentProps> = ({ prodcutId }) => {
         points: data.rating,
         related: [
           {
-            refId: prodcutId,
+            refId: productId,
             ref: "ekogroszek",
             field: "comments",
           },
         ],
         ekogroszek: {
-          id: prodcutId,
+          id: productId,
         },
       }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        setComment(data);
 
         setError("success", {
           type: "manual",
@@ -61,10 +66,10 @@ export const AddComment: React.FC<AddCommentProps> = ({ prodcutId }) => {
         placeholder="Nazwa Użytkownika"
       />
       {errors.userNameComment && (
-        <ErrorMessege>
+        <ErrorMessage>
           <Icon as={BiError} />
           Nazwa użytkownika jest wymagana.
-        </ErrorMessege>
+        </ErrorMessage>
       )}
       <TextareaWrapper>
         <StyledTest>
@@ -87,22 +92,22 @@ export const AddComment: React.FC<AddCommentProps> = ({ prodcutId }) => {
         />
       </TextareaWrapper>
       {errors.comment && (
-        <ErrorMessege>
+        <ErrorMessage>
           <Icon as={BiError} />
           Pomóż innym w podjęciu decyzji. Dodając komentarz.
-        </ErrorMessege>
+        </ErrorMessage>
       )}
       {errors.rating && (
-        <ErrorMessege>
+        <ErrorMessage>
           <Icon as={BiError} />
           Pomóż innym w podjęciu decyzji. Dodając ocenę.
-        </ErrorMessege>
+        </ErrorMessage>
       )}
       {errors.success && (
-        <ErrorMessege success>
+        <ErrorMessage success>
           <Icon as={BiCheckCircle} />
           {errors.success.message}
-        </ErrorMessege>
+        </ErrorMessage>
       )}
       <StyledWhitespace height={1} />
       <Button
@@ -150,7 +155,7 @@ const StyledInput = styled.input`
   }
 `;
 
-const ErrorMessege = styled.p<{ success?: boolean }>`
+const ErrorMessage = styled.p<{ success?: boolean }>`
   color: ${({ success }) => (success ? "green" : "red")}; //red;
   display: inline-flex;
 

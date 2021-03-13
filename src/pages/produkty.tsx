@@ -4,7 +4,7 @@ import { Container } from "../components/atoms/container";
 import { Layout } from "../components/layout";
 import { graphql } from "gatsby";
 import { ProductCard } from "../components/molecules/product-card";
-import { CatalogFilter } from "../components/oragnisms/catalog-filter";
+import { CatalogFilter } from "../components/organisms/catalog-filter";
 import { Sort } from "../components/molecules/sort";
 
 export const Produkty = ({ data }) => {
@@ -18,7 +18,7 @@ export const Produkty = ({ data }) => {
 
   return (
     <Layout>
-      <StyledContianer>
+      <StyledContainer>
         <CatalogFilter
           InactiveFilterIDList={InactiveFilterIDList}
           setInactiveFilterIDList={setInactiveFilterIDList}
@@ -36,7 +36,7 @@ export const Produkty = ({ data }) => {
               ))}
           </CardContainer>
         </main>
-      </StyledContianer>
+      </StyledContainer>
     </Layout>
   );
 };
@@ -49,7 +49,7 @@ const CardContainer = styled.div`
   grid-gap: 2rem;
 `;
 
-const StyledContianer = styled(Container)`
+const StyledContainer = styled(Container)`
   margin-top: 150px;
   display: flex;
 `;

@@ -1,13 +1,13 @@
 import React from "react";
-import { Hero } from "../components/oragnisms/hero";
+import { Hero } from "../components/organisms/hero";
 import { Layout } from "../components/layout";
-import { TextWithImage } from "../components/oragnisms/text-with-image";
-import { ContactSection } from "../components/oragnisms/contact-section";
-import { TransportSection } from "../components/oragnisms/transport-section";
+import { TextWithImage } from "../components/organisms/text-with-image";
+import { ContactSection } from "../components/organisms/contact-section";
+import { TransportSection } from "../components/organisms/transport-section";
 import { HeadingSection } from "../components/atoms/heading-section";
 import { StyledWhitespace } from "../components/atoms/whitespace";
 import { Container } from "../components/atoms/container";
-import { RecommendedProducts } from "../components/oragnisms/recommended-products";
+import { RecommendedProducts } from "../components/organisms/recommended-products";
 
 const RootIndex = () => {
   return (

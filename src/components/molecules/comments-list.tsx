@@ -13,7 +13,7 @@ export const CommentsList: React.FC<CommentsListProps> = ({ commentsList }) => {
     <div>
       {commentsList.length ? (
         commentsList.map((comment) => (
-          <CommentConatiner key={comment.id}>
+          <CommentContainer key={comment.id}>
             <AvatarWrapper>
               <Avatar />
             </AvatarWrapper>
@@ -29,11 +29,11 @@ export const CommentsList: React.FC<CommentsListProps> = ({ commentsList }) => {
               </InfoWrapper>
               <CommentContent>{comment.content}</CommentContent>
             </ContentWrapper>
-          </CommentConatiner>
+          </CommentContainer>
         ))
       ) : (
         <p>
-          Brak opini, dodaj nową aby ułatwić podejmowanie decyzji innym
+          Brak opinii, dodaj nową aby ułatwić podejmowanie decyzji innym
           użytkownikom
         </p>
       )}
@@ -41,7 +41,7 @@ export const CommentsList: React.FC<CommentsListProps> = ({ commentsList }) => {
   );
 };
 
-const CommentConatiner = styled.div`
+const CommentContainer = styled.div`
   display: flex;
   margin-bottom: 1rem;
 `;

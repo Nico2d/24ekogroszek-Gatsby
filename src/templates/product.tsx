@@ -3,17 +3,17 @@ import React from "react";
 import { Container } from "../components/atoms/container";
 import { Layout } from "../components/layout";
 import styled from "styled-components";
-import { TransportSection } from "../components/oragnisms/transport-section";
+import { TransportSection } from "../components/organisms/transport-section";
 import { PreviousPrice } from "../components/atoms/product/previous-price";
 import { device } from "../styles/breakpoints";
 const polygon = require("../assets/polygon.svg");
 
 import ReactMarkdown from "react-markdown";
-import { RecommendedProducts } from "../components/oragnisms/recommended-products";
+import { RecommendedProducts } from "../components/organisms/recommended-products";
 import { HeadingSection } from "../components/atoms/heading-section";
 import { StyledWhitespace } from "../components/atoms/whitespace";
 import { Attributes } from "../components/molecules/attributes";
-import { Comments } from "../components/oragnisms/comments";
+import { Comments } from "../components/organisms/comments";
 
 export const ProductTemplate = ({ data }) => {
   const product = data.allStrapiEkogroszeks.edges[0].node;
@@ -45,7 +45,7 @@ export const ProductTemplate = ({ data }) => {
         <StyledWhitespace height={5} />
         <HeadingSection title="Komentarze" />
 
-        <Comments prodcutId={product.strapiId} />
+        <Comments productId={product.strapiId} />
       </Container>
     </Layout>
   );
