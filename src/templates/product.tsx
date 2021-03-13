@@ -14,7 +14,6 @@ import { HeadingSection } from "../components/atoms/heading-section";
 import { StyledWhitespace } from "../components/atoms/whitespace";
 import { Attributes } from "../components/molecules/attributes";
 import { Comments } from "../components/oragnisms/comments";
-import { AddComment } from "../components/molecules/forms/add-comment";
 
 export const ProductTemplate = ({ data }) => {
   const product = data.allStrapiEkogroszeks.edges[0].node;
@@ -45,10 +44,8 @@ export const ProductTemplate = ({ data }) => {
 
         <StyledWhitespace height={5} />
         <HeadingSection title="Komentarze" />
+
         <Comments prodcutId={product.strapiId} />
-        <StyledWhitespace height={3} />
-        <HeadingSection title="Dodaj własny" isSmall={true} />
-        <AddComment prodcutId={product.strapiId} />
       </Container>
     </Layout>
   );
