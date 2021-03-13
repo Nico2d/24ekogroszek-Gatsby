@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
 const background = require("../../assets/background.jpg");
@@ -6,8 +7,14 @@ import { Button } from "../atoms/button";
 
 export const Hero = () => (
   <HeroContainer>
-    <Heading>Z troską o ciepło w Twoim domu</Heading>
-    <Button text="Poznaj nasze produkty" />
+    <motion.div
+      initial={{ opacity: 0, y: 200 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.2 }}
+    >
+      <Heading>Z troską o ciepło w Twoim domu</Heading>
+      <Button text="Poznaj nasze produkty" />
+    </motion.div>
   </HeroContainer>
 );
 

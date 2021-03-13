@@ -5,6 +5,7 @@ const image = require("../../assets/tom-fisk.jpg");
 const polygon = require("../../assets/polygon-big.svg");
 import { Container } from "../atoms/container";
 import { device } from "../../styles/breakpoints";
+import { StyledWhitespace } from "../atoms/whitespace";
 
 export const TextWithImage = () => {
   return (
@@ -18,7 +19,7 @@ export const TextWithImage = () => {
           towar dostosowany specjalnie do twojego pieca na ekogroszek w niskich
           cenach.
         </p>
-
+        <StyledWhitespace height={1} />
         <Button text="Poznaj naszych dostawców" />
       </ContentSection>
       <ImageSection>

@@ -7,7 +7,6 @@ import { TransportSection } from "../components/organisms/transport-section";
 import { PreviousPrice } from "../components/atoms/product/previous-price";
 import { device } from "../styles/breakpoints";
 const polygon = require("../assets/polygon.svg");
-
 import ReactMarkdown from "react-markdown";
 import { RecommendedProducts } from "../components/organisms/recommended-products";
 import { HeadingSection } from "../components/atoms/heading-section";
