@@ -67,7 +67,7 @@ const StyledContainer = styled(Container)`
 
 const StyledNavbar = styled.nav<{ isHero: boolean }>`
   display: inline-flex;
-  height: 95px;
+  height: 65px;
   background: ${({ theme, isHero }) =>
     isHero ? "transparent" : theme.colors.white};
   position: fixed;
@@ -79,6 +79,10 @@ const StyledNavbar = styled.nav<{ isHero: boolean }>`
     isHero ? theme.colors.white : theme.colors.fontColor};
   fill: ${({ theme, isHero }) =>
     isHero ? theme.colors.white : theme.colors.fontColor};
+
+  @media ${device.tablet} {
+    height: 95px;
+  }
 
   @media ${device.laptopM} {
     > div {

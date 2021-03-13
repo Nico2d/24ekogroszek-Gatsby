@@ -85,9 +85,15 @@ const ContentContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 46px;
+  font-size: 2.5rem;
+  line-height: 3rem;
   font-weight: 600;
   word-break: break-word;
+  margin-bottom: 1rem;
+
+  @media ${device.tablet} {
+    font-size: 46px;
+  }
 `;
 
 const Price = styled.h3`

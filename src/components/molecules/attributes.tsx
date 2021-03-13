@@ -44,9 +44,14 @@ const Attribute = styled.div`
   text-align: center;
 
   > img {
-    width: 3rem;
-    height: 3rem;
-    margin: 1rem auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 2rem auto .5rem;
+
+    @media ${device.tablet} {
+      width: 3rem;
+      height: 3rem;
+    }
   }
 `;
 
