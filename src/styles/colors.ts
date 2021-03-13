@@ -8,5 +8,6 @@ export const theme: DefaultTheme = {
     background: "#E5E5E5",
     white: "#FFFFFF",
     fontColor: "#000000",
+    lineColor: "#bbbbbb",
   },
 };

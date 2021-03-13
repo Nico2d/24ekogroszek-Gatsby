@@ -6,17 +6,20 @@ import { motion } from "framer-motion";
 type RagingStarsProps = {
   register?: any;
   maxRate?: number;
-  rate?: number;
-  setRate?: (value: number) => void;
   name: string;
+  defaultRate?: number;
+  disabled?: boolean;
 };
 
 export const RatingStars: React.FC<RagingStarsProps> = ({
   register,
   maxRate = 5,
   name,
+  disabled = false,
+  defaultRate = 0,
 }) => {
-  const [rate, setRate] = useState<number>(0);
+  const [rate, setRate] = useState<number>(defaultRate);
+  console.log(disabled);
 
   let Stars = [];
   for (let i = 1; i <= maxRate; i++) {
@@ -25,7 +28,7 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
         key={i}
         isActive={i <= rate}
         as={motion.label}
-        whileTap={{ scale: 1.5 }}
+        whileTap={{ scale: disabled ? 1 : 1.5 }}
       >
         <AiFillStar />
         <HiddenInput
@@ -34,6 +37,7 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
           name={name}
           type="radio"
           onChange={(e) => setRate(+e.target.value)}
+          disabled={disabled}
         />
       </StyledStars>
     );

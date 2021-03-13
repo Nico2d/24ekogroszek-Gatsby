@@ -5,6 +5,7 @@ import { Button } from "../../atoms/button";
 import { BiError } from "@react-icons/all-files/bi/BiError";
 import { StyledWhitespace } from "../../atoms/whitespace";
 import { RatingStars } from "../../atoms/product/rating-stars";
+import { device } from "../../../styles/breakpoints";
 
 export const AddComment = () => {
   const { register, errors, handleSubmit } = useForm();
@@ -49,24 +50,27 @@ export const AddComment = () => {
           Nazwa użytkownika jest wymagana.
         </ErrorMessege>
       )}
-      <StyledWhitespace height={1} />
+      {/* <StyledWhitespace height={0.5} /> */}
+      <TextareaWrapper>
+        <StyledTest>
+          <RatingStars
+            name="rating"
+            register={register({
+              required: true,
+            })}
+          />
+        </StyledTest>
 
-      <RatingStars
-        name="rating"
-        register={register({
-          required: true,
-        })}
-      />
-
-      <StyledTextarea
-        rows={6}
-        cols={50}
-        name="comment"
-        ref={register({
-          required: true,
-        })}
-        placeholder="Tutaj zamieść swoją opinie..."
-      />
+        <StyledTextarea
+          rows={6}
+          cols={50}
+          name="comment"
+          ref={register({
+            required: true,
+          })}
+          placeholder="Tutaj zamieść swoją opinie..."
+        />
+      </TextareaWrapper>
       {errors.comment && (
         <ErrorMessege>
           <Icon as={BiError} />
@@ -88,6 +92,20 @@ export const AddComment = () => {
     </StyledForm>
   );
 };
+const StyledTest = styled.div`
+  position: absolute;
+  top: -2rem;
+  right: 0;
+`;
+
+const TextareaWrapper = styled.div`
+  position: relative;
+  margin-top: 3rem;
+
+  @media ${device.tablet} {
+    margin-top: 0.5rem;
+  }
+`;
 
 const Icon = styled.svg`
   margin: auto;
@@ -100,11 +118,11 @@ const StyledForm = styled.form`
 
 const StyledInput = styled.input`
   background: ${({ theme }) => theme.colors.white};
-  border: 1px gray solid;
+  border: 1px ${({ theme }) => theme.colors.lineColor} solid;
   border-radius: 1rem;
   padding: 0.75rem 1rem;
   outline: none;
-  outline: none;
+  max-width: 500px;
 
   :focus {
     border: 2px solid #f2994a;
@@ -125,10 +143,11 @@ const ErrorMessege = styled.p`
 
 const StyledTextarea = styled.textarea`
   background: ${({ theme }) => theme.colors.white};
-  border: 1px gray solid;
+  border: 1px ${({ theme }) => theme.colors.lineColor} solid;
   border-radius: 1rem;
   padding: 1rem;
   outline: none;
+  width: 100%;
 
   :focus {
     border: 2px solid #f2994a;

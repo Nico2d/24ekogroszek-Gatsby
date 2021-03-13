@@ -2,17 +2,25 @@ import React from "react";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
 
-export const HeadingSection = ({ title }) => {
-  return <Heading>{title}</Heading>;
+type HeadingSectionProps = {
+  title: string;
+  isSmall?: boolean;
 };
 
-const Heading = styled.h2`
-  font-size: 1.7rem;
+export const HeadingSection: React.FC<HeadingSectionProps> = ({
+  title,
+  isSmall,
+}) => {
+  return <Heading isSmall={isSmall}>{title}</Heading>;
+};
+
+const Heading = styled.h2<{ isSmall?: boolean }>`
+  font-size: ${({ isSmall }) => (isSmall ? "1.4rem" : "1.7rem")};
   font-weight: 500;
   opacity: 0.9;
-  margin-bottom: 3rem;
+  margin-bottom: ${({ isSmall }) => (isSmall ? "1rem" : "3rem")};
 
   @media ${device.tablet} {
-    font-size: 2.5rem;
+    font-size: ${({ isSmall }) => (isSmall ? "2rem" : "2.5rem")};
   }
 `;

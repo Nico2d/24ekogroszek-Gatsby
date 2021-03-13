@@ -9,6 +9,7 @@ declare module "styled-components" {
       background: string;
       white: string;
       fontColor: string;
+      lineColor: string;
     };
   }
 }
