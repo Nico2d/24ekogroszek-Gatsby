@@ -12,7 +12,7 @@ export const CommentsList: React.FC<CommentsListProps> = ({ commentsList }) => {
   return (
     <div>
       {commentsList.length ? (
-        commentsList.map((comment) => (
+        commentsList.reverse().map((comment) => (
           <CommentContainer key={comment.id}>
             <AvatarWrapper>
               <Avatar />
