@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import styled from "styled-components";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { device } from "../../styles/breakpoints";
+import { convertToSlug } from "../../utils/convertToSlug";
 import { Container } from "../atoms/container";
 const polygon = require("../../assets/polygon.svg");
 
@@ -41,19 +42,19 @@ export const RecommendedProducts = () => {
       {!isDesktop ? (
         <Slider {...settings}>
           {products.map(({ node }, index) => (
-            <Product key={index}>
+            <Product key={index} to={`/produkty/${convertToSlug(node.Nazwa)}`}>
               <img src={`${process.env.IMAGE_URL}${node.Grafika[0].url}`} />
             </Product>
           ))}
         </Slider>
       ) : (
-        <ProdcutContainer>
+        <ProductContainer>
           {products.map(({ node }, index) => (
-            <Product key={index}>
+            <Product key={index} to={`/produkty/${convertToSlug(node.Nazwa)}`}>
               <img src={`${process.env.IMAGE_URL}${node.Grafika[0].url}`} />
             </Product>
           ))}
-        </ProdcutContainer>
+        </ProductContainer>
       )}
 
       <StyledLink to="/produkty">Więcej produktów</StyledLink>
@@ -62,13 +63,14 @@ export const RecommendedProducts = () => {
 };
 
 const StyledLink = styled(Link)`
+  width: fit-content;
   display: flex;
-  justify-content: center;
-  text-decoration: underline;
+  margin: auto;
   margin-top: 3rem;
+  text-decoration: underline;
 `;
 
-const ProdcutContainer = styled.div`
+const ProductContainer = styled.div`
   .slick-slide {
     margin: 0 27px;
   }
@@ -83,7 +85,7 @@ const ProdcutContainer = styled.div`
   }
 `;
 
-const Product = styled.div`
+const Product = styled(Link)`
   background-image: url(${polygon});
   background-repeat: no-repeat;
   background-size: contain;
@@ -96,11 +98,4 @@ const Product = styled.div`
     width: 300px;
     height: 300px;
   }
-`;
-
-const StyledDiv = styled.div`
-  width: 100px;
-  height: 100px;
-  background: red;
-  margin: 2rem;
 `;
