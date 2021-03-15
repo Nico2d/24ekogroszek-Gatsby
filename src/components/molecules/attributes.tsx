@@ -42,16 +42,32 @@ const Attribute = styled.div`
   display: flex;
   flex-flow: column;
   text-align: center;
+  position: relative;
+  background: blue;
 
   > img {
     width: 2.5rem;
     height: 2.5rem;
-    margin: 2rem auto .5rem;
+    margin: 2rem auto 0.5rem;
 
     @media ${device.tablet} {
       width: 3rem;
       height: 3rem;
     }
+  }
+
+  ::before {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
   }
 `;
 
