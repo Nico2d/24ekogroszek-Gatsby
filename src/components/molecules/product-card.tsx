@@ -23,7 +23,7 @@ export const ProductCard: React.FC<ProductType> = ({ product }) => {
           name="starts"
           defaultRate={getAverageRating(product.comments)}
           disabled
-          onLeft
+          isLeft
         />
         <CurrentPrice>{product.AktualnaCena.toFixed(2)}zł</CurrentPrice>
         <PreviousPrice price={product.PoprzedniaCena} />
@@ -61,7 +61,7 @@ const Title = styled.h4`
   letter-spacing: -0.015em;
   opacity: 0.9;
   word-break: break-word;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 `;
 
 const ContentContainer = styled.div`
