@@ -12,5 +12,8 @@ export type ProductType = {
     Popiol?: string;
     Kalorycznosc?: string;
     Siarka?: string;
+    comments?: Array<{
+      points: number;
+    }>;
   };
 };

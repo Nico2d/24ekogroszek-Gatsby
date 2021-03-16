@@ -47,6 +47,9 @@ export const pageQuery = graphql`
       Popiol
       Kalorycznosc
       Siarka
+      comments {
+        points
+      }
     }
   }
 `;

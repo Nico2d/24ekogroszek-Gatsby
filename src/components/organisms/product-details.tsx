@@ -9,6 +9,17 @@ import { Attributes } from "../molecules/attributes";
 const polygon = require("../../assets/polygon.svg");
 
 export const ProductDetails: React.FC<ProductType> = ({ product }) => {
+  console.log(product.comments);
+
+  const getAverageRating = () => {
+    const sum = product.comments.reduce((sum, { points }) => sum + points, 0);
+    const avg = sum / product.comments.length;
+
+    return avg.toFixed(0);
+  };
+
+  console.log(getAverageRating());
+
   return (
     <StyledContainer>
       <ImageWrapper>
