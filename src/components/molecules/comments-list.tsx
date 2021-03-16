@@ -9,6 +9,15 @@ type CommentsListProps = {
 };
 
 export const CommentsList: React.FC<CommentsListProps> = ({ commentsList }) => {
+  const GetTodayDate = () => {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    let yyyy = today.getFullYear();
+
+    return yyyy + "-" + mm + "-" + dd;
+  };
+
   return (
     <div>
       {commentsList.length ? (
@@ -20,7 +29,11 @@ export const CommentsList: React.FC<CommentsListProps> = ({ commentsList }) => {
             <ContentWrapper>
               <Username>{comment.authorName}</Username>
               <InfoWrapper>
-                <Date>{comment.created_at.slice(0, 10)}</Date>
+                <StyledDate>
+                  {comment.created_at
+                    ? comment.created_at.slice(0, 10)
+                    : GetTodayDate()}
+                </StyledDate>
                 <RatingStars
                   defaultRate={comment.points}
                   name="rating"
@@ -76,7 +89,7 @@ const Username = styled.p`
   margin: 0;
 `;
 
-const Date = styled.p`
+const StyledDate = styled.p`
   font-size: 0.7rem;
   margin: 0;
 `;
