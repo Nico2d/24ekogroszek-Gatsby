@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
+import { ToolTip } from "../atoms/tooltip";
 
 const calc = require("../../assets/icons/pa_kalorycznosc.png");
 const wet = require("../../assets/icons/pa_wilgotnosc.png");
@@ -11,29 +12,40 @@ export const Attributes = ({ product }) => {
   return (
     <AttributesContainer>
       {product.Kalorycznosc && (
-        <Attribute>
-          <img src={calc} />
-          {product.Kalorycznosc}
-        </Attribute>
+        <ToolTip text="Kaloryczność">
+          <Attribute>
+            <img src={calc} />
+            {product.Kalorycznosc}
+          </Attribute>
+        </ToolTip>
       )}
       {product.Wilgoc && (
-        <Attribute>
-          <img src={wet} />
-          {product.Wilgoc}
-        </Attribute>
+        <ToolTip text="Zawartość wilgoci">
+          <Attribute>
+            <img src={wet} />
+            {product.Wilgoc}
+          </Attribute>
+        </ToolTip>
       )}
       {product.Popiol && (
-        <Attribute>
-          <img src={ash} />
-          {product.Popiol}
-        </Attribute>
+        <ToolTip text="Zawartość popiołu">
+          <Attribute>
+            <img src={ash} />
+            {product.Popiol}
+          </Attribute>
+        </ToolTip>
       )}
+
       {product.Siarka && (
-        <Attribute>
-          <img src={sulfur} />
-          {product.Siarka}
-        </Attribute>
+        <ToolTip text="Zawartość siarki">
+          <Attribute>
+            <img src={sulfur} />
+            {product.Siarka}
+          </Attribute>
+        </ToolTip>
       )}
+
+      {/* <ToolTip> {"Dupa dupa"}</ToolTip> */}
     </AttributesContainer>
   );
 };
@@ -42,16 +54,32 @@ const Attribute = styled.div`
   display: flex;
   flex-flow: column;
   text-align: center;
+  position: relative;
+  /* background: blue; */
 
   > img {
     width: 2.5rem;
     height: 2.5rem;
-    margin: 2rem auto .5rem;
+    margin: 2rem auto 0.5rem;
 
     @media ${device.tablet} {
       width: 3rem;
       height: 3rem;
     }
+  }
+
+  ::before {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
   }
 `;
 

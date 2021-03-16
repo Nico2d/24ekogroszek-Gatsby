@@ -35,6 +35,8 @@ export const RecommendedProducts = () => {
     }
   `);
 
+  console.log(data);
+
   const products = data.allStrapiEkogroszeks.edges;
 
   return (

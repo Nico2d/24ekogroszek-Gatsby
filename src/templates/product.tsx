@@ -14,9 +14,7 @@ import { StyledWhitespace } from "../components/atoms/whitespace";
 import { Attributes } from "../components/molecules/attributes";
 import { Comments } from "../components/organisms/comments";
 
-export const ProductTemplate = ({ data }) => {
-  const product = data.allStrapiEkogroszeks.edges[0].node;
-
+export const ProductTemplate = ({ data: { strapiEkogroszeks: product } }) => {
   return (
     <Layout>
       <StyledContainer>
@@ -121,23 +119,19 @@ const StyledContainer = styled(Container)`
 
 export const pageQuery = graphql`
   query ProdcutTemplete($name: String!) {
-    allStrapiEkogroszeks(filter: { Nazwa: { eq: $name } }) {
-      edges {
-        node {
-          AkutalnaCena
-          Kalorycznosc
-          Nazwa
-          Opis
-          Popiol
-          PoprzedniaCenta
-          Wilgoc
-          strapiId
-          id
-          Grafika {
-            url
-          }
-        }
+    strapiEkogroszeks(Nazwa: { eq: $name }) {
+      AkutalnaCena
+      Kalorycznosc
+      Nazwa
+      Opis
+      Popiol
+      PoprzedniaCenta
+      strapiId
+      id
+      Grafika {
+        url
       }
+      Wilgoc
     }
   }
 `;
