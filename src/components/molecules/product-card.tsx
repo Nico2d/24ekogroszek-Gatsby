@@ -12,7 +12,7 @@ import { ProductType } from "../../types/product.type";
 
 export const ProductCard: React.FC<ProductType> = ({ product }) => {
   return (
-    <Card key={product.strapiId}>
+    <Card>
       <StyledWrapperImage>
         <img src={`${process.env.IMAGE_URL}${product.Grafika[0].url}`} />
       </StyledWrapperImage>

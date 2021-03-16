@@ -32,7 +32,7 @@ export const Produkty = ({ data }) => {
                 return !InactiveFilterIDList.includes(node.producent.Nazwa);
               })
               .map(({ node }) => (
-                <ProductCard key={node.id} product={node} />
+                <ProductCard key={node.strapiId} product={node} />
               ))}
           </CardContainer>
         </main>
