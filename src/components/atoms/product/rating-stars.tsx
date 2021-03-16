@@ -46,8 +46,7 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
     );
   }
 
-  // console.log(rate);
-  // if (rate === NaN) return null;
+  if (rate === 0) return null;
   return <RatingContainer isLeft={isLeft}>{Stars}</RatingContainer>;
 };
 
