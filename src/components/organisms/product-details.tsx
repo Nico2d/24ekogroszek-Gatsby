@@ -5,20 +5,17 @@ import { device } from "../../styles/breakpoints";
 import { ProductType } from "../../types/product.type";
 import { Container } from "../atoms/container";
 import { PreviousPrice } from "../atoms/product/previous-price";
+import { RatingStars } from "../atoms/product/rating-stars";
 import { Attributes } from "../molecules/attributes";
 const polygon = require("../../assets/polygon.svg");
 
 export const ProductDetails: React.FC<ProductType> = ({ product }) => {
-  console.log(product.comments);
-
-  const getAverageRating = () => {
+  const getAverageRating = (): number => {
     const sum = product.comments.reduce((sum, { points }) => sum + points, 0);
-    const avg = sum / product.comments.length;
+    const average = sum / product.comments.length;
 
-    return avg.toFixed(0);
+    return +average.toFixed(0);
   };
-
-  console.log(getAverageRating());
 
   return (
     <StyledContainer>
@@ -31,7 +28,7 @@ export const ProductDetails: React.FC<ProductType> = ({ product }) => {
         <Title>{product.Nazwa}</Title>
         <Price>{product.AktualnaCena.toFixed(2)}zł</Price>
         <StyledPreviousPrice price={product.PoprzedniaCena} />
-
+        <RatingStars name="starts" defaultRate={getAverageRating()} disabled/>
         <StyledDescription>{product.Opis}</StyledDescription>
       </ContentContainer>
     </StyledContainer>
@@ -40,6 +37,7 @@ export const ProductDetails: React.FC<ProductType> = ({ product }) => {
 
 const StyledDescription = styled(ReactMarkdown)`
   word-break: break-word;
+  text-align: justify;
 `;
 
 const ImageWrapper = styled.div`
