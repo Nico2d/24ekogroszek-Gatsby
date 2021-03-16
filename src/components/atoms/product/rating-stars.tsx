@@ -20,7 +20,6 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
   defaultRate = 0,
   isLeft = false,
 }) => {
-  console.log(defaultRate);
   const [rate, setRate] = useState<number>(defaultRate);
 
   let Stars = [];
