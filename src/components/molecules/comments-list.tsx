@@ -2,10 +2,10 @@ import React from "react";
 import { FaUserCircle } from "@react-icons/all-files/fa/FaUserCircle";
 import styled from "styled-components";
 import { RatingStars } from "../atoms/product/rating-stars";
-import { Comment } from "../../types/comment";
+import { CommentType } from "../../types/comment.type";
 
 type CommentsListProps = {
-  commentsList: Array<Comment>;
+  commentsList: Array<CommentType>;
 };
 
 export const CommentsList: React.FC<CommentsListProps> = ({ commentsList }) => {

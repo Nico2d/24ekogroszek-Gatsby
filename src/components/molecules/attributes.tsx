@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
+import { ProductType } from "../../types/product.type";
 import { ToolTip } from "../atoms/tooltip";
-
 const calc = require("../../assets/icons/pa_kalorycznosc.png");
 const wet = require("../../assets/icons/pa_wilgotnosc.png");
 const ash = require("../../assets/icons/pa_popiol.png");
 const sulfur = require("../../assets/icons/pa_siarka.png");
 
-export const Attributes = ({ product }) => {
+export const Attributes: React.FC<ProductType> = ({ product }) => {
   return (
     <AttributesContainer>
       {product.Kalorycznosc && (
@@ -44,8 +44,6 @@ export const Attributes = ({ product }) => {
           </Attribute>
         </ToolTip>
       )}
-
-      {/* <ToolTip> {"Dupa dupa"}</ToolTip> */}
     </AttributesContainer>
   );
 };
@@ -55,7 +53,6 @@ const Attribute = styled.div`
   flex-flow: column;
   text-align: center;
   position: relative;
-  /* background: blue; */
 
   > img {
     width: 2.5rem;
@@ -76,8 +73,6 @@ const Attribute = styled.div`
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
-
-    /* Position the tooltip */
     position: absolute;
     z-index: 1;
   }

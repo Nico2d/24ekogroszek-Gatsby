@@ -7,11 +7,11 @@ import { BiCheckCircle } from "@react-icons/all-files/bi/BiCheckCircle";
 import { StyledWhitespace } from "../../atoms/whitespace";
 import { RatingStars } from "../../atoms/product/rating-stars";
 import { device } from "../../../styles/breakpoints";
-import { Comment } from "../../../types/comment";
+import { CommentType } from "../../../types/comment.type";
 
 type AddCommentProps = {
   productId: number;
-  setComment: (comment: Comment) => void;
+  setComment: (comment: CommentType) => void;
 };
 
 export const AddComment: React.FC<AddCommentProps> = ({

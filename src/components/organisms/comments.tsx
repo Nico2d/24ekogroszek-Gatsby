@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Comment } from "../../types/comment";
+import { CommentType } from "../../types/comment.type";
 import { StyledWhitespace } from "../atoms/whitespace";
 import { CommentsList } from "../molecules/comments-list";
 import { AddComment } from "../molecules/forms/add-comment";
@@ -13,7 +13,7 @@ export const Comments = ({ productId }) => {
       .then((data) => setCommentsList(data));
   }, []);
 
-  const addCommentHandler = (data: Comment) => {
+  const addCommentHandler = (data: CommentType) => {
     setCommentsList((props) => [...props, data]);
   };
 
