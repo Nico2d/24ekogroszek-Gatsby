@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
 import { ProductType } from "../../types/product.type";
+import { getAverageRating } from "../../utils/getAverageRating";
 import { Container } from "../atoms/container";
 import { PreviousPrice } from "../atoms/product/previous-price";
 import { RatingStars } from "../atoms/product/rating-stars";
@@ -10,13 +11,6 @@ import { Attributes } from "../molecules/attributes";
 const polygon = require("../../assets/polygon.svg");
 
 export const ProductDetails: React.FC<ProductType> = ({ product }) => {
-  const getAverageRating = (): number => {
-    const sum = product.comments.reduce((sum, { points }) => sum + points, 0);
-    const average = sum / product.comments.length;
-
-    return +average.toFixed(0);
-  };
-
   return (
     <StyledContainer>
       <ImageWrapper>
@@ -28,7 +22,11 @@ export const ProductDetails: React.FC<ProductType> = ({ product }) => {
         <Title>{product.Nazwa}</Title>
         <Price>{product.AktualnaCena.toFixed(2)}zł</Price>
         <StyledPreviousPrice price={product.PoprzedniaCena} />
-        <RatingStars name="starts" defaultRate={getAverageRating()} disabled/>
+        <RatingStars
+          name="starts"
+          defaultRate={getAverageRating(product.comments)}
+          disabled
+        />
         <StyledDescription>{product.Opis}</StyledDescription>
       </ContentContainer>
     </StyledContainer>

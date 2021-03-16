@@ -9,6 +9,7 @@ type RagingStarsProps = {
   name: string;
   defaultRate?: number;
   disabled?: boolean;
+  onLeft?: boolean;
 };
 
 export const RatingStars: React.FC<RagingStarsProps> = ({
@@ -17,6 +18,7 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
   name,
   disabled = false,
   defaultRate = 0,
+  onLeft = false,
 }) => {
   const [rate, setRate] = useState<number>(defaultRate);
 
@@ -43,14 +45,14 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
     );
   }
 
-  return <RatingContainer>{Stars}</RatingContainer>;
+  return <RatingContainer onLeft={onLeft}>{Stars}</RatingContainer>;
 };
 
-const RatingContainer = styled.div`
+const RatingContainer = styled.div<{ onLeft: boolean }>`
   margin: 0;
   display: flex;
   flex-flow: row;
-  justify-content: flex-end;
+  justify-content: ${({ onLeft }) => (onLeft ? "flex-start" : "flex-end")};
 `;
 
 const HiddenInput = styled.input`

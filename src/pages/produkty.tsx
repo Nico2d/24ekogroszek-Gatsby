@@ -59,16 +59,19 @@ export const pageQuery = graphql`
     allStrapiEkogroszeks {
       edges {
         node {
-          AkutalnaCena
+          strapiId
           Nazwa
-          PoprzedniaCenta
-          id
+          AktualnaCena
+          PoprzedniaCena
           Grafika {
             url
           }
           producent {
             id
             Nazwa
+          }
+          comments {
+            points
           }
         }
       }
