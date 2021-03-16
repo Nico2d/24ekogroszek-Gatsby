@@ -153,6 +153,22 @@ const StyledInput = styled.input`
   padding: 0.75rem 1rem;
   outline: none;
   max-width: 500px;
+  font-weight: 500;
+
+  :focus {
+    border: 2px solid #f2994a;
+  }
+`;
+
+const StyledTextarea = styled.textarea`
+  background: ${({ theme }) => theme.colors.white};
+  border: 1px ${({ theme }) => theme.colors.lineColor} solid;
+  border-radius: 1rem;
+  padding: 1rem;
+  outline: none;
+  width: 100%;
+  font-family: "Montserrat", Tahoma, Arial, Helvetica, sans-serif;
+  font-weight: 500;
 
   :focus {
     border: 2px solid #f2994a;
@@ -168,18 +184,5 @@ const ErrorMessage = styled.p<{ success?: boolean }>`
     height: 1.5rem;
     margin: 0;
     margin-right: 3px;
-  }
-`;
-
-const StyledTextarea = styled.textarea`
-  background: ${({ theme }) => theme.colors.white};
-  border: 1px ${({ theme }) => theme.colors.lineColor} solid;
-  border-radius: 1rem;
-  padding: 1rem;
-  outline: none;
-  width: 100%;
-
-  :focus {
-    border: 2px solid #f2994a;
   }
 `;
