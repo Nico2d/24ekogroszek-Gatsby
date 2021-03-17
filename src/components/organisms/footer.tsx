@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { IconPhone } from "../../assets/icons/iconPhone";
 import { IconMail } from "../../assets/icons/iconMail";
-import LogoWhite from "../../assets/logo-white.png";
+const LogoWhite = require("../../assets/logo-white.png");
 import { Container } from "../atoms/container";
-import background from "../../assets/footer.svg";
+const background = require("../../assets/footer.svg");
 import { device } from "../../styles/breakpoints";
+import { Link } from "gatsby";
 
 export const Footer = () => {
   return (
@@ -27,7 +28,7 @@ export const Footer = () => {
 
         <Info>
           © ProPellet.pl 2020 | Ceny na stronie nie stanowią oferty handlowej w
-          rozumieniu Kodeksu Cywilnego.
+          rozumieniu <Link to="/rate-your-mate">Kodeksu</Link> Cywilnego.
         </Info>
       </StyledContainer>
     </Wrapper>
