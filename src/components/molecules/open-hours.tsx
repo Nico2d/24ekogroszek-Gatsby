@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { device } from "../../styles/breakpoints";
 
 export const OpenHours = () => {
   return (
@@ -29,6 +30,11 @@ export const OpenHours = () => {
 const HoursContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  flex-flow: column;
+
+  @media ${device.tablet} {
+    flex-flow: row;
+  }
 `;
 
 const Hour = styled.p`

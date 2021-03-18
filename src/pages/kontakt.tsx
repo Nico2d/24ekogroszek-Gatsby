@@ -10,16 +10,19 @@ import styled from "styled-components";
 import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLocationMarker";
 import { Map } from "../components/molecules/map";
 import { OpenHours } from "../components/molecules/open-hours";
+import { useMediaQuery } from "../hooks/useMediaQuery";
+import { device } from "../styles/breakpoints";
 
 const contact = require("../assets/contact_icon.svg");
 
 const Kontakt = () => {
+  const isDesktop = useMediaQuery(device.tablet);
   return (
     <Layout>
       <StyledWhitespace height={5} />
 
       <Container style={{ position: "relative" }}>
-        <ContactSVG />
+        {isDesktop && <ContactSVG />}
         <StyledHeaderSection>
           <HeadingSection title="Masz pytania?" />
           <h3>Zadzwoń i umów się na dostawę</h3>
@@ -67,7 +70,7 @@ const ContactSVG = styled.div`
   position: absolute;
   background-image: url(${contact});
   background-repeat: no-repeat;
-  background-size: cover; 
+  background-size: cover;
   top: -40%;
   right: -40px;
   width: 500px;

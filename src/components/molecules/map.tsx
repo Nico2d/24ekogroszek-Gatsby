@@ -43,6 +43,7 @@ export const Map = () => {
 
 const StyledMap = styled(MapContainer)`
   height: 350px;
+  width: 100%;
 
   .leaflet-top {
     z-index: 600;
