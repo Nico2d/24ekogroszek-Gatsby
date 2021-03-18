@@ -1,34 +1,60 @@
 import React from "react";
 import { HeadingSection } from "../components/atoms/heading-section";
 import { Layout } from "../components/layout";
-import { FaPhoneAlt } from "@react-icons/all-files/fa/FaPhoneAlt";
-import { FaEnvelope } from "@react-icons/all-files/fa/FaEnvelope";
+import { HiOutlinePhone } from "@react-icons/all-files/hi/HiOutlinePhone";
+import { HiOutlineMail } from "@react-icons/all-files/hi/HiOutlineMail";
 import { Container } from "../components/atoms/container";
 import { StyledWhitespace } from "../components/atoms/whitespace";
+import { IconWithText } from "../components/atoms/icon-with-text";
+import styled from "styled-components";
+import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLocationMarker";
 
 const Kontakt = () => {
   return (
     <Layout>
-      <StyledWhitespace height={10} />
+      <StyledWhitespace height={5} />
       <Container>
-        <HeadingSection title="Masz pytania?" />
-        <p>Zadzwoń i umów się na dostawę</p>
-        <p>
-          <FaPhoneAlt />
+        <StyledHeaderSection>
+          <HeadingSection title="Masz pytania?" />
+          <h3>Zadzwoń i umów się na dostawę</h3>
+        </StyledHeaderSection>
+
+        <IconWithText>
+          <HiOutlinePhone />
           500 300 158
-        </p>
-        <p>
-          <FaPhoneAlt />
+        </IconWithText>
+        <IconWithText>
+          <HiOutlinePhone />
           502 228 332
-        </p>
-        <p>
-          <FaEnvelope />
+        </IconWithText>
+        <IconWithText>
+          <HiOutlineMail />
           ttcom@interia.pl
-        </p>
-        <HeadingSection title="Odwiedź nas na miejscu" />
+        </IconWithText>
+
+        <StyledHeaderSection>
+          <HeadingSection title="Odwiedź nas na miejscu" />
+        </StyledHeaderSection>
+
+        <IconWithText>
+          <HiOutlineLocationMarker />
+          48-837 Opole ul. Wspólna 1
+        </IconWithText>
       </Container>
     </Layout>
   );
 };
 
 export default Kontakt;
+
+const StyledHeaderSection = styled.div`
+  h2 {
+    margin-bottom: -0.5rem;
+    margin-top: 5rem;
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+`;

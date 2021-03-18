@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { Container } from "../atoms/container";
-import phone from "../../assets/phone.png";
-import { IconPhone } from "../../assets/icons/iconPhone";
-import { IconLocation } from "../../assets/icons/iconLocation";
 import { device } from "../../styles/breakpoints";
+import { IconWithText } from "../atoms/icon-with-text";
+import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLocationMarker";
+import { HiOutlinePhone } from "@react-icons/all-files/hi/HiOutlinePhone";
+
+const phone = require("../../assets/phone.png");
 
 export const ContactSection = () => {
   return (
@@ -14,20 +16,20 @@ export const ContactSection = () => {
           <b>Masz pytania? </b>Skontaktuj się z nami
         </Heading>
 
-        <RowSection>
-          <IconPhone /> 500 400 348
-        </RowSection>
-        <RowSection>
-          <IconPhone />
+        <IconWithText>
+          <HiOutlinePhone /> 500 400 348
+        </IconWithText>
+        <IconWithText>
+          <HiOutlinePhone />
           500 300 158
-        </RowSection>
+        </IconWithText>
 
         <Heading>Obsługujemy także na miejscu</Heading>
 
-        <RowSection>
-          <IconLocation />
+        <IconWithText>
+          <HiOutlineLocationMarker />
           Opole ul. Wspólna 1
-        </RowSection>
+        </IconWithText>
       </ContentWrapper>
     </StyledContainer>
   );
@@ -66,18 +68,4 @@ const Heading = styled.h3`
   margin-top: 3rem;
   line-height: initial;
   font-size: 1.8rem;
-`;
-
-const RowSection = styled.p`
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-  margin: 0;
-  margin-top: 0.5rem;
-  margin-right: 0.5rem;
-
-  > svg {
-    margin-right: 0.5rem;
-    fill: black;
-  }
 `;
