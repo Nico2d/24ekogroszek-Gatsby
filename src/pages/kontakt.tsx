@@ -8,7 +8,7 @@ import { StyledWhitespace } from "../components/atoms/whitespace";
 import { IconWithText } from "../components/atoms/icon-with-text";
 import styled from "styled-components";
 import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLocationMarker";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Map } from "../components/molecules/map";
 
 const Kontakt = () => {
   return (
@@ -36,33 +36,72 @@ const Kontakt = () => {
         <StyledHeaderSection>
           <HeadingSection title="Odwiedź nas na miejscu" />
         </StyledHeaderSection>
-
         <IconWithText>
           <HiOutlineLocationMarker />
           48-837 Opole ul. Wspólna 1
         </IconWithText>
+      </Container>
+      <StyledWhitespace height={2} />
+      <Map />
 
-        <MapContainer
-          center={[51.505, -0.09]}
-          zoom={13}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={[51.505, -0.09]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-        </MapContainer>
+      <Container>
+        <StyledHeaderSection>
+          <HeadingSection title="Godziny otwarcia" />
+        </StyledHeaderSection>
+        <StyledWhitespace height={3} />
+
+        <HoursContainer>
+          <HourWrapper>
+            <Hour>
+              09<sup>00</sup>-17<sup>00</sup>
+            </Hour>
+            <Description>PN-PT</Description>
+          </HourWrapper>
+
+          <HourWrapper>
+            <Hour>
+              09<sup>00</sup>-13<sup>00</sup>
+            </Hour>
+            <Description>SOBOTA</Description>
+          </HourWrapper>
+
+          <HourWrapper>
+            <Hour>Zamknięte</Hour>
+            <Description>NIEDZIELA</Description>
+          </HourWrapper>
+        </HoursContainer>
       </Container>
     </Layout>
   );
 };
 
 export default Kontakt;
+
+const HoursContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const Hour = styled.p`
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: 0.1em;
+  margin-bottom: 0;
+
+  sup {
+    font-size: 1.5rem;
+  }
+`;
+
+const Description = styled.p`
+  font-style: italic;
+  font-weight: 300;
+`;
+
+const HourWrapper = styled.div`
+  text-align: center;
+`;
 
 const StyledHeaderSection = styled.div`
   h2 {
