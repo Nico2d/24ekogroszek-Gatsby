@@ -8,6 +8,7 @@ import { StyledWhitespace } from "../components/atoms/whitespace";
 import { IconWithText } from "../components/atoms/icon-with-text";
 import styled from "styled-components";
 import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLocationMarker";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 const Kontakt = () => {
   return (
@@ -40,6 +41,22 @@ const Kontakt = () => {
           <HiOutlineLocationMarker />
           48-837 Opole ul. Wspólna 1
         </IconWithText>
+
+        <MapContainer
+          center={[51.505, -0.09]}
+          zoom={13}
+          scrollWheelZoom={false}
+        >
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={[51.505, -0.09]}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        </MapContainer>
       </Container>
     </Layout>
   );
