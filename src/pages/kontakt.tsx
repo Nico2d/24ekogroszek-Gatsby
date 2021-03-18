@@ -11,11 +11,15 @@ import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLoca
 import { Map } from "../components/molecules/map";
 import { OpenHours } from "../components/molecules/open-hours";
 
+const contact = require("../assets/contact_icon.svg");
+
 const Kontakt = () => {
   return (
     <Layout>
       <StyledWhitespace height={5} />
-      <Container>
+
+      <Container style={{ position: "relative" }}>
+        <ContactSVG />
         <StyledHeaderSection>
           <HeadingSection title="Masz pytania?" />
           <h3>Zadzwoń i umów się na dostawę</h3>
@@ -58,6 +62,18 @@ const Kontakt = () => {
 };
 
 export default Kontakt;
+
+const ContactSVG = styled.div`
+  position: absolute;
+  background-image: url(${contact});
+  background-repeat: no-repeat;
+  background-size: cover; 
+  top: -40%;
+  right: -40px;
+  width: 500px;
+  height: 500px;
+  content: "";
+`;
 
 const StyledHeaderSection = styled.div`
   h2 {

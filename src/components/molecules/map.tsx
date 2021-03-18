@@ -3,6 +3,7 @@ import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import styled from "styled-components";
 import L from "leaflet";
+import { device, size } from "../../styles/breakpoints";
 
 const icon = require("leaflet/dist/images/marker-icon.png");
 const iconShadow = require("leaflet/dist/images/marker-shadow.png");
@@ -41,5 +42,19 @@ export const Map = () => {
 };
 
 const StyledMap = styled(MapContainer)`
-  height: 300px;
+  height: 350px;
+
+  .leaflet-top {
+    z-index: 600;
+    margin: auto;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    max-width: ${size.laptopM};
+
+    @media ${device.laptopL} {
+      max-width: ${size.laptopL};
+    }
+  }
 `;
