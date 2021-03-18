@@ -28,7 +28,7 @@ export const Footer = () => {
 
         <Info>
           © ProPellet.pl 2020 | Ceny na stronie nie stanowią oferty handlowej w
-          rozumieniu <Link to="/rate-your-mate">Kodeksu</Link> Cywilnego.
+          rozumieniu Kodeksu Cywilnego.
         </Info>
       </StyledContainer>
     </Wrapper>
