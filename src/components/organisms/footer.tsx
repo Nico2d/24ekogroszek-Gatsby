@@ -5,8 +5,8 @@ import { Container } from "../atoms/container";
 const background = require("../../assets/footer.svg");
 import { device } from "../../styles/breakpoints";
 import { IconWithText } from "../atoms/icon-with-text";
-import { HiOutlineMail } from "@react-icons/all-files/hi/HiOutlineMail";
 import { HiOutlinePhone } from "@react-icons/all-files/hi/HiOutlinePhone";
+import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLocationMarker";
 
 export const Footer = () => {
   return (
@@ -23,7 +23,7 @@ export const Footer = () => {
           <HiOutlinePhone /> 502 228 332
         </IconWithText>
         <IconWithText>
-          <HiOutlineMail /> 48-837 Opole ul. Wspólna 1
+          <HiOutlineLocationMarker /> 48-837 Opole ul. Wspólna 1
         </IconWithText>
 
         <Info>
