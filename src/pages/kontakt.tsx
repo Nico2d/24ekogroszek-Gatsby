@@ -9,6 +9,7 @@ import { IconWithText } from "../components/atoms/icon-with-text";
 import styled from "styled-components";
 import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLocationMarker";
 import { Map } from "../components/molecules/map";
+import { OpenHours } from "../components/molecules/open-hours";
 
 const Kontakt = () => {
   return (
@@ -50,58 +51,13 @@ const Kontakt = () => {
         </StyledHeaderSection>
         <StyledWhitespace height={3} />
 
-        <HoursContainer>
-          <HourWrapper>
-            <Hour>
-              09<sup>00</sup>-17<sup>00</sup>
-            </Hour>
-            <Description>PN-PT</Description>
-          </HourWrapper>
-
-          <HourWrapper>
-            <Hour>
-              09<sup>00</sup>-13<sup>00</sup>
-            </Hour>
-            <Description>SOBOTA</Description>
-          </HourWrapper>
-
-          <HourWrapper>
-            <Hour>Zamknięte</Hour>
-            <Description>NIEDZIELA</Description>
-          </HourWrapper>
-        </HoursContainer>
+        <OpenHours />
       </Container>
     </Layout>
   );
 };
 
 export default Kontakt;
-
-const HoursContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-`;
-
-const Hour = styled.p`
-  font-size: 2.5rem;
-  font-weight: 500;
-  line-height: 36px;
-  letter-spacing: 0.1em;
-  margin-bottom: 0;
-
-  sup {
-    font-size: 1.5rem;
-  }
-`;
-
-const Description = styled.p`
-  font-style: italic;
-  font-weight: 300;
-`;
-
-const HourWrapper = styled.div`
-  text-align: center;
-`;
 
 const StyledHeaderSection = styled.div`
   h2 {
