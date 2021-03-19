@@ -13,7 +13,7 @@ export const Footer = () => {
     <Wrapper>
       <StyledContainer>
         <Logo>
-          <img src={LogoWhite} />
+          <img src={LogoWhite} alt="logo" />
         </Logo>
         <Heading>Kontakt</Heading>
         <IconWithText>
