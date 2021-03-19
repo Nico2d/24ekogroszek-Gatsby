@@ -11,7 +11,7 @@ export const TextWithImage = () => {
   return (
     <StyledContainer>
       <ContentSection>
-        <h3>Najwyższa jakość</h3>
+        <h2>Najwyższa jakość</h2>
         <p>
           Zapewniamy najwyższej jakości ekogroszek od renomowanych składów opału
           z wieloletnim stażem i najlepszą opinią. Dlatego stawiamy na
@@ -64,18 +64,16 @@ const ImageSection = styled.div`
 
   &::before {
     position: absolute;
-    left: 0;
-
+    top: 0;
+    left: -50%;
+    width: 150%;
+    height: 200%;
     content: "";
     background-image: url(${polygon});
     background-position: right;
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 1;
-    top: 0;
-    width: 150%;
-    height: 200%;
-    left: -50%;
 
     @media ${device.tablet} {
       top: -30%;

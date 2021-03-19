@@ -64,7 +64,7 @@ const StyledContainer = styled.div`
   }
 `;
 
-const Heading = styled.h3`
+const Heading = styled.h2`
   margin-top: 3rem;
   line-height: initial;
   font-size: 1.8rem;
