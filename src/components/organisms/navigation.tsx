@@ -38,6 +38,8 @@ export const Navigation = () => {
             src={
               isHome && scrollPosition === 0 && isClosed ? logoWhite : logoBlack
             }
+            alt="logo"
+            aria-label="strona główna"
           />
         </Logo>
 

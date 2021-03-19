@@ -23,7 +23,7 @@ export const TextWithImage = () => {
         <Button text="Poznaj naszych dostawców" />
       </ContentSection>
       <ImageSection>
-        <img src={image} />
+        <img src={image} alt="Kopalnia węgla" />
       </ImageSection>
     </StyledContainer>
   );

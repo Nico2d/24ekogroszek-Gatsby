@@ -43,7 +43,10 @@ export const RecommendedProducts = () => {
         <Slider {...settings}>
           {products.map(({ node }, index) => (
             <Product key={index} to={`/produkty/${convertToSlug(node.Nazwa)}`}>
-              <img src={`${process.env.IMAGE_URL}${node.Grafika[0].url}`} />
+              <img
+                src={`${process.env.IMAGE_URL}${node.Grafika[0].url}`}
+                alt={node.Nazwa}
+              />
             </Product>
           ))}
         </Slider>

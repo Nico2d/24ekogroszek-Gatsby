@@ -14,7 +14,10 @@ export const ProductDetails: React.FC<ProductType> = ({ product }) => {
   return (
     <StyledContainer>
       <ImageWrapper>
-        <img src={`${process.env.IMAGE_URL}${product.Grafika[0].url}`} />
+        <img
+          src={`${process.env.IMAGE_URL}${product.Grafika[0].url}`}
+          alt={product.Nazwa}
+        />
         <Attributes product={product} />
       </ImageWrapper>
 
