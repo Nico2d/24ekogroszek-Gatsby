@@ -4,9 +4,8 @@ import Slider from "react-slick";
 import styled from "styled-components";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { device } from "../../styles/breakpoints";
-import { convertToSlug } from "../../utils/convertToSlug";
 import { Container } from "../atoms/container";
-const polygon = require("../../assets/polygon.svg");
+import { RecommendedList } from "../molecules/recommended-list";
 
 export const RecommendedProducts = () => {
   const isDesktop = useMediaQuery(device.tablet);
@@ -35,27 +34,17 @@ export const RecommendedProducts = () => {
     }
   `);
 
-  console.log(data);
-
   const products = data.allStrapiEkogroszeks.edges;
 
   return (
     <Container>
       {!isDesktop ? (
         <Slider {...settings}>
-          {products.map(({ node }, index) => (
-            <Product key={index} to={`/produkty/${convertToSlug(node.Nazwa)}`}>
-              <img src={`${process.env.IMAGE_URL}${node.Grafika[0].url}`} />
-            </Product>
-          ))}
+          <RecommendedList products={products} />
         </Slider>
       ) : (
         <ProductContainer>
-          {products.map(({ node }, index) => (
-            <Product key={index} to={`/produkty/${convertToSlug(node.Nazwa)}`}>
-              <img src={`${process.env.IMAGE_URL}${node.Grafika[0].url}`} />
-            </Product>
-          ))}
+          <RecommendedList products={products} />
         </ProductContainer>
       )}
 
@@ -84,20 +73,5 @@ const ProductContainer = styled.div`
   @media ${device.tablet} {
     display: flex;
     justify-content: center;
-  }
-`;
-
-const Product = styled(Link)`
-  background-image: url(${polygon});
-  background-repeat: no-repeat;
-  background-size: contain;
-  padding: 25px;
-  clear: both;
-  cursor: pointer;
-
-  @media ${device.tablet} {
-    margin: 0 3rem;
-    width: 300px;
-    height: 300px;
   }
 `;

@@ -32,7 +32,7 @@ export const Produkty = ({ data }) => {
                 return !InactiveFilterIDList.includes(node.producent.Nazwa);
               })
               .map(({ node }) => (
-                <ProductCard key={node.id} product={node} />
+                <ProductCard key={node.strapiId} product={node} />
               ))}
           </CardContainer>
         </main>
@@ -59,16 +59,19 @@ export const pageQuery = graphql`
     allStrapiEkogroszeks {
       edges {
         node {
-          AkutalnaCena
+          strapiId
           Nazwa
-          PoprzedniaCenta
-          id
+          AktualnaCena
+          PoprzedniaCena
           Grafika {
             url
           }
           producent {
             id
             Nazwa
+          }
+          comments {
+            points
           }
         }
       }

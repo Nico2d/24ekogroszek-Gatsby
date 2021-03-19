@@ -1,29 +1,30 @@
 import React from "react";
 import styled from "styled-components";
-import { IconPhone } from "../../assets/icons/iconPhone";
-import { IconMail } from "../../assets/icons/iconMail";
-import LogoWhite from "../../assets/logo-white.png";
+const LogoWhite = require("../../assets/logo-white.png");
 import { Container } from "../atoms/container";
-import background from "../../assets/footer.svg";
+const background = require("../../assets/footer.svg");
 import { device } from "../../styles/breakpoints";
+import { IconWithText } from "../atoms/icon-with-text";
+import { HiOutlinePhone } from "@react-icons/all-files/hi/HiOutlinePhone";
+import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLocationMarker";
 
 export const Footer = () => {
   return (
     <Wrapper>
       <StyledContainer>
         <Logo>
-          <img src={LogoWhite} />
+          <img src={LogoWhite} alt="logo" />
         </Logo>
         <Heading>Kontakt</Heading>
-        <RowSection>
-          <IconPhone /> 500 300 158
-        </RowSection>
-        <RowSection>
-          <IconPhone /> 502 228 332
-        </RowSection>
-        <RowSection>
-          <IconMail /> 48-837 Opole ul. Wspólna 1
-        </RowSection>
+        <IconWithText>
+          <HiOutlinePhone /> 500 300 158
+        </IconWithText>
+        <IconWithText>
+          <HiOutlinePhone /> 502 228 332
+        </IconWithText>
+        <IconWithText>
+          <HiOutlineLocationMarker /> 48-837 Opole ul. Wspólna 1
+        </IconWithText>
 
         <Info>
           © ProPellet.pl 2020 | Ceny na stronie nie stanowią oferty handlowej w
@@ -64,20 +65,6 @@ const Wrapper = styled.div`
 const Logo = styled.div`
   margin-bottom: 2rem;
   width: 200px;
-`;
-
-const RowSection = styled.p`
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  margin: 0;
-  margin-top: 0.5rem;
-  margin-right: 0.5rem;
-
-  > svg {
-    margin-right: 0.5rem;
-    fill: white;
-  }
 `;
 
 const Info = styled.p`

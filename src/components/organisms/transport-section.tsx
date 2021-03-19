@@ -10,19 +10,19 @@ export const TransportSection = () => {
   return (
     <CardWrapper>
       <Card>
-        <img src={transport1} />
+        <img src={transport1} alt="budynek sklepu" />
         <b>-50zł </b>przy własnym transporcie
       </Card>
       <Card>
-        <img src={transport2} />
+        <img src={transport2} alt="paleta z jedną toną" />
         <b>2zł/km</b> przy 1 tonie
       </Card>
       <Card>
-        <img src={transport3} />
+        <img src={transport3} alt="paleta z dwoma tonami" />
         <b>1zł/km</b> przy 2 tonach
       </Card>
       <Card>
-        <img src={transport4} />
+        <img src={transport4} alt="paleta z trzema tonami" />
         <b>DARMOWA DOSTAWA</b> powyżej 3ton i do 50km
       </Card>
     </CardWrapper>

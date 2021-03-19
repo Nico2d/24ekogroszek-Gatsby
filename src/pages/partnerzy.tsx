@@ -11,6 +11,7 @@ export const Partners = () => {
       allStrapiProducents(filter: { kategoria: { eq: "Ekogroszek" } }) {
         nodes {
           id
+          Nazwa
           Opis
           Logo {
             url
@@ -29,7 +30,10 @@ export const Partners = () => {
 
         {producents.map((producent) => (
           <Card key={producent.id}>
-            <img src={`${process.env.IMAGE_URL}${producent.Logo[0].url}`} />
+            <img
+              src={`${process.env.IMAGE_URL}${producent.Logo[0].url}`}
+              alt={producent.Nazwa}
+            />
             <p>{producent.Opis}</p>
           </Card>
         ))}

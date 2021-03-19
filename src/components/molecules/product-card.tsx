@@ -6,34 +6,30 @@ const polygon = require("../../assets/polygon.svg");
 import { Link } from "gatsby";
 import { convertToSlug } from "../../utils/convertToSlug";
 import { PreviousPrice } from "../atoms/product/previous-price";
-
-type ProductType = {
-  product: {
-    id: string;
-    Nazwa: string;
-    AkutalnaCena: number;
-    PoprzedniaCenta: number;
-    Grafika: {
-      url: string;
-    };
-    producent: {
-      Nazwa: string;
-    };
-  };
-};
+import { getAverageRating } from "../../utils/getAverageRating";
+import { RatingStars } from "../atoms/product/rating-stars";
+import { ProductType } from "../../types/product.type";
 
 export const ProductCard: React.FC<ProductType> = ({ product }) => {
   return (
-    <Card key={product.id}>
+    <Card>
       <StyledWrapperImage>
-        <img src={`${process.env.IMAGE_URL}${product.Grafika[0].url}`} />
+        <img
+          src={`${process.env.IMAGE_URL}${product.Grafika[0].url}`}
+          alt={product.Nazwa}
+        />
       </StyledWrapperImage>
 
       <ContentContainer>
         <Title>{product.Nazwa}</Title>
-        <CurrentPrice>{product.AkutalnaCena.toFixed(2)}zł</CurrentPrice>
-
-        <PreviousPrice price={product.PoprzedniaCenta} />
+        <RatingStars
+          name="starts"
+          defaultRate={getAverageRating(product.comments)}
+          disabled
+          isLeft
+        />
+        <CurrentPrice>{product.AktualnaCena.toFixed(2)}zł</CurrentPrice>
+        <PreviousPrice price={product.PoprzedniaCena} />
 
         <StyledButton to={`/produkty/${convertToSlug(product.Nazwa)}`}>
           <Button text="Wybierz" />
@@ -68,6 +64,7 @@ const Title = styled.h4`
   letter-spacing: -0.015em;
   opacity: 0.9;
   word-break: break-word;
+  margin-bottom: 0.5rem;
 `;
 
 const ContentContainer = styled.div`

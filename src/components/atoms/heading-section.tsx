@@ -14,7 +14,7 @@ export const HeadingSection: React.FC<HeadingSectionProps> = ({
   return <Heading isSmall={isSmall}>{title}</Heading>;
 };
 
-const Heading = styled.h2<{ isSmall?: boolean }>`
+const Heading = styled.h1<{ isSmall?: boolean }>`
   font-size: ${({ isSmall }) => (isSmall ? "1.4rem" : "1.7rem")};
   font-weight: 500;
   opacity: 0.9;

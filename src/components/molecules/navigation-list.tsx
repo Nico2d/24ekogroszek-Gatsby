@@ -6,7 +6,7 @@ export const NavigationList = () => {
     <>
       <Link to="/produkty">Katalog produktów</Link>
       <Link to="/partnerzy">Partnerzy</Link>
-      <Link to="/contact">Kontakt</Link>
+      <Link to="/kontakt">Kontakt</Link>
     </>
   );
 };

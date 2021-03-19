@@ -5,12 +5,12 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/colors";
 import { GlobalStyle } from "../styles/global";
 import { Footer } from "./organisms/footer";
-import { Helmet } from "react-helmet";
+import SEO from "./seo";
 
 export const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <Helmet title="24ekogroszek" />
+      <SEO />
       <GlobalStyle />
       <Navigation />
       {children}
