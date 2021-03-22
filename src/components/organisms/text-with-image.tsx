@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Button } from "../atoms/button";
 const image = require("../../assets/tom-fisk.jpg");
@@ -6,11 +6,33 @@ const polygon = require("../../assets/polygon-big.svg");
 import { Container } from "../atoms/container";
 import { device } from "../../styles/breakpoints";
 import { StyledWhitespace } from "../atoms/whitespace";
+import { useInView } from "react-intersection-observer";
+import { motion, useAnimation } from "framer-motion";
 
 export const TextWithImage = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  console.log("text is visible:", inView);
   return (
     <StyledContainer>
-      <ContentSection>
+      <ContentSection
+        as={motion.div}
+        ref={ref}
+        initial="hidden"
+        animate={controls}
+        transition={{ duration: 1 }}
+        variants={{
+          visible: { opacity: 1, x: 0 },
+          hidden: { opacity: 0, x: -200 },
+        }}
+      >
         <h2>Najwyższa jakość</h2>
         <p>
           Zapewniamy najwyższej jakości ekogroszek od renomowanych składów opału
