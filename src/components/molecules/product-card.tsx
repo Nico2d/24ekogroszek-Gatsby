@@ -20,10 +20,12 @@ export const ProductCard: React.FC<ProductType> = ({ product }) => {
           color1={theme.colors.primary}
           color2={theme.colors.secondary}
         />
-        {/* <img
+        <img
           src={`${process.env.IMAGE_URL}${product.Grafika[0].url}`}
           alt={product.Nazwa}
-        /> */}
+          width={300}
+          height={300}
+        />
       </StyledWrapperImage>
 
       <ContentContainer>
@@ -110,22 +112,21 @@ const StyledButton = styled(Link)`
 `;
 
 const StyledWrapperImage = styled.div`
-  /* background-image: url(${polygon});
-  background-repeat: no-repeat;
-  background-size: contain; */
   flex: 33.33%;
   margin: auto;
   margin-bottom: 1rem;
+  position: relative;
 
   > img {
-    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
   }
 
   @media ${device.tablet} {
     margin: auto;
-  }
-
-  > svg {
-    fill: ${({ theme }) => theme.colors.gradient};
   }
 `;
