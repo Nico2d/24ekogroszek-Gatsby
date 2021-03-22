@@ -58,7 +58,7 @@ const StyledContainer = styled.div`
 
   b {
     font-weight: 700;
-    background: ${({ theme }) => theme.colors.primary};
+    background: ${({ theme }) => theme.colors.gradient};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

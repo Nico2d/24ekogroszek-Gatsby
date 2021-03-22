@@ -9,15 +9,21 @@ import { PreviousPrice } from "../atoms/product/previous-price";
 import { getAverageRating } from "../../utils/getAverageRating";
 import { RatingStars } from "../atoms/product/rating-stars";
 import { ProductType } from "../../types/product.type";
+import { Polygon } from "../../assets/polygon";
+import { theme } from "../../styles/colors";
 
 export const ProductCard: React.FC<ProductType> = ({ product }) => {
   return (
     <Card>
       <StyledWrapperImage>
-        <img
+        <Polygon
+          color1={theme.colors.primary}
+          color2={theme.colors.secondary}
+        />
+        {/* <img
           src={`${process.env.IMAGE_URL}${product.Grafika[0].url}`}
           alt={product.Nazwa}
-        />
+        /> */}
       </StyledWrapperImage>
 
       <ContentContainer>
@@ -80,7 +86,7 @@ const CurrentPrice = styled.p`
   margin: 0;
   margin-top: 1rem;
   font-weight: 600;
-  background: -webkit-linear-gradient(#f2994a, #eb5757);
+  background: ${({ theme }) => theme.colors.gradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
@@ -104,9 +110,9 @@ const StyledButton = styled(Link)`
 `;
 
 const StyledWrapperImage = styled.div`
-  background-image: url(${polygon});
+  /* background-image: url(${polygon});
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: contain; */
   flex: 33.33%;
   margin: auto;
   margin-bottom: 1rem;
@@ -117,5 +123,9 @@ const StyledWrapperImage = styled.div`
 
   @media ${device.tablet} {
     margin: auto;
+  }
+
+  > svg {
+    fill: ${({ theme }) => theme.colors.gradient};
   }
 `;

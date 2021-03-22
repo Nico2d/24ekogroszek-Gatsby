@@ -2,9 +2,10 @@ import { DefaultTheme } from "styled-components";
 
 export const theme: DefaultTheme = {
   colors: {
-    primary:
-      "linear-gradient(to right top, #27ae60, #45be57, #64ce4a, #85dd36, #a8eb12)", //"linear-gradient(to right, #F2994A, #EB5757, #EB5757)",
-    secondary: "#E5E5E5",
+    primary: "#EB5757",
+    secondary: "#F2994A",
+    gradient:
+      "linear-gradient(-10deg, #eb5757, #ef6851, #f2794d, #f3894a, #f2994a)",
     cardColor: "#FFFFFF",
     background: "#E5E5E5",
     white: "#FFFFFF",
