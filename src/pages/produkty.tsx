@@ -16,6 +16,27 @@ export const Produkty = ({ data }) => {
     allStrapiEkogroszeks: { edges: products },
   } = data;
 
+  const sortProperty = "Nazwa"; //types[type];
+
+  const SortByName = (a, b) => {
+    let nameA = a.node[sortProperty].toUpperCase();
+    let nameB = b.node[sortProperty].toUpperCase();
+
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+
+    return 0;
+  };
+
+  const SortByRate = (a, b) => {
+    return b - a;
+  };
+
+  console.log(products);
   return (
     <Layout>
       <StyledContainer>
@@ -31,6 +52,9 @@ export const Produkty = ({ data }) => {
               .filter(({ node }) => {
                 return !InactiveFilterIDList.includes(node.producent.Nazwa);
               })
+              .sort((a, b) =>
+                SortByRate(a.node.PoprzedniaCena, b.node.PoprzedniaCena)
+              )
               .map(({ node }) => (
                 <ProductCard key={node.strapiId} product={node} />
               ))}
