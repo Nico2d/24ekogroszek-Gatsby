@@ -41,6 +41,8 @@ export const Navigation = () => {
             }
             alt="logo"
             aria-label="strona główna"
+            width="200"
+            height="43.83"
           />
         </Logo>
 

@@ -24,7 +24,6 @@ const HeroContainer = styled.div`
   color: #fff;
   text-align: center;
   height: 100vh;
-  background: white;
   background-image: url(${background});
   background-position: center;
   background-repeat: no-repeat;
