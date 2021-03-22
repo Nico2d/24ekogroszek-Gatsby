@@ -16,16 +16,16 @@ import { device } from "../styles/breakpoints";
 const contact = require("../assets/contact_icon.svg");
 
 const Kontakt = () => {
-  const isDesktop = useMediaQuery(device.tablet);
+  const isDesktop = useMediaQuery(device.laptop);
   return (
     <Layout>
       <StyledWhitespace height={5} />
 
-      <Container style={{ position: "relative" }}>
+      <StyledContainer>
         {isDesktop && <ContactSVG />}
         <StyledHeaderSection>
           <HeadingSection title="Masz pytania?" />
-          <h3>Zadzwoń i umów się na dostawę</h3>
+          <h2>Zadzwoń i umów się na dostawę</h2>
         </StyledHeaderSection>
 
         <IconWithText>
@@ -48,7 +48,7 @@ const Kontakt = () => {
           <HiOutlineLocationMarker />
           48-837 Opole ul. Wspólna 1
         </IconWithText>
-      </Container>
+      </StyledContainer>
       <StyledWhitespace height={2} />
       <Map />
 
@@ -66,12 +66,17 @@ const Kontakt = () => {
 
 export default Kontakt;
 
+const StyledContainer = styled(Container)`
+  position: relative;
+  overflow: hidden;
+`;
+
 const ContactSVG = styled.div`
   position: absolute;
   background-image: url(${contact});
   background-repeat: no-repeat;
   background-size: cover;
-  top: -40%;
+  top: -15%;
   right: -40px;
   width: 500px;
   height: 500px;
@@ -79,12 +84,12 @@ const ContactSVG = styled.div`
 `;
 
 const StyledHeaderSection = styled.div`
-  h2 {
+  h1 {
     margin-bottom: -0.5rem;
     margin-top: 5rem;
   }
 
-  h3 {
+  h2 {
     margin-bottom: 1rem;
     font-size: 1.3rem;
   }
