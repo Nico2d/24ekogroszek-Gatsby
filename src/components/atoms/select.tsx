@@ -112,7 +112,7 @@ const Options = styled.ul<{ isHidden: boolean }>`
     }
 
     :hover {
-      background: ${({ theme }) => theme.colors.primary};
+      background: ${({ theme }) => theme.colors.gradient};
       color: white;
       font-weight: 700;
 

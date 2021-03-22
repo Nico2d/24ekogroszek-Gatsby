@@ -2,21 +2,28 @@ import React from "react";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
 import { Button } from "../atoms/button";
-const polygon = require("../../assets/polygon.svg");
 import { Link } from "gatsby";
 import { convertToSlug } from "../../utils/convertToSlug";
 import { PreviousPrice } from "../atoms/product/previous-price";
 import { getAverageRating } from "../../utils/getAverageRating";
 import { RatingStars } from "../atoms/product/rating-stars";
 import { ProductType } from "../../types/product.type";
+import { Polygon } from "../../assets/polygon";
+import { theme } from "../../styles/colors";
 
 export const ProductCard: React.FC<ProductType> = ({ product }) => {
   return (
     <Card>
       <StyledWrapperImage>
+        <Polygon
+          color1={theme.colors.primary}
+          color2={theme.colors.secondary}
+        />
         <img
           src={`${process.env.IMAGE_URL}${product.Grafika[0].url}`}
           alt={product.Nazwa}
+          width={300}
+          height={300}
         />
       </StyledWrapperImage>
 
@@ -80,7 +87,7 @@ const CurrentPrice = styled.p`
   margin: 0;
   margin-top: 1rem;
   font-weight: 600;
-  background: -webkit-linear-gradient(#f2994a, #eb5757);
+  background: ${({ theme }) => theme.colors.gradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
@@ -104,15 +111,18 @@ const StyledButton = styled(Link)`
 `;
 
 const StyledWrapperImage = styled.div`
-  background-image: url(${polygon});
-  background-repeat: no-repeat;
-  background-size: contain;
   flex: 33.33%;
   margin: auto;
   margin-bottom: 1rem;
+  position: relative;
 
   > img {
-    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
   }
 
   @media ${device.tablet} {

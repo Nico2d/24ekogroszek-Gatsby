@@ -20,7 +20,7 @@ const StyledButton = styled.button<Props>`
   font-weight: bold;
   outline: none;
   background: ${({ theme, disabled }) =>
-    disabled ? "#cccccc" : theme.colors.primary};
+    disabled ? "#cccccc" : theme.colors.gradient};
   padding: 1.2rem 3rem;
   border-radius: 2rem;
   border: none;

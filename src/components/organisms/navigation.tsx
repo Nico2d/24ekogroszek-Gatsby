@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-const logoWhite = require("../../assets/logo-white.png");
-const logoBlack = require("../../assets/logo-black.png");
 import { IconMenu } from "../../assets/icons/iconMenu";
 import { IconClose } from "../../assets/icons/iconClose";
 import { NavigationList } from "../molecules/navigation-list";
 import { Container } from "../atoms/container";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { device } from "../../styles/breakpoints";
+
+const logoWhite = require("../../../static/assets/logo-white.png");
+const logoBlack = require("../../../static/assets/logo-black.svg");
 
 export const Navigation = () => {
   const isDesktop = useMediaQuery(device.tablet);
@@ -29,6 +30,8 @@ export const Navigation = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  console.log(logoWhite);
 
   return (
     <StyledNavbar isHero={isHome && scrollPosition === 0 && isClosed}>
