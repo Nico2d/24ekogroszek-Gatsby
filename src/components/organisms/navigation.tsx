@@ -31,8 +31,6 @@ export const Navigation = () => {
     };
   }, []);
 
-  console.log(logoWhite);
-
   return (
     <StyledNavbar isHero={isHome && scrollPosition === 0 && isClosed}>
       <StyledContainer>
