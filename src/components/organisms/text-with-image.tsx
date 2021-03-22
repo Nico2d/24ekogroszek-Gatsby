@@ -19,7 +19,6 @@ export const TextWithImage = () => {
     }
   }, [controls, inView]);
 
-  console.log("text is visible:", inView);
   return (
     <StyledContainer>
       <ContentSection
@@ -109,6 +108,8 @@ const ImageSection = styled.div`
     position: absolute;
     z-index: 2;
     height: auto;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
 
     @media ${device.tablet} {
       transform: translate(10%, -50%);
