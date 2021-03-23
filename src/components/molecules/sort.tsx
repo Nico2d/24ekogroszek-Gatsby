@@ -2,16 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Select } from "../atoms/select";
 
-export const Sort = () => {
+export const Sort = ({ changeHandler }) => {
   const sortList = [
-    "Sortuj wg popularności",
+    "Sortuj wg nazwy",
     "Sortuj wg średniej oceny",
-    "Sortuj wg najnowszych",
     "Sortuj wg ceny: najwyższej",
     "Sortuj wg ceny: najniższej",
   ];
 
-  return <StyledSort optionList={sortList} method={(e) => console.log(e)} />;
+  return <StyledSort optionList={sortList} method={changeHandler} />;
 };
 
 const StyledSort = styled(Select)`

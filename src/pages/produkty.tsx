@@ -16,11 +16,13 @@ export const Produkty = ({ data }) => {
     allStrapiEkogroszeks: { edges: products },
   } = data;
 
-  const sortProperty = "Nazwa"; //types[type];
+  const [sortProperty, setSortProperty] = useState(
+    "Sortuj wg ceny: najwyższej"
+  );
 
   const SortByName = (a, b) => {
-    let nameA = a.node[sortProperty].toUpperCase();
-    let nameB = b.node[sortProperty].toUpperCase();
+    let nameA = a.toUpperCase();
+    let nameB = b.toUpperCase();
 
     if (nameA < nameB) {
       return -1;
@@ -32,11 +34,14 @@ export const Produkty = ({ data }) => {
     return 0;
   };
 
-  const SortByRate = (a, b) => {
+  const SortByDesc = (a, b) => {
     return b - a;
   };
 
-  console.log(products);
+  const SortByAsc = (a, b) => {
+    return a - b;
+  };
+
   return (
     <Layout>
       <StyledContainer>
@@ -45,16 +50,25 @@ export const Produkty = ({ data }) => {
           setInactiveFilterIDList={setInactiveFilterIDList}
         />
         <main style={{ margin: "auto" }}>
-          <Sort />
+          <Sort changeHandler={setSortProperty} />
 
           <CardContainer>
             {products
               .filter(({ node }) => {
                 return !InactiveFilterIDList.includes(node.producent.Nazwa);
               })
-              .sort((a, b) =>
-                SortByRate(a.node.PoprzedniaCena, b.node.PoprzedniaCena)
-              )
+              .sort((a, b) => {
+                switch (sortProperty) {
+                  case "Sortuj wg nazwy":
+                    return SortByName(a.node.Nazwa, b.node.Nazwa);
+                  case "Sortuj wg ceny: najwyższej":
+                    return SortByDesc(a.node.AktualnaCena, b.node.AktualnaCena);
+                  case "Sortuj wg ceny: najniższej":
+                    return SortByAsc(a.node.AktualnaCena, b.node.AktualnaCena);
+                  case "Sortuj wg średniej oceny":
+                    return SortByAsc(a.node.Points, b.node.Points);
+                }
+              })
               .map(({ node }) => (
                 <ProductCard key={node.strapiId} product={node} />
               ))}
