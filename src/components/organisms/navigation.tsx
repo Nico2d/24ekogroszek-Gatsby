@@ -78,7 +78,7 @@ const StyledNavbar = styled.nav<{ isHero: boolean }>`
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 999;
+  z-index: 1500;
   ${({ isHero }) => !isHero && "box-shadow: 0px 2px 10px 0 rgb(0 0 0 / 50%)"};
   color: ${({ theme, isHero }) =>
     isHero ? theme.colors.white : theme.colors.fontColor};

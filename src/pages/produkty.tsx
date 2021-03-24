@@ -6,6 +6,7 @@ import { graphql } from "gatsby";
 import { ProductCard } from "../components/molecules/product-card";
 import { CatalogFilter } from "../components/organisms/catalog-filter";
 import { Sort } from "../components/molecules/sort";
+import { device } from "../styles/breakpoints";
 
 export const Produkty = ({ data }) => {
   const [InactiveFilterIDList, setInactiveFilterIDList] = useState<
@@ -49,7 +50,7 @@ export const Produkty = ({ data }) => {
           InactiveFilterIDList={InactiveFilterIDList}
           setInactiveFilterIDList={setInactiveFilterIDList}
         />
-        <main>
+        <StyledMain>
           <Sort changeHandler={setSortProperty} />
 
           <CardContainer>
@@ -73,13 +74,21 @@ export const Produkty = ({ data }) => {
                 <ProductCard key={node.strapiId} product={node} />
               ))}
           </CardContainer>
-        </main>
+        </StyledMain>
       </StyledContainer>
     </Layout>
   );
 };
 
 export default Produkty;
+
+const StyledMain = styled.main`
+  width: 100%;
+
+  @media ${device.tablet} {
+    width: unset;
+  }
+`;
 
 const CardContainer = styled.div`
   display: grid;
