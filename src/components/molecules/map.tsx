@@ -49,7 +49,6 @@ const StyledMap = styled(MapContainer)`
     width: 100%;
     left: 50%;
     transform: translateX(-50%);
-
     max-width: ${size.laptopM};
 
     @media ${device.laptopL} {

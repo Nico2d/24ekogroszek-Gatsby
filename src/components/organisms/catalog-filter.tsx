@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { device } from "../../styles/breakpoints";
+import { device, size } from "../../styles/breakpoints";
 import { Checkbox } from "../atoms/checkbox";
 import { useStaticQuery, graphql } from "gatsby";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { BsFilter } from "@react-icons/all-files/bs/BsFilter";
 
 type CatalogFilterProps = {
   InactiveFilterIDList: Array<string>;
@@ -14,8 +16,9 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
   InactiveFilterIDList,
   setInactiveFilterIDList,
 }) => {
+  const isDesktop = useMediaQuery(device.tablet);
   const {
-    allStrapiProducents: { edges: producents },
+    allStrapiProducents: { edges: producers },
   } = useStaticQuery(graphql`
     query GetProducents {
       allStrapiProducents(filter: { kategoria: { eq: "Ekogroszek" } }) {
@@ -29,7 +32,7 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
     }
   `);
 
-  const nameList = producents.map((producent) => producent.node.Nazwa);
+  const nameList = producers.map((producent) => producent.node.Nazwa);
 
   const checkAllHandler = (e) => {
     InactiveFilterIDList.length === 0
@@ -37,7 +40,7 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
       : setInactiveFilterIDList([]);
   };
 
-  const ProdcutFilterHandler = (isChecked, key) => {
+  const ProductFilterHandler = (isChecked, key) => {
     if (isChecked) {
       setInactiveFilterIDList(
         InactiveFilterIDList.filter((item) => item !== key)
@@ -47,11 +50,18 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
     }
   };
 
+  if (!isDesktop)
+    return (
+      <FilterWrapper>
+        <BsFilter />
+      </FilterWrapper>
+    );
+
   return (
     <StyledAside>
-      <h6>Prodcent</h6>
+      <h6>Producent</h6>
 
-      <StyledProducentsWrapper>
+      <StyledProducersWrapper>
         <li>
           <Checkbox
             label="Wszystkie"
@@ -60,24 +70,39 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
             name="all"
           />
         </li>
-        {producents.map(({ node }) => (
+        {producers.map(({ node }) => (
           <li key={node.id}>
             <Checkbox
               label={node.Nazwa}
               name={node.Nazwa}
               checked={!InactiveFilterIDList.includes(node.Nazwa)}
               onChangeHandler={(e) =>
-                ProdcutFilterHandler(e.target.checked, node.Nazwa)
+                ProductFilterHandler(e.target.checked, node.Nazwa)
               }
             />
           </li>
         ))}
-      </StyledProducentsWrapper>
+      </StyledProducersWrapper>
     </StyledAside>
   );
 };
 
-const StyledProducentsWrapper = styled.div`
+const FilterWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.white};
+  width: 50px;
+  height: 50px;
+  font-size: 1.6rem;
+  border-radius: 1.5rem;
+  right: 1rem;
+  cursor: pointer;
+  border: 1px solid ${({ theme }) => theme.colors.lineColor};
+`;
+
+const StyledProducersWrapper = styled.div`
   > li {
     cursor: pointer;
     margin-bottom: 0.5rem;

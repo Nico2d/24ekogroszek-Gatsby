@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { OutsideEvent } from "./outside-event";
 import { RiArrowDropDownLine } from "@react-icons/all-files/ri/RiArrowDropDownLine";
+import { device } from "../../styles/breakpoints";
 
 type SelectTypes = {
   optionList: Array<string>;
@@ -59,12 +60,16 @@ const Container = styled.div`
   position: relative;
   cursor: pointer;
   position: relative;
-  width: 300px;
+  width: 265px;
   border: 1px solid #bbb;
   border-radius: 1.5rem;
   padding: 0.5rem;
   background: ${({ theme }) => theme.colors.white};
   margin-bottom: 2rem;
+
+  @media ${device.mobileL} {
+    width: 300px;
+  }
 `;
 
 const SelectedValue = styled.p<{ isHidden: boolean }>`
