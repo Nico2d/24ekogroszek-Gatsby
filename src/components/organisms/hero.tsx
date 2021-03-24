@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
-const background = require("../../assets/background.jpg");
 import { device } from "../../styles/breakpoints";
 import { Button } from "../atoms/button";
+const background = require("../../../static/assets/hero-background.jpg");
 
 export const Hero = () => (
   <HeroContainer>
@@ -32,6 +32,9 @@ const HeroContainer = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
+
+  box-shadow: rgb(50 50 93 / 15%) 0px 30px 60px -12px inset,
+    rgb(0 0 0 / 70%) 0px 8rem 8rem -18px inset;
 `;
 
 const Heading = styled.h1`

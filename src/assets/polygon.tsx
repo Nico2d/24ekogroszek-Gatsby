@@ -22,8 +22,8 @@ export const Polygon = ({ color1, color2 }) => {
           y2="279.021"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color={color2} />
-          <stop offset="1" stop-color={color1} />
+          <stop stopColor={color2} />
+          <stop offset="1" stopColor={color1} />
         </linearGradient>
       </defs>
     </svg>

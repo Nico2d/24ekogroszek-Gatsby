@@ -1,27 +1,62 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
 const transport1 = require("../../assets/transport-1.png");
 const transport2 = require("../../assets/transport-2.png");
 const transport3 = require("../../assets/transport-3.png");
 const transport4 = require("../../assets/transport-4.png");
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 export const TransportSection = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.2,
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
   return (
-    <CardWrapper>
-      <Card>
+    <CardWrapper
+      animate={controls}
+      variants={container}
+      ref={ref}
+      initial="hidden"
+    >
+      <Card variants={item}>
         <img src={transport1} alt="budynek sklepu" />
         <b>-50zł </b>przy własnym transporcie
       </Card>
-      <Card>
+      <Card variants={item}>
         <img src={transport2} alt="paleta z jedną toną" />
         <b>2zł/km</b> przy 1 tonie
       </Card>
-      <Card>
+      <Card variants={item}>
         <img src={transport3} alt="paleta z dwoma tonami" />
         <b>1zł/km</b> przy 2 tonach
       </Card>
-      <Card>
+      <Card variants={item}>
         <img src={transport4} alt="paleta z trzema tonami" />
         <b>DARMOWA DOSTAWA</b> powyżej 3ton i do 50km
       </Card>
@@ -29,7 +64,7 @@ export const TransportSection = () => {
   );
 };
 
-const CardWrapper = styled.div`
+const CardWrapper = styled(motion.ul)`
   display: grid;
   grid-template-columns: repeat(2, minmax(150px, 1fr));
   grid-gap: 2rem 0;
@@ -40,7 +75,7 @@ const CardWrapper = styled.div`
   }
 `;
 
-const Card = styled.div`
+const Card = styled(motion.li)`
   text-align: center;
   font-size: 0.9rem;
 

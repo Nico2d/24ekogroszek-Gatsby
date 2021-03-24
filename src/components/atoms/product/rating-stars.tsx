@@ -45,7 +45,7 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
     );
   }
 
-  if (rate === 0) return null;
+  if (rate === 0 && disabled) return null;
   return <RatingContainer isLeft={isLeft}>{Stars}</RatingContainer>;
 };
 

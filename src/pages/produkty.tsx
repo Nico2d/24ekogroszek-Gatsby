@@ -6,6 +6,7 @@ import { graphql } from "gatsby";
 import { ProductCard } from "../components/molecules/product-card";
 import { CatalogFilter } from "../components/organisms/catalog-filter";
 import { Sort } from "../components/molecules/sort";
+import { device } from "../styles/breakpoints";
 
 export const Produkty = ({ data }) => {
   const [InactiveFilterIDList, setInactiveFilterIDList] = useState<
@@ -16,6 +17,32 @@ export const Produkty = ({ data }) => {
     allStrapiEkogroszeks: { edges: products },
   } = data;
 
+  const [sortProperty, setSortProperty] = useState(
+    "Sortuj wg ceny: najwyższej"
+  );
+
+  const SortByName = (a, b) => {
+    let nameA = a.toUpperCase();
+    let nameB = b.toUpperCase();
+
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+
+    return 0;
+  };
+
+  const SortByDesc = (a, b) => {
+    return b - a;
+  };
+
+  const SortByAsc = (a, b) => {
+    return a - b;
+  };
+
   return (
     <Layout>
       <StyledContainer>
@@ -23,25 +50,45 @@ export const Produkty = ({ data }) => {
           InactiveFilterIDList={InactiveFilterIDList}
           setInactiveFilterIDList={setInactiveFilterIDList}
         />
-        <main style={{ margin: "auto" }}>
-          <Sort />
+        <StyledMain>
+          <Sort changeHandler={setSortProperty} />
 
           <CardContainer>
             {products
               .filter(({ node }) => {
                 return !InactiveFilterIDList.includes(node.producent.Nazwa);
               })
+              .sort((a, b) => {
+                switch (sortProperty) {
+                  case "Sortuj wg nazwy":
+                    return SortByName(a.node.Nazwa, b.node.Nazwa);
+                  case "Sortuj wg ceny: najwyższej":
+                    return SortByDesc(a.node.AktualnaCena, b.node.AktualnaCena);
+                  case "Sortuj wg ceny: najniższej":
+                    return SortByAsc(a.node.AktualnaCena, b.node.AktualnaCena);
+                  case "Sortuj wg średniej oceny":
+                    return SortByAsc(a.node.Points, b.node.Points);
+                }
+              })
               .map(({ node }) => (
                 <ProductCard key={node.strapiId} product={node} />
               ))}
           </CardContainer>
-        </main>
+        </StyledMain>
       </StyledContainer>
     </Layout>
   );
 };
 
 export default Produkty;
+
+const StyledMain = styled.main`
+  width: 100%;
+
+  @media ${device.tablet} {
+    width: unset;
+  }
+`;
 
 const CardContainer = styled.div`
   display: grid;
