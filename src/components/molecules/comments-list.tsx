@@ -3,6 +3,7 @@ import { FaUserCircle } from "@react-icons/all-files/fa/FaUserCircle";
 import styled from "styled-components";
 import { RatingStars } from "../atoms/product/rating-stars";
 import { CommentType } from "../../types/comment.type";
+import { motion } from "framer-motion";
 
 type CommentsListProps = {
   commentsList: Array<CommentType>;
@@ -10,19 +11,25 @@ type CommentsListProps = {
 
 export const CommentsList: React.FC<CommentsListProps> = ({ commentsList }) => {
   const GetTodayDate = () => {
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, "0");
-    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    let yyyy = today.getFullYear();
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, "0");
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const year = today.getFullYear();
 
-    return yyyy + "-" + mm + "-" + dd;
+    return year + "-" + month + "-" + day;
   };
 
   return (
     <div>
       {commentsList.length ? (
-        commentsList.reverse().map((comment) => (
-          <CommentContainer key={comment.id}>
+        commentsList.reverse().map((comment, index) => (
+          <CommentContainer
+            key={comment.id}
+            as={index === 0 && motion.div}
+            initial={{ scale: 0.85, y: -10, opacity: 0.5 }}
+            animate={{ scale: 1, y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
             <AvatarWrapper>
               <Avatar />
             </AvatarWrapper>
