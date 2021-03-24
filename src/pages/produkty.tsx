@@ -49,7 +49,7 @@ export const Produkty = ({ data }) => {
           InactiveFilterIDList={InactiveFilterIDList}
           setInactiveFilterIDList={setInactiveFilterIDList}
         />
-        <main style={{ margin: "auto" }}>
+        <main>
           <Sort changeHandler={setSortProperty} />
 
           <CardContainer>

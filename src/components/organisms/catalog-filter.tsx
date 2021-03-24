@@ -6,6 +6,7 @@ import { Checkbox } from "../atoms/checkbox";
 import { useStaticQuery, graphql } from "gatsby";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { BsFilter } from "@react-icons/all-files/bs/BsFilter";
+import { OutsideEvent } from "../atoms/outside-event";
 
 type CatalogFilterProps = {
   InactiveFilterIDList: Array<string>;
@@ -17,6 +18,7 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
   setInactiveFilterIDList,
 }) => {
   const isDesktop = useMediaQuery(device.tablet);
+  const [isHidden, setIsHidden] = useState<boolean>(true);
   const {
     allStrapiProducents: { edges: producers },
   } = useStaticQuery(graphql`
@@ -50,11 +52,42 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
     }
   };
 
+  const hideOptions = () => {
+    setIsHidden(!isHidden);
+  };
+
   if (!isDesktop)
     return (
-      <FilterWrapper>
-        <BsFilter />
-      </FilterWrapper>
+      <OutsideEvent method={hideOptions} isActive={isHidden}>
+        <FilterWrapper onClick={hideOptions}>
+          <BsFilter />
+        </FilterWrapper>
+
+        <MobileFilterContainer
+          style={{ display: isHidden ? "none" : "inherit" }}
+        >
+          <li>
+            <Checkbox
+              label="Wszystkie"
+              checked={InactiveFilterIDList.length === 0}
+              onChangeHandler={checkAllHandler}
+              name="all"
+            />
+          </li>
+          {producers.map(({ node }) => (
+            <li key={node.id}>
+              <Checkbox
+                label={node.Nazwa}
+                name={node.Nazwa}
+                checked={!InactiveFilterIDList.includes(node.Nazwa)}
+                onChangeHandler={(e) =>
+                  ProductFilterHandler(e.target.checked, node.Nazwa)
+                }
+              />
+            </li>
+          ))}
+        </MobileFilterContainer>
+      </OutsideEvent>
     );
 
   return (
@@ -86,6 +119,26 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
     </StyledAside>
   );
 };
+
+const MobileFilterContainer = styled.div`
+  position: absolute;
+  z-index: 100;
+  top: 52px;
+  right: 1rem;
+  width: 200px;
+  height: fit-content;
+  background: ${({ theme }) => theme.colors.white};
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid ${({ theme }) => theme.colors.lineColor};
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+  > li {
+    margin: 0.5rem;
+  }
+`;
 
 const FilterWrapper = styled.div`
   position: absolute;
