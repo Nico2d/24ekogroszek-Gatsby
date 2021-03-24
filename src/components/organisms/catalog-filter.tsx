@@ -128,7 +128,7 @@ const MobileFilterContainer = styled.div`
   width: 200px;
   height: fit-content;
   background: ${({ theme }) => theme.colors.white};
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 1rem;
   border: 1px solid ${({ theme }) => theme.colors.lineColor};
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,

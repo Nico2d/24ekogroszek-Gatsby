@@ -51,13 +51,14 @@ const Card = styled.div`
   border-radius: 2rem;
   background: linear-gradient(0deg, #ffffff, #ffffff);
   box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 25%);
-  padding: 2rem;
+  padding: 1rem;
   flex-flow: column;
   max-width: 900px;
   justify-content: space-around;
 
   @media ${device.tablet} {
     flex-flow: row;
+    padding: 3rem;
   }
 `;
 
@@ -115,17 +116,20 @@ const StyledWrapperImage = styled.div`
   margin: auto;
   margin-bottom: 1rem;
   position: relative;
+  display: flex;
+  justify-content: center;
 
   > img {
     max-height: 300px;
     width: auto;
     position: absolute;
     top: 50%;
-    left: 40%;
+    left: 50%;
     transform: translate(-50%, -50%);
   }
 
   @media ${device.tablet} {
     margin: auto;
+    margin-right: 1rem;
   }
 `;
