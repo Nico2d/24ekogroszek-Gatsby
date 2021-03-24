@@ -1,12 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { device, size } from "../../styles/breakpoints";
-import { Checkbox } from "../atoms/checkbox";
-import { useStaticQuery, graphql } from "gatsby";
+import { device } from "../../styles/breakpoints";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { BsFilter } from "@react-icons/all-files/bs/BsFilter";
 import { OutsideEvent } from "../atoms/outside-event";
+import { ProducersList } from "../molecules/producers-list";
 
 type CatalogFilterProps = {
   InactiveFilterIDList: Array<string>;
@@ -19,38 +18,6 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
 }) => {
   const isDesktop = useMediaQuery(device.tablet);
   const [isHidden, setIsHidden] = useState<boolean>(true);
-  const {
-    allStrapiProducents: { edges: producers },
-  } = useStaticQuery(graphql`
-    query GetProducents {
-      allStrapiProducents(filter: { kategoria: { eq: "Ekogroszek" } }) {
-        edges {
-          node {
-            Nazwa
-            id
-          }
-        }
-      }
-    }
-  `);
-
-  const nameList = producers.map((producent) => producent.node.Nazwa);
-
-  const checkAllHandler = (e) => {
-    InactiveFilterIDList.length === 0
-      ? setInactiveFilterIDList(nameList)
-      : setInactiveFilterIDList([]);
-  };
-
-  const ProductFilterHandler = (isChecked, key) => {
-    if (isChecked) {
-      setInactiveFilterIDList(
-        InactiveFilterIDList.filter((item) => item !== key)
-      );
-    } else {
-      setInactiveFilterIDList((props) => [...props, key]);
-    }
-  };
 
   const hideOptions = () => {
     setIsHidden(!isHidden);
@@ -66,26 +33,10 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
         <MobileFilterContainer
           style={{ display: isHidden ? "none" : "inherit" }}
         >
-          <li>
-            <Checkbox
-              label="Wszystkie"
-              checked={InactiveFilterIDList.length === 0}
-              onChangeHandler={checkAllHandler}
-              name="all"
-            />
-          </li>
-          {producers.map(({ node }) => (
-            <li key={node.id}>
-              <Checkbox
-                label={node.Nazwa}
-                name={node.Nazwa}
-                checked={!InactiveFilterIDList.includes(node.Nazwa)}
-                onChangeHandler={(e) =>
-                  ProductFilterHandler(e.target.checked, node.Nazwa)
-                }
-              />
-            </li>
-          ))}
+          <ProducersList
+            InactiveFilterIDList={InactiveFilterIDList}
+            setInactiveFilterIDList={setInactiveFilterIDList}
+          />
         </MobileFilterContainer>
       </OutsideEvent>
     );
@@ -95,26 +46,10 @@ export const CatalogFilter: React.FC<CatalogFilterProps> = ({
       <h6>Producent</h6>
 
       <StyledProducersWrapper>
-        <li>
-          <Checkbox
-            label="Wszystkie"
-            checked={InactiveFilterIDList.length === 0}
-            onChangeHandler={checkAllHandler}
-            name="all"
-          />
-        </li>
-        {producers.map(({ node }) => (
-          <li key={node.id}>
-            <Checkbox
-              label={node.Nazwa}
-              name={node.Nazwa}
-              checked={!InactiveFilterIDList.includes(node.Nazwa)}
-              onChangeHandler={(e) =>
-                ProductFilterHandler(e.target.checked, node.Nazwa)
-              }
-            />
-          </li>
-        ))}
+        <ProducersList
+          InactiveFilterIDList={InactiveFilterIDList}
+          setInactiveFilterIDList={setInactiveFilterIDList}
+        />
       </StyledProducersWrapper>
     </StyledAside>
   );
