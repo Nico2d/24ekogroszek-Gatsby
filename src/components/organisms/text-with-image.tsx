@@ -8,6 +8,7 @@ import { device } from "../../styles/breakpoints";
 import { StyledWhitespace } from "../atoms/whitespace";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
+import { Link } from "gatsby";
 
 export const TextWithImage = () => {
   const controls = useAnimation();
@@ -41,7 +42,10 @@ export const TextWithImage = () => {
           cenach.
         </p>
         <StyledWhitespace height={1} />
-        <Button text="Poznaj naszych dostawców" />
+
+        <Link to="/partnerzy">
+          <Button text="Poznaj naszych dostawców" />
+        </Link>
       </ContentSection>
       <ImageSection>
         <img src={image} alt="Kopalnia węgla" />
