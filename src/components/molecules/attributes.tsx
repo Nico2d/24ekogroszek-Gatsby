@@ -90,7 +90,7 @@ const AttributesContainer = styled.div`
   background: ${({ theme }) => theme.colors.background};
 
   @media ${device.tablet} {
-    width: 85%;
+    width: 90%;
     left: 5%;
     height: 200px;
   }
