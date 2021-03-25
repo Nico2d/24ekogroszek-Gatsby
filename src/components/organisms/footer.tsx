@@ -7,14 +7,14 @@ import { IconWithText } from "../atoms/icon-with-text";
 import { HiOutlinePhone } from "@react-icons/all-files/hi/HiOutlinePhone";
 import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLocationMarker";
 
-const LogoWhite = require("../../../static/assets/logo-white.png"); //("../../assets/logo-white.png");
+const LogoWhite = require("../../../static/assets/logo-white.png");
 
 export const Footer = () => {
   return (
     <Wrapper>
       <StyledContainer>
         <Logo>
-          <img src={LogoWhite} alt="logo" />
+          <img src={LogoWhite} alt="logo" width="200" height="50" />
         </Logo>
         <Heading>Kontakt</Heading>
         <IconWithText>
@@ -65,7 +65,11 @@ const Wrapper = styled.div`
 
 const Logo = styled.div`
   margin-bottom: 2rem;
-  width: 200px;
+
+  > img {
+    width: 200px;
+    height: auto;
+  }
 `;
 
 const Info = styled.p`
