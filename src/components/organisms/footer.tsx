@@ -58,7 +58,7 @@ const Wrapper = styled.div`
     background-position: -180px;
   }
 
-  @media ${device.laptopM} {
+  @media ${device.laptopL} {
     background-position: right;
   }
 `;
