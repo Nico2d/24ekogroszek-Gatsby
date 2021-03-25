@@ -1,30 +1,44 @@
 import { motion } from "framer-motion";
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
 import { Button } from "../atoms/button";
-const background = require("../../../static/assets/hero-background.jpg");
 
-export const Hero = () => (
-  <HeroContainer>
-    <motion.div
-      initial={{ opacity: 0, y: 200 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.2 }}
-    >
-      <Heading>Z troską o ciepło w Twoim domu</Heading>
-      <Button text="Poznaj nasze produkty" />
-    </motion.div>
-  </HeroContainer>
-);
+export const Hero = () => {
+  const backgroundImage = useStaticQuery(graphql`
+    query GetHeroBackground {
+      file(relativePath: { eq: "hero-background.jpg" }) {
+        childImageSharp {
+          fluid(quality: 100) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
 
-const HeroContainer = styled.div`
+  return (
+    <HeroContainer background={backgroundImage.file.childImageSharp.fluid.src}>
+      <motion.div
+        initial={{ opacity: 0, y: 200 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2 }}
+      >
+        <Heading>Z troską o ciepło w Twoim domu</Heading>
+        <Button text="Poznaj nasze produkty" />
+      </motion.div>
+    </HeroContainer>
+  );
+};
+
+const HeroContainer = styled.div<{ background: string }>`
   position: relative;
   background: #000;
   color: #fff;
   text-align: center;
   height: 100vh;
-  background-image: url(${background});
+  background-image: url(${({ background: bg }) => bg});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

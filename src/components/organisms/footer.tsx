@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-const LogoWhite = require("../../assets/logo-white.png");
 import { Container } from "../atoms/container";
 const background = require("../../assets/footer.svg");
 import { device } from "../../styles/breakpoints";
 import { IconWithText } from "../atoms/icon-with-text";
 import { HiOutlinePhone } from "@react-icons/all-files/hi/HiOutlinePhone";
 import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLocationMarker";
+
+const LogoWhite = require("../../../static/assets/logo-white.png"); //("../../assets/logo-white.png");
 
 export const Footer = () => {
   return (

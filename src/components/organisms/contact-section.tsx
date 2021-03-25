@@ -5,12 +5,25 @@ import { device } from "../../styles/breakpoints";
 import { IconWithText } from "../atoms/icon-with-text";
 import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLocationMarker";
 import { HiOutlinePhone } from "@react-icons/all-files/hi/HiOutlinePhone";
-
-const phone = require("../../assets/phone.png");
+import { useStaticQuery, graphql } from "gatsby";
 
 export const ContactSection = () => {
+  const backgroundImage = useStaticQuery(graphql`
+    query GetContactSectionBackground {
+      file(relativePath: { eq: "phone.png" }) {
+        childImageSharp {
+          fluid(quality: 100) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
+
   return (
-    <StyledContainer>
+    <StyledContainer
+      background={backgroundImage.file.childImageSharp.fluid.src}
+    >
       <ContentWrapper>
         <Heading>
           <b>Masz pytania? </b>Skontaktuj się z nami
@@ -41,8 +54,8 @@ const ContentWrapper = styled(Container)`
   justify-content: center;
 `;
 
-const StyledContainer = styled.div`
-  background-image: url(${phone});
+const StyledContainer = styled.div<{ background: string }>`
+  background-image: url(${({ background }) => background});
   background-repeat: no-repeat;
   background-position: 75% 0%;
   background-size: 100rem;
