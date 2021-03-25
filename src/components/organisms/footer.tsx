@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-const LogoWhite = require("../../assets/logo-white.png");
 import { Container } from "../atoms/container";
 const background = require("../../assets/footer.svg");
 import { device } from "../../styles/breakpoints";
@@ -8,12 +7,14 @@ import { IconWithText } from "../atoms/icon-with-text";
 import { HiOutlinePhone } from "@react-icons/all-files/hi/HiOutlinePhone";
 import { HiOutlineLocationMarker } from "@react-icons/all-files/hi/HiOutlineLocationMarker";
 
+const LogoWhite = require("../../../static/assets/logo-white.png");
+
 export const Footer = () => {
   return (
     <Wrapper>
       <StyledContainer>
         <Logo>
-          <img src={LogoWhite} alt="logo" />
+          <img src={LogoWhite} alt="logo" width="200" height="50" />
         </Logo>
         <Heading>Kontakt</Heading>
         <IconWithText>
@@ -57,14 +58,18 @@ const Wrapper = styled.div`
     background-position: -180px;
   }
 
-  @media ${device.laptopM} {
+  @media ${device.laptopL} {
     background-position: right;
   }
 `;
 
 const Logo = styled.div`
   margin-bottom: 2rem;
-  width: 200px;
+
+  > img {
+    width: 200px;
+    height: auto;
+  }
 `;
 
 const Info = styled.p`

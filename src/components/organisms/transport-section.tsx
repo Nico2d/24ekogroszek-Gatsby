@@ -69,7 +69,7 @@ const CardWrapper = styled(motion.ul)`
   grid-template-columns: repeat(2, minmax(150px, 1fr));
   grid-gap: 2rem 0;
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     grid-template-columns: repeat(4, minmax(200px, 1fr));
     grid-gap: 2rem;
   }
