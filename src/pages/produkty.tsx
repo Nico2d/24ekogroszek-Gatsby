@@ -7,6 +7,7 @@ import { ProductCard } from "../components/molecules/product-card";
 import { CatalogFilter } from "../components/organisms/catalog-filter";
 import { Sort } from "../components/molecules/sort";
 import { device } from "../styles/breakpoints";
+import { getAverageRating } from "../utils/getAverageRating";
 
 export const Produkty = ({ data }) => {
   const [InactiveFilterIDList, setInactiveFilterIDList] = useState<
@@ -59,6 +60,7 @@ export const Produkty = ({ data }) => {
                 return !InactiveFilterIDList.includes(node.producent.Nazwa);
               })
               .sort((a, b) => {
+                console.log(getAverageRating(a.node.comments));
                 switch (sortProperty) {
                   case "Sortuj wg nazwy":
                     return SortByName(a.node.Nazwa, b.node.Nazwa);
@@ -67,7 +69,10 @@ export const Produkty = ({ data }) => {
                   case "Sortuj wg ceny: najniższej":
                     return SortByAsc(a.node.AktualnaCena, b.node.AktualnaCena);
                   case "Sortuj wg średniej oceny":
-                    return SortByAsc(a.node.Points, b.node.Points);
+                    return SortByDesc(
+                      getAverageRating(a.node.comments),
+                      getAverageRating(b.node.comments)
+                    );
                 }
               })
               .map(({ node }) => (
