@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
@@ -26,7 +26,9 @@ export const Hero = () => {
         transition={{ duration: 1.2 }}
       >
         <Heading>Z troską o ciepło w Twoim domu</Heading>
-        <Button text="Poznaj nasze produkty" />
+        <Link to="/produkty">
+          <Button text="Poznaj nasze produkty" />
+        </Link>
       </motion.div>
     </HeroContainer>
   );
