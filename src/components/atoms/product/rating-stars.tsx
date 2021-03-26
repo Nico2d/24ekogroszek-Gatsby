@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 
 type RagingStarsProps = {
   register?: any;
-  maxRate?: number;
   name: string;
   defaultRate?: number;
   disabled?: boolean;
@@ -14,7 +13,6 @@ type RagingStarsProps = {
 
 export const RatingStars: React.FC<RagingStarsProps> = ({
   register,
-  maxRate = 5,
   name,
   disabled = false,
   defaultRate = 0,
@@ -22,31 +20,30 @@ export const RatingStars: React.FC<RagingStarsProps> = ({
 }) => {
   const [rate, setRate] = useState<number>(defaultRate);
 
-  let Stars = [];
-  for (let i = 1; i <= maxRate; i++) {
-    Stars.push(
-      <StyledStars
-        key={i}
-        isActive={i <= rate}
-        as={motion.label}
-        whileTap={{ scale: disabled ? 1 : 1.5 }}
-        isDisabled={disabled}
-      >
-        <AiFillStar />
-        <HiddenInput
-          value={i}
-          ref={register}
-          name={name}
-          type="radio"
-          onChange={(e) => setRate(+e.target.value)}
-          disabled={disabled}
-        />
-      </StyledStars>
-    );
-  }
-
-  if (rate === 0 && disabled) return null;
-  return <RatingContainer isLeft={isLeft}>{Stars}</RatingContainer>;
+  if (defaultRate === 0 && disabled) return null;
+  return (
+    <RatingContainer isLeft={isLeft}>
+      {[1, 2, 3, 4, 5].map((index) => (
+        <StyledStars
+          key={index}
+          isActive={index <= (disabled ? defaultRate : rate)}
+          as={motion.label}
+          whileTap={{ scale: disabled ? 1 : 1.5 }}
+          isDisabled={disabled}
+        >
+          <AiFillStar />
+          <HiddenInput
+            value={index}
+            ref={register}
+            name={name}
+            type="radio"
+            onChange={(e) => setRate(+e.target.value)}
+            disabled={disabled}
+          />
+        </StyledStars>
+      ))}
+    </RatingContainer>
+  );
 };
 
 const RatingContainer = styled.div<{ isLeft: boolean }>`

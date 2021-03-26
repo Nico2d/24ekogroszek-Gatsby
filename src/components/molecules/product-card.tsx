@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
 import { Button } from "../atoms/button";
@@ -12,6 +12,16 @@ import { Polygon } from "../../assets/polygon";
 import { theme } from "../../styles/colors";
 
 export const ProductCard: React.FC<ProductType> = ({ product }) => {
+  const [ratingStars, setRatingStars] = useState(
+    getAverageRating(product.comments)
+  );
+
+  useEffect(() => {
+    fetch(`${process.env.API_URL}/comments/ekogroszek:${product.strapiId}`)
+      .then((response) => response.json())
+      .then((data) => setRatingStars(getAverageRating(data)));
+  }, []);
+
   return (
     <Card>
       <StyledWrapperImage>
@@ -29,12 +39,7 @@ export const ProductCard: React.FC<ProductType> = ({ product }) => {
 
       <ContentContainer>
         <Title>{product.Nazwa}</Title>
-        <RatingStars
-          name="starts"
-          defaultRate={getAverageRating(product.comments)}
-          disabled
-          isLeft
-        />
+        <RatingStars name="starts" defaultRate={ratingStars} disabled isLeft />
         <CurrentPrice>{product.AktualnaCena.toFixed(2)}zł</CurrentPrice>
         <PreviousPrice price={product.PoprzedniaCena} />
 

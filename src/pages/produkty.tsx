@@ -60,7 +60,6 @@ export const Produkty = ({ data }) => {
                 return !InactiveFilterIDList.includes(node.producent.Nazwa);
               })
               .sort((a, b) => {
-                console.log(getAverageRating(a.node.comments));
                 switch (sortProperty) {
                   case "Sortuj wg nazwy":
                     return SortByName(a.node.Nazwa, b.node.Nazwa);
