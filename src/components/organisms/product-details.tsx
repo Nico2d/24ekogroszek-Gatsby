@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
@@ -11,6 +11,18 @@ import { Attributes } from "../molecules/attributes";
 const polygon = require("../../assets/polygon.svg");
 
 export const ProductDetails: React.FC<ProductType> = ({ product }) => {
+  const [ratingStars, setRatingStars] = useState(
+    getAverageRating(product.comments)
+  );
+
+  useEffect(() => {
+    fetch(`${process.env.API_URL}/comments/ekogroszek:${product.strapiId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setRatingStars(getAverageRating(data));
+      });
+  }, []);
+
   return (
     <StyledContainer>
       <ImageWrapper>
@@ -25,11 +37,7 @@ export const ProductDetails: React.FC<ProductType> = ({ product }) => {
         <Title>{product.Nazwa}</Title>
         <Price>{product.AktualnaCena.toFixed(2)}zł</Price>
         <StyledPreviousPrice price={product.PoprzedniaCena} />
-        <RatingStars
-          name="starts"
-          defaultRate={getAverageRating(product.comments)}
-          disabled
-        />
+        <RatingStars name="starts" defaultRate={ratingStars} disabled />
         <StyledDescription>{product.Opis}</StyledDescription>
       </ContentContainer>
     </StyledContainer>
