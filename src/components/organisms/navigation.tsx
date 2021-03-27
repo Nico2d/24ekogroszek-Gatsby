@@ -98,8 +98,9 @@ const StyledNavbar = styled.nav<{ isHero: boolean }>`
 
 const LinkWrapper = styled.div`
   margin: auto 0;
-  padding: 0 1rem;
   font-size: 1.2rem;
+  display: flex;
+  opacity: 0.9;
 
   * {
     margin-left: 2rem;
