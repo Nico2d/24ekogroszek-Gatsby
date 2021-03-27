@@ -11,7 +11,7 @@ module.exports = {
     description:
       "Zapewniamy najwyższej jakości ekogroszek od renomowanych producentów. Znajdziesz u nas towar dostosowany specjalnie do twojego pieca na ekogroszek w niskich cenach.",
     image: "/src/assets/background.jpg",
-    url: "https://24ekogroszek.pl",
+    siteUrl: "https://24ekogroszek.pl",
   },
   plugins: [
     "gatsby-transformer-remark",
