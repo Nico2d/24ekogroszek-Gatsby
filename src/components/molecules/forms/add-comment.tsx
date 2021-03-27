@@ -18,7 +18,7 @@ export const AddComment: React.FC<AddCommentProps> = ({
   productId,
   setComment,
 }) => {
-  const { register, errors, setError, handleSubmit, clearErrors } = useForm();
+  const { register, errors, setError, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     fetch(`${process.env.API_URL}/comments/ekogroszek:${productId}`, {

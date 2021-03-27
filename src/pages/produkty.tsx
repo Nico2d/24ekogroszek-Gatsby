@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Container } from "../components/atoms/container";
 import { Layout } from "../components/layout";
@@ -14,13 +14,24 @@ export const Produkty = ({ data }) => {
     Array<string>
   >([]);
 
-  const {
-    allStrapiEkogroszeks: { edges: products },
-  } = data;
-
   const [sortProperty, setSortProperty] = useState(
     "Sortuj wg ceny: najwyższej"
   );
+
+  const [products, setProducts] = useState(data.allStrapiEkogroszeks.edges);
+
+  useEffect(() => {
+    setProducts([]);
+    products.map(({ node }) => {
+      fetch(`${process.env.API_URL}/comments/ekogroszek:${node.strapiId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          node["averageRating"] = getAverageRating(data);
+
+          setProducts((props) => [...props, { node }]);
+        });
+    });
+  }, []);
 
   const SortByName = (a, b) => {
     let nameA = a.toUpperCase();
@@ -36,13 +47,7 @@ export const Produkty = ({ data }) => {
     return 0;
   };
 
-  const SortByDesc = (a, b) => {
-    return b - a;
-  };
-
-  const SortByAsc = (a, b) => {
-    return a - b;
-  };
+  console.log("products Final: ", products);
 
   return (
     <Layout>
@@ -53,7 +58,6 @@ export const Produkty = ({ data }) => {
         />
         <StyledMain>
           <Sort changeHandler={setSortProperty} />
-
           <CardContainer>
             {products
               .filter(({ node }) => {
@@ -64,19 +68,16 @@ export const Produkty = ({ data }) => {
                   case "Sortuj wg nazwy":
                     return SortByName(a.node.Nazwa, b.node.Nazwa);
                   case "Sortuj wg ceny: najwyższej":
-                    return SortByDesc(a.node.AktualnaCena, b.node.AktualnaCena);
+                    return b.node.AktualnaCena - a.node.AktualnaCena;
                   case "Sortuj wg ceny: najniższej":
-                    return SortByAsc(a.node.AktualnaCena, b.node.AktualnaCena);
+                    return a.node.AktualnaCena - b.node.AktualnaCena;
                   case "Sortuj wg średniej oceny":
-                    return SortByDesc(
-                      getAverageRating(a.node.comments),
-                      getAverageRating(b.node.comments)
-                    );
+                    return b.node.averageRating - a.node.averageRating;
                 }
               })
-              .map(({ node }) => (
-                <ProductCard key={node.strapiId} product={node} />
-              ))}
+              .map(({ node }) => {
+                return <ProductCard key={node.strapiId} product={node} />;
+              })}
           </CardContainer>
         </StyledMain>
       </StyledContainer>
