@@ -15,5 +15,6 @@ export type ProductType = {
     comments?: Array<{
       points: number;
     }>;
+    averageRating?: number;
   };
 };

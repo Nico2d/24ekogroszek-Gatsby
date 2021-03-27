@@ -1,27 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
 import { Button } from "../atoms/button";
 import { Link } from "gatsby";
 import { convertToSlug } from "../../utils/convertToSlug";
 import { PreviousPrice } from "../atoms/product/previous-price";
-import { getAverageRating } from "../../utils/getAverageRating";
 import { RatingStars } from "../atoms/product/rating-stars";
 import { ProductType } from "../../types/product.type";
 import { Polygon } from "../../assets/polygon";
 import { theme } from "../../styles/colors";
 
 export const ProductCard: React.FC<ProductType> = ({ product }) => {
-  const [ratingStars, setRatingStars] = useState(
-    getAverageRating(product.comments)
-  );
-
-  useEffect(() => {
-    fetch(`${process.env.API_URL}/comments/ekogroszek:${product.strapiId}`)
-      .then((response) => response.json())
-      .then((data) => setRatingStars(getAverageRating(data)));
-  }, []);
-
   return (
     <Card>
       <StyledWrapperImage>
@@ -39,7 +28,12 @@ export const ProductCard: React.FC<ProductType> = ({ product }) => {
 
       <ContentContainer>
         <Title>{product.Nazwa}</Title>
-        <RatingStars name="starts" defaultRate={ratingStars} disabled isLeft />
+        <RatingStars
+          name="starts"
+          defaultRate={product.averageRating}
+          disabled
+          isLeft
+        />
         <CurrentPrice>{product.AktualnaCena.toFixed(2)}zł</CurrentPrice>
         <PreviousPrice price={product.PoprzedniaCena} />
 
