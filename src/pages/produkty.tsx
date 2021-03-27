@@ -47,8 +47,6 @@ export const Produkty = ({ data }) => {
     return 0;
   };
 
-  console.log("products Final: ", products);
-
   return (
     <Layout>
       <StyledContainer>
