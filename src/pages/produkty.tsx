@@ -21,14 +21,19 @@ export const Produkty = ({ data }) => {
   const [products, setProducts] = useState(data.allStrapiEkogroszeks.edges);
 
   useEffect(() => {
-    setProducts([]);
     products.map(({ node }) => {
       fetch(`${process.env.API_URL}/comments/ekogroszek:${node.strapiId}`)
         .then((response) => response.json())
         .then((data) => {
           node["averageRating"] = getAverageRating(data);
 
-          setProducts((props) => [...props, { node }]);
+          setProducts((products) =>
+            products.map((item) => {
+              if (item.node.strapiId === node.strapiId) return { node };
+
+              return item;
+            })
+          );
         });
     });
   }, []);
